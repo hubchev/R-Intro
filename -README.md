@@ -1,5 +1,3 @@
-# R-Intro
-
 ## Introduction to R
 
 ### Description
