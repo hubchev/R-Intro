@@ -307,7 +307,9 @@ Before we move on to more complex concepts and getting familiar with the languag
 
 ## Run your first R Script
 
-Download this [R-Script]()
+Download this [R-Script](https://raw.githubusercontent.com/hubchev/R-Intro/master/scripts/SH-R-01.R) and try to run and use it in RStudio. 
+
+_Hint: Make a right-click and do "save as"._
 
 ## Disclaimer
 <sub><sup><sub><sup>
