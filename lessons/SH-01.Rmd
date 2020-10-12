@@ -1,5 +1,5 @@
 ---
-title: "R 101"
+title: "R 101 - First Steps"
 author: "Stephan.Huber@hs-fresenius.de"
 date: "Hochschule Fresenius -  winter term 2020"
 output:
