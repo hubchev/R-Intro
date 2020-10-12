@@ -1,7 +1,7 @@
 ---
-title: "R Syntax and Data Structures"
+title: "R 101 -- 3. R Syntax and Data Structures"
 author: "Stephan.Huber@hs-fresenius.de"
-date: "Hochschule Fresenius -  winter term 2020"
+date: "Hochschule Fresenius"
 
 output:
   ioslides_presentation: default

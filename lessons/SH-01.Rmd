@@ -1,7 +1,7 @@
 ---
-title: "R 101 - First Steps"
+title: "R 101 -- 1. First Steps"
 author: "Stephan.Huber@hs-fresenius.de"
-date: "Hochschule Fresenius -  winter term 2020"
+date: "Hochschule Fresenius"
 output:
   ioslides_presentation: default
   beamer_presentation: default
