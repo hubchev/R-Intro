@@ -1,0 +1,57 @@
+% Encoding: UTF-8
+
+@Article{Davenport2012Data,
+  author    = {Davenport, Thomas H and Patil, DJ},
+  title     = {Data Scientist},
+  journal   = {Harvard Business Review},
+  year      = {2012},
+  volume    = {90},
+  number    = {5},
+  pages     = {70--76},
+  file      = {Davenport2012Data.pdf:Davenport2012Data.pdf:PDF},
+  owner     = {stephan},
+  timestamp = {2019-12-16},
+}
+
+@Book{Grolemund2018R,
+  title     = {R for Data Science: Import, Tidy, Transform, Visualize, and Model Data},
+  publisher = {O'Reilly},
+  year      = {2018},
+  author    = {Grolemund, Garrett and Wickham, Hadley},
+  file      = {Grolemund2018R.pdf:book/Grolemund2018R.pdf:PDF},
+  location  = {Sebastopol, CA},
+  owner     = {stephan},
+  timestamp = {2019-12-16},
+}
+
+@Book{Provost2013Data,
+  title     = {Data Science for Business: What you need to know about data mining and data-analytic thinking},
+  publisher = {O'Reilly Media},
+  year      = {2013},
+  author    = {Provost, Foster and Fawcett, Tom},
+  file      = {Provost2013Data.pdf:book/Provost2013Data.pdf:PDF},
+  location  = {Sebastopol, CA},
+  owner     = {stephan},
+  timestamp = {2019-12-16},
+}
+
+@Conference{McLean2014Tools,
+  author    = {McLean, Mathew W.},
+  title     = {Tools for Reproducible Research and Dynamic Documents with R},
+  year      = {2014},
+  file      = {McLean2014Tools.pdf:McLean2014Tools.pdf:PDF},
+  owner     = {sthu},
+  timestamp = {2020-03-21},
+}
+
+@Book{McCallum2012Bad,
+  title     = {Bad Data Handbook: Cleaning up the Data so You Can Get Back to Work},
+  publisher = {O'Reilly Media},
+  year      = {2012},
+  author    = {McCallum, Q. Ethan},
+  file      = {McCallum2012Bad.pdf:book/McCallum2012Bad.pdf:PDF},
+  owner     = {sthu},
+  timestamp = {2020-03-21},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

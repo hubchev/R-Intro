@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: syllabus_template.aux
+Multiple inclusions of entire database
+---line 23 of file syllabus_template.aux
+ : \citation{*
+ :            }
+I'm skipping whatever remains of this command
+The style file: jpe.bst
+Database file #1: lit_dsb.bib
+Warning--I didn't find a database entry for "Wickham"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--empty booktitle in McLean2014Tools
+Warning--empty pages in McLean2014Tools
+You've used 17 entries,
+            3072 wiz_defined-function locations,
+            709 strings with 6523 characters,
+and the built_in function-call counts, 8010 in all, are:
+= -- 625
+> -- 318
+< -- 1
++ -- 117
+- -- 94
+* -- 447
+:= -- 1435
+add.period$ -- 71
+call.type$ -- 17
+change.case$ -- 94
+chr.to.int$ -- 17
+cite$ -- 19
+duplicate$ -- 592
+empty$ -- 689
+format.name$ -- 109
+if$ -- 1604
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 130
+newline$ -- 91
+num.names$ -- 68
+pop$ -- 291
+preamble$ -- 1
+purify$ -- 92
+quote$ -- 0
+skip$ -- 252
+stack$ -- 0
+substring$ -- 212
+swap$ -- 227
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 108
+warning$ -- 2
+while$ -- 70
+width$ -- 0
+write$ -- 214
+(There was 1 error message)

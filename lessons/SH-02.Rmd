@@ -1,5 +1,5 @@
 ---
-title: "R 101 -- 3. R Syntax and Data Structures"
+title: "R 101 -- 2. R Syntax and Data Structures"
 author: "Stephan.Huber@hs-fresenius.de"
 date: "Hochschule Fresenius"
 

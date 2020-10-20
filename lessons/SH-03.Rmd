@@ -22,6 +22,13 @@ knitr::opts_chunk$set(echo = TRUE)
 * Demonstrate how to install packages to extend R’s functionality. 
 * Identify different R-specific and external sources of help to (1) troubleshoot errors and (2) get more information about functions and packages.
 
+***
+
+<img src="/home/sthu/Dropbox/hsf/courses_202/R/notingit/img/buildahouse.png" width="800">
+
+<sup><sub><sup><sub>
+*Source: http://anoved.net/tag/lego/page/3/* 
+</sup></sub></sup></sub>
 
 ## Functions and their arguments
 

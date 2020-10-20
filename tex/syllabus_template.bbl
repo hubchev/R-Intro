@@ -1,0 +1,100 @@
+\begin{thebibliography}{17}
+\newcommand{\enquote}[1]{``#1''}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem[{Crawley(2013)}]{Crawley2013R}
+Crawley, Michael~J. 2013.
+\newblock \emph{The R Book}.
+\newblock John Wiley \& Sons, 2nd ed.
+
+\bibitem[{Davenport and Patil(2012)}]{Davenport2012Data}
+Davenport, Thomas~H and DJ~Patil. 2012.
+\newblock \enquote{Data Scientist.}
+\newblock \emph{Harvard Business Review} 90~(5):70--76.
+
+\bibitem[{Grolemund and Wickham(2018)}]{Grolemund2018R}
+Grolemund, Garrett and Hadley Wickham. 2018.
+\newblock \emph{R for Data Science: Import, Tidy, Transform, Visualize, and
+  Model Data}.
+\newblock O'Reilly.
+
+\bibitem[{James et~al.(2013)James, Witten, Hastie, and
+  Tibshirani}]{James2013Introduction}
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013.
+\newblock \emph{An Introduction to Statistical Learning}, \emph{Springer Texts
+  in Statistics}, vol. 112.
+\newblock New York, USA: Springer.
+
+\bibitem[{Kabacoff(2011)}]{Kabacoff2011R}
+Kabacoff, Robert~I. 2011.
+\newblock \emph{R in Action. Data Analyis and Graphics with R}.
+\newblock Shelter Island: Manning.
+
+\bibitem[{Lander(2014)}]{Lander2014R}
+Lander, Jared~P. 2014.
+\newblock \emph{R for Everyone: Advanced Analytics and Graphics}.
+\newblock Pearson Education.
+
+\bibitem[{Lantz(2013)}]{Lantz2013Machine}
+Lantz, Brett. 2013.
+\newblock \emph{Machine Learning with R}.
+\newblock Birmingham, UK: Packt Publishing.
+
+\bibitem[{Lilja(2016)}]{Lilja2016Linear}
+Lilja, {David J.} 2016.
+\newblock \emph{Linear Regression Using R an Introduction to Data Modeling}.
+\newblock Minneapolis, Minnesota, USA: University of Minnesota Libraries
+  Publishing, 1.1 (april 20117) ed.
+
+\bibitem[{Matloff(2011)}]{Matloff2011Art}
+Matloff, Norman. 2011.
+\newblock \emph{The Art of R Programming. A Tour of Statistical Software
+  Design}.
+\newblock San Francisco, USA: No Starch Press.
+
+\bibitem[{McCallum(2012)}]{McCallum2012Bad}
+McCallum, Q.~Ethan. 2012.
+\newblock \emph{Bad Data Handbook: Cleaning up the Data so You Can Get Back to
+  Work}.
+\newblock O'Reilly Media.
+
+\bibitem[{McLean(2014)}]{McLean2014Tools}
+McLean, Mathew~W. 2014.
+\newblock \enquote{Tools for Reproducible Research and Dynamic Documents with
+  R.}
+
+\bibitem[{Provost and Fawcett(2013)}]{Provost2013Data}
+Provost, Foster and Tom Fawcett. 2013.
+\newblock \emph{Data Science for Business: What you need to know about data
+  mining and data-analytic thinking}.
+\newblock O'Reilly Media.
+
+\bibitem[{R!(2009)}]{Use2009ggplot2}
+R!, Use. 2009.
+\newblock \emph{ggplot2. Elegant Graphics for Data Analysis}.
+\newblock Use R! New York, USA: Springer.
+
+\bibitem[{Sarkar(2008)}]{Sarkar2008Lattice}
+Sarkar, Deepayan. 2008.
+\newblock \emph{Lattice. Multivariate Data Visualization with R}.
+\newblock Springer.
+
+\bibitem[{Wickham and Grolemund(2016)}]{Wickham2016R}
+Wickham, Hadley and Garrett Grolemund. 2016.
+\newblock \emph{R for Data Science}.
+\newblock Sebastopol, Canada: O'Reilly Media.
+
+\bibitem[{Williams(2011)}]{Williams2011Data}
+Williams, Graham. 2011.
+\newblock \emph{Data Mining with Rattle and R: The Art of Excavating Data for
+  Knowledge Discovery}.
+\newblock Use R! New York, USA: Springer.
+
+\bibitem[{Zhao(2012)}]{Zhao2012R}
+Zhao, Yanchang. 2012.
+\newblock \emph{R and Data Mining: Examples and Case Studies}.
+\newblock Elsevier.
+
+\end{thebibliography}

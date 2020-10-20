@@ -1,0 +1,107 @@
+\documentclass{article}
+
+\usepackage{booktabs,soul,tabu,pdfpages}		
+\usepackage{enumerate}
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{K}{>{\centering\arraybackslash}X}
+%\usepackage{bm}
+\usepackage[english]{babel}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[round]{natbib}
+\usepackage{hyperref}					
+\usepackage{booktabs,tabularx}
+\usepackage{color,enumerate}
+\usepackage{caption}
+\usepackage{amsmath,amstext,amssymb} 
+\usepackage{tabu,booktabs,color,pdfpages}
+
+
+
+\title{A \LaTeX{} Syllabus Template\thanks{Some comment}}
+\author{Your Name  \\
+	Contact  \\
+	\and 
+	The Other Dude \\
+	Contact \\
+}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	
+\begin{abstract}
+	This Template should help to write a good syllabus/course description for your project. More information can be found here: \url{www.chronicle.com/article/how-to-create-a-syllabus/}.
+	Overall, I would say that the course description should have a maximum length of two pages.	
+\end{abstract}
+	
+\subsubsection*{Course Description}
+	Course descriptions should:
+\begin{itemize}
+	\item Be student-centered, rather than teacher-centered or course-centered
+	\item Use brief, outcomes-based, descriptive phrases that begin with an imperative or active verb (e.g., design, create, plan, analyze)
+	\item Be clear, concise, and easy to understand (< 80 words)
+	\item Detail significant learning experiences and benefits students can expect
+	\item Align with the outcomes identified in the rest of the course outline
+\end{itemize}	
+	Course descriptions should avoid:
+\begin{itemize}
+	\item Obvious, redundant, or repetitive language (such as “this course will…” or “students should expect to…”)
+	\item Marketing language (such as ``Concept X is a critical part of success in Industry Y'' or ``Course A will change the way you think about everything'')
+\end{itemize}
+	
+\subsubsection*{Prerequisites}
+\subsubsection*{Learning Objectives}
+\subsubsection*{Course Materials}
+\subsubsection*{About the Lecturer}
+
+
+
+\section{\LaTeX Stuff}
+	First we start with a little example of the article class, which is an 
+	important documentclass. But there would be other \textbf{documentclasses} like 
+	book see page \pageref{book}, report and letter  which are 
+	described in Section \ref{documentclasses}. Finally, Section 
+	\ref{conclusions} gives the conclusions.
+	
+\subsection{Documentclasses}\label{documentclasses}
+In \LaTeX\ different \textit{documentclasses} exist:	
+	\begin{enumerate}
+		\item article
+		\item book 
+		\item report 
+		\item letter 
+	\end{enumerate}
+	
+	\begin{description}
+		\item[article\label{article}]{Article is \ldots}
+		\item[book\label{book}]{The book class \ldots}
+		\item[report\label{report}]{Report gives you \ldots}
+		\item[letter\label{letter}]{If you want to write a letter.}
+	\end{description}
+	
+	\section{How to Include Literature}\label{conclusions}
+It is easy to include references to literature in \LaTeX.
+
+With the command \texttt{$\backslash$nocite\{*\}} you can include all the references of a .lit-database. I do that here. However, usually you include only the literature that is mentioned in the text to your reference list. \LaTeX\ will do most of the work for you. You just need to enter the requried informations about a book or an article in the .bib database.\footnote{For building up a literature database I highly recommend \textbf{JabRef} which is an open-sourced, cross-platform citation and reference management software. It uses BibTeX as its native formats and is therefore typically used for \LaTeX.} And then you can cite it using \texttt{$\backslash$citet\{\}}, see \url{https://gking.harvard.edu/files/natnotes2.pdf}.
+Here are some examples:
+\citet[][]{Wickham2016R} is a good book.
+Other books are also good \citep[see][]{Lilja2016Linear, Matloff2011Art}.
+
+If you want to write using \url{Overleaf.com}, see \url{https://www.overleaf.com/learn/latex/Bibliography_management_in_LaTeX} for how to do bibliography management in \LaTeX. 
+
+
+
+
+
+
+\nocite{*}
+	
+	
+\bibliographystyle{jpe}	
+\bibliography{lit_dsb}
+	
+\end{document}
