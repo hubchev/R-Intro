@@ -1,0 +1,314 @@
+---
+title: "R 101 -- 4. Operators"
+author: "Stephan.Huber@hs-fresenius.de"
+date: "Hochschule Fresenius"
+
+output:
+  html_document: default
+---
+
+# Describe the meaning of the `#` sign and the `<-` operator.
+
+- The `#` sign is used in R-scripts to add comments. That is usefull that you and others can understand what the R code is about. Comments are not run as R code, so they will not influence your result. 
+- `<-` is an assignment operator that assigns a value to a name/variable.  A variable allows you to store a value or an object in R and you can create that with the assignment operator. You can then later use it to access the value or the object that is stored within this variable.
+
+# Explain briefly ways to get help via the Console.
+
+- ?: Search R documentation for a specific term.
+- ?? Search R help files for a word or phrase.
+- RSiteSearch(): Search search.r-project.org
+- findFn(): Search search.r-project.org for functions (Hint: requires the "sos" library loaded!)
+- help.start(): Access to html manuals and documentations implemented in R 
+- apropos(): Returns a character vector giving the names of objects in the search list matching (as a regular expression) what.
+- find(): Returns where objects of a given name can be found.
+- vignette(): View a specified package vignette, i.e., supporting material such as introductions. 
+
+# Explain what the webpage RSeek.org can do for you.
+
+It makes it easy to search for information about R while filtering out sitesthat match "R" but don't contain the information you're looking for. It's just like a Google search, but restricts the search just to those sites known to contain information about R.
+
+# State the arithmetic operators (plus, minus, etc.) in R.  
+
+| Operator | Description    |
+|----------|----------------|
+| +        | addition       |
+| -        | subtraction    |
+| *        | multiplication |
+| /        | division       |
+|^ or **   | exponentiation |
+
+# Name the logical operators (greater than, equal to, etc.) that can be used in R.
+
+| Operator  | 	Description |
+|---------- |----------------|
+|>          | 	greater than |
+| >=  |	greater than or equal to  |
+| == | 	exactly equal to |
+| != |	not equal to | 
+
+
+# What does ! mean in R?
+
+It's the logical operator for negation and it also means the opposite of a function.
+
+```{r}
+!(5>1)
+
+!(1>5)
+
+
+```
+
+"" returns FALSE while "!(1>5)" returns TRUE.
+
+# What is the pipe operator, %>% in R?
+
+The pipe operator, %>%, comes from the magrittr package which is also a part of the tidyverse package. The pipe is to help you write code in a way that is easier to read and understand. 
+As R is a functional language, code often contains a lot of parenthesis, ( and ). Nesting those parentheses together is complex and you easily get lost. This makes your R code hard to read and understand. Here's where %>% comes in to the rescue! Consider the following chunk of code to explain the usage of the pipe:
+
+
+```{r}
+# create some data `x`
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+x
+# take the logarithm of `x`, 
+x2 <- log(x)
+x2
+# compute the lagged and iterated differences (see `diff()`)
+x3 <- diff(x2)
+x3
+# compute the exponential function
+x4 <- exp(x3)
+x4
+#  Make yourself familiar with the functions round() and round the result (1 digit)
+x5 <- round(x4, 1)
+x5
+
+```
+
+That is rather long and we actually don't need objects x2, x3, and x4. Well, then let us write that in a nested function: 
+
+```{r}
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+
+round(exp(diff(log(x))), 1)
+ 
+```
+
+This is short but you easily loose overview. The solution is the _pipe_:
+
+```{r}
+# load one of these packages: `magrittr` or `tidyverse`
+library(tidyverse)
+
+# Perform the same computations on `x` as above
+x %>% log() %>%
+    diff() %>%
+    exp() %>%
+    round(1)
+
+```
+
+You can read the %>% with "and then" because it takes the results of some function "and then" does something with that in the next. 
+Another example can be found in this short clip: [Using the pipe operator in R](https://youtu.be/PX5NuteZ3Vg)
+
+# Read out loud the following code:
+
+```{r}
+iris %>%
+  subset(Sepal.Length > 5) %>%
+  aggregate(. ~ Species, ., mean)
+
+```
+
+A solution may be the following: "you take the Iris data _and then_ you subset the data _and then_ you aggregate the data and show the mean".
+
+
+# What sort of _extract operators_ exist in R and how can they be used? 
+
+The [extract operator](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html) is used to retrieve data from objects in R. The operator may take four forms, including `[, [[, $,` and `@`. The fourth form, `@`, is called the [slot operator](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/slot.html), and is a more advanced topic so we won't discuss it here.
+
+The first form, `[`, can be used to extract content from vector, lists, or data frames. Since vectors are one dimensional, i.e., they contain between 1 and N elements, we apply the extract operator to the vector as a single number or a list of numbers as follows.
+
+     x[ selection criteria here ]
+
+
+The following code defines a vector and then extracts the last 3 elements from it using two techniques. The first technique directly references elements 13 through 15. The second approach uses the length of the vector to calculate the indexes of last three elements.
+
+```r
+    x <- 16:30 # define a vector
+    x[13:15] # extract last 3 elements
+    x[(length(x)-2):length(x)] # extract last 3 elements
+
+```
+
+
+
+When used with a list, `[` extracts one or more elements from the list.
+When used with a data frame, the extract operator can select rows, columns, or both rows and columns. Therefore, the extract opertor takes the following form: rows then a comma, then columns.
+
+     x[select criteria for rows , select criteria for columns]
+
+The second and third forms of the extract operator, `[[` and `$` extract a single item from an object.  It is used to refer to an element in a list or a column in a data frame.
+The easiest way to see how the various features of the extract operator work is to get through some  examples.The following snippetsuse the `mtcars` data set from the `datasets` package.
+
+```r
+    library(datasets)
+    data(mtcars)
+
+    # Here, we set up a column name in a variable to illustrate use
+    # of various forms of the extract operator with a column name stored in
+    # another R object
+    theCol <- "cyl"
+
+    # approach 1: use [[ form of extract operator to extract a column
+    #             from the data frame as a vector
+    #             this works because a data frame is also a list
+    mtcars[[theCol]]
+
+    # approach 2: use variable name in column dimension of data frame
+    mtcars[,theCol]
+
+    # approach 3: use the $ form of extract operator. Note that since this
+    #             form accesses named elements from the list, you can't use
+    #             variable substitution (e.g. theCol) with this version of
+    #             extract
+    mtcars$cyl
+
+    # this version fails because the `$` version of extract does not
+    # work with variable substitution (i.e. a computed index)
+    mtcars$theCol
+```
+
+x$y is actually just a short form for x[[“y”]].
+
+The difference of `[ ]` and `[[ ]]`  is that `[[ ]]` is used to access a component in a list or matrix whereas `[ ]` is used to access a single element in a matrix or array.
+
+```r
+object <- list(a = 5, b = 6)
+
+object ['a']
+
+object [['a']]
+
+```
+
+# What is the _Console_ in RStudio  good for? 
+
+You can also execute R commands straight in the console. This is a good way to experiment with R code, as your submission is not checked for correctness.
+
+
+# Solve the following exercises in your own R-Script.
+
+1. RStudio offers a lot of helpful so-called Cheat Sheets (see: https://rstudio.com/resources/cheatsheets/) Download and make yourself familiar with the following [Base R Cheeat Sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
+
+1. Open RStudio, create a R-script, set your working directory, load the data package, calculate _3 + 4_ in R and add a comment to it.
+
+1. Further, calculate 
+- divide 697 by 41
+- take the square root of 12
+- take 3 to the power of 12
+
+2. Create a vector called vec1 that contain the numbers 2 5 8 12 16.
+
+3. Use `x:y` notation to make a second vector called vec2 containing the numbers 5 to 9.
+
+4. Subtract vec2 from vec1 and look at the result.
+
+10. This is a little bit more advanced: Use seq() to make a vector of 100 values starting at 2 and increasing by 3 each time. Name the new vector nseries. (Hint: The example of the next exercise _creating sequences_ help.)
+
+11. Also more advanced: 
+  - Extract the values at positions 5,10,15 and 20 in the vector of values you just created.
+  - Extract the values at positions 10 to 30
+  - Hint: Both of these actions require making a selection in the vector using the [ ] notation. Inside the square brackets you put a vector of index positions, so the problem here is to create the vector of index positions.
+
+
+### Solution:
+
+```{r}
+697 / 41
+sqrt(12)
+3 ^ 12
+c(2,5,8,12,16) -> vec1
+5:9 -> vec2
+vec1 - vec2
+seq(from=2,by=3,length.out=100) -> number.series
+
+```
+
+
+# Creating sequences
+We just learned about the `c()` operator, which forms a vector from its arguments.  If we're trying to build a vector containing a sequence of numbers, there are several useful functions at our disposal.  These are the colon operator `:` and the sequence function `seq()`.
+
+**`:` Colon operator:**
+```{r}
+1:10 # Numbers 1 to 10
+127:132 # Numbers 127 to 132
+```
+
+**`seq` function: `seq(from, to, by)`**
+```{r}
+seq(1,10,1) # Numbers 1 to 10
+seq(1,10,2) # Odd numbers from 1 to 10
+seq(2,10,2) # Even numbers from 2 to 10
+```
+
+**(a)** Use `:` to output the sequence of numbers from 3 to 12
+```{r}
+3:12
+```
+
+**(b)** Use `seq()` to output the sequence of numbers from 3 to 30 in increments of 3
+```{r}
+seq(3, 30, 3)
+```
+
+**(c)** Save the sequence from (a) as a variable `x`, and the sequence from (b) as a variable `y`.  Output their product `x*y`
+```{r}
+x <- 3:12
+y <- seq(3, 30, 3)
+x * y
+```
+
+
+
+### 4. Cars data
+
+We'll look at data frame and plotting in much more detail in later classes.  For a previous of what's to come, here's a very basic example.
+
+For this example we'll use a very simple dataset.  The `cars` data comes with the default installation of R.  To see the first few columns of the data, just type `head(cars)`.
+
+```{r}
+head(cars)
+```
+
+We'll do a bad thing here and use the `attach()` command, which will allow us to access the `speed` and `dist` columns of `cars` as though they were vectors in our workspace. 
+The `attach()` function has the side effect of altering the search path and this can easily lead to the wrong object of a particular name being found. People do often forget to detach databases.
+Thus, it is better to use `$`.
+
+```{r}
+attach(cars) # Using this command is poor style.  We will avoid it in the future. 
+speed
+dist
+```
+
+**(a)** Calculate the average and standard deviation of speed and distance.
+```{r}
+mean(speed)
+sd(speed)
+mean(dist)
+sd(dist)
+```
+
+We can easily produce a histogram of stopping distance using the `hist` function.
+```{r}
+hist(dist) # Histogram of stopping distance
+```
+
+The `plot(x,y,...)` function plots a vector `y` against a vector `x`.  You can type `?plot` into the Console to learn more about the basic plot function. 
+
+**(b)** Use the `plot(x,y)` function to create a scatterplot of dist against speed.
+```{r}
+plot(speed, dist)
+```
+

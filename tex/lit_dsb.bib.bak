@@ -54,4 +54,123 @@
   timestamp = {2020-03-21},
 }
 
+@Book{Lilja2016Linear,
+  title     = {Linear Regression Using R an Introduction to Data Modeling},
+  publisher = {University of Minnesota Libraries Publishing},
+  year      = {2016},
+  author    = {{David J.} Lilja},
+  address   = {Minneapolis, Minnesota, USA},
+  edition   = {1.1 (April 20117)},
+  file      = {Lilja2016Linear.pdf:R_learn/Lilja2016Linear.pdf:PDF},
+}
+
+@Book{Wickham2016R,
+  title     = {R for Data Science},
+  publisher = {O'Reilly Media},
+  year      = {2016},
+  author    = {Wickham, Hadley and Grolemund, Garrett},
+  address   = {Sebastopol, Canada},
+  file      = {Wickham2016R.pdf:R_learn/Wickham2016R.pdf:PDF},
+}
+
+@Book{Lander2014R,
+  title     = {R for Everyone: Advanced Analytics and Graphics},
+  publisher = {Pearson Education},
+  year      = {2014},
+  author    = {Lander, Jared P.},
+  file      = {Lander2014R.pdf:R_learn/Lander2014R.pdf:PDF},
+}
+
+@Book{James2013Introduction,
+  title     = {An Introduction to Statistical Learning},
+  publisher = {Springer},
+  year      = {2013},
+  author    = {James, Gareth and Witten, Daniela and Hastie, Trevor and Tibshirani, Robert},
+  volume    = {112},
+  series    = {Springer Texts in Statistics},
+  address   = {New York, USA},
+  file      = {James2013Introduction.pdf:R_learn/James2013Introduction.pdf:PDF},
+}
+
+@Book{Lantz2013Machine,
+  title     = {Machine Learning with R},
+  publisher = {Packt Publishing},
+  year      = {2013},
+  author    = {Brett Lantz},
+  address   = {Birmingham, UK},
+  file      = {Lantz2013Machine.pdf:R_learn/Lantz2013Machine.pdf:PDF},
+}
+
+@Book{Crawley2013R,
+  title     = {The R Book},
+  publisher = {John Wiley \& Sons},
+  year      = {2013},
+  author    = {Crawley, Michael J.},
+  edition   = {2nd},
+  file      = {Crawley2013R.pdf:R_learn/Crawley2013R.pdf:PDF},
+}
+
+@Book{Zhao2012R,
+  title     = {R and Data Mining: Examples and Case Studies},
+  publisher = {Elsevier},
+  year      = {2012},
+  author    = {Yanchang Zhao},
+  file      = {Zhao2012R.pdf:R_learn/Zhao2012R.pdf:PDF},
+}
+
+@Book{Williams2011Data,
+  title     = {Data Mining with Rattle and R: The Art of Excavating Data for Knowledge Discovery},
+  publisher = {Springer},
+  year      = {2011},
+  author    = {Graham Williams},
+  series    = {Use R!},
+  address   = {New York, USA},
+  file      = {Williams2011Data.pdf:R_learn/Williams2011Data.pdf:PDF},
+}
+
+@Book{Kabacoff2011R,
+  title     = {R in Action. Data Analyis and Graphics with R},
+  publisher = {Manning},
+  year      = {2011},
+  author    = {Kabacoff, Robert I},
+  address   = {Shelter Island},
+  file      = {Kabacoff2011R.pdf:R_learn/Kabacoff2011R.pdf:PDF},
+}
+
+@Book{Matloff2011Art,
+  title     = {The Art of R Programming. A Tour of Statistical Software Design},
+  publisher = {No Starch Press},
+  year      = {2011},
+  author    = {Norman Matloff},
+  address   = {San Francisco, USA},
+  file      = {Matloff2011Art.pdf:R_learn/Matloff2011Art.pdf:PDF},
+}
+
+@Book{Use2009ggplot2,
+  title     = {ggplot2. Elegant Graphics for Data Analysis},
+  publisher = {Springer},
+  year      = {2009},
+  author    = {Use R!},
+  series    = {Use R!},
+  address   = {New York, USA},
+  file      = {Use2009ggplot2.pdf:R_learn/Use2009ggplot2.pdf:PDF},
+}
+
+@Book{Sarkar2008Lattice,
+  title     = {Lattice. Multivariate Data Visualization with R},
+  publisher = {Springer},
+  year      = {2008},
+  author    = {Deepayan Sarkar},
+  file      = {Sarkar2008Lattice.pdf:R_learn/Sarkar2008Lattice.pdf:PDF},
+}
+
+@TechReport{Huber2020,
+  author      = {Stephan Huber},
+  title       = {This is a Template},
+  institution = {Hochschule Fresenius},
+  year        = {2020},
+  type        = {Working Paper},
+  number      = {23},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

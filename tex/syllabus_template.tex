@@ -28,18 +28,18 @@
 	The Other Dude \\
 	Contact (email) \\
 }
-\date{\today}
+\date{12.12.2020}
 
 \begin{document}
 	\maketitle
 	
 \begin{abstract}
-	This Template guides how to write a good course description.\footnote{More information can be found here: \url{www.chronicle.com/article/how-to-create-a-syllabus/} and here: \url{https://teaching.utoronto.ca/teaching-support/course-design/developing-a-syllabus/}}
+	This is a citation, see \cite{Huber2020}. Her is another citation \cite{Eck2016}. This Template guides how to write a good course description.\footnote{More information can be found here: \url{www.chronicle.com/article/how-to-create-a-syllabus/} and here: \url{https://teaching.utoronto.ca/teaching-support/course-design/developing-a-syllabus/}}
 %	Overall, I would say that the course description should have a maximum length of three pages.	
 \end{abstract}
 	
 \subsubsection*{Course Description}
-	Course descriptions should:
+	Course descriptions should:\label{book}
 \begin{itemize}
 	\item Be student-centered, rather than teacher-centered or course-centered
 	\item Use brief, outcomes-based, descriptive phrases that begin with an imperative or active verb (e.g., design, create, plan, analyze)
@@ -86,6 +86,15 @@ Well-written learning outcomes involve the following parts (also see \autoref{fi
 A general hint for writing titles is: use a capitalization styles (\url{https://capitalizemytitle.com/}).
 
 \subsubsection*{Course Materials}
+%
+%\begin{tabular}{|c|c|}
+%	\hline
+%	sfdasd & heading \\
+%	\hline
+%	22 & 44 \\
+%	\hline
+%\end{tabular}
+
 
 \subsubsection*{About the Lecturer}
 
@@ -109,7 +118,7 @@ In \LaTeX\ different \textit{documentclasses} exist:
 	
 	\begin{description}
 		\item[article\label{article}]{Article is \ldots}
-		\item[book\label{book}]{The book class \ldots}
+		\item[book]{The book class \ldots}
 		\item[report\label{report}]{Report gives you \ldots}
 		\item[letter\label{letter}]{If you want to write a letter.}
 	\end{description}
@@ -120,7 +129,7 @@ You can also build list by your own, e.g.:
 	\item bla bla bla
 \end{enumerate}
 
-You can create tables like \autoref{tab:eins} or figures like Figure \ref{fig:latexcover} in a floating environment. Here are some guidelines to make your tables look good  \url{https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf}	
+You\footnote{this is a footnote} can create tables like \autoref{tab:eins} or figures like Figure \ref{fig:latexcover} in a floating environment. Here are some guidelines to make your tables look good  \url{https://people.inf.ethz.ch/markusp/teaching/guides/guide-tables.pdf}	
 
 \begin{table}
 	\begin{center}
@@ -160,7 +169,7 @@ If you want to write using \url{Overleaf.com}, see \url{https://www.overleaf.com
 \nocite{*}
 	
 	
-\bibliographystyle{jpe}	
+\bibliographystyle{authordate3}	
 \bibliography{lit_dsb}
 	
 \end{document}

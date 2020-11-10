@@ -1,56 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/dev/Debian)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2020/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: syllabus_template.aux
-Multiple inclusions of entire database
----line 23 of file syllabus_template.aux
- : \citation{*
- :            }
-I'm skipping whatever remains of this command
-The style file: jpe.bst
+The style file: authordate3.bst
 Database file #1: lit_dsb.bib
-Warning--I didn't find a database entry for "Wickham"
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--empty booktitle in McLean2014Tools
-Warning--empty pages in McLean2014Tools
-You've used 17 entries,
-            3072 wiz_defined-function locations,
-            709 strings with 6523 characters,
-and the built_in function-call counts, 8010 in all, are:
-= -- 625
-> -- 318
-< -- 1
-+ -- 117
-- -- 94
-* -- 447
-:= -- 1435
-add.period$ -- 71
-call.type$ -- 17
-change.case$ -- 94
-chr.to.int$ -- 17
-cite$ -- 19
-duplicate$ -- 592
-empty$ -- 689
-format.name$ -- 109
-if$ -- 1604
+You've used 19 entries,
+            2453 wiz_defined-function locations,
+            688 strings with 6638 characters,
+and the built_in function-call counts, 6345 in all, are:
+= -- 635
+> -- 194
+< -- 63
++ -- 58
+- -- 52
+* -- 503
+:= -- 1102
+add.period$ -- 81
+call.type$ -- 19
+change.case$ -- 121
+chr.to.int$ -- 19
+cite$ -- 20
+duplicate$ -- 237
+empty$ -- 461
+format.name$ -- 80
+if$ -- 1292
 int.to.chr$ -- 1
-int.to.str$ -- 1
-missing$ -- 130
-newline$ -- 91
-num.names$ -- 68
-pop$ -- 291
+int.to.str$ -- 0
+missing$ -- 33
+newline$ -- 100
+num.names$ -- 57
+pop$ -- 119
 preamble$ -- 1
-purify$ -- 92
+purify$ -- 138
 quote$ -- 0
-skip$ -- 252
+skip$ -- 249
 stack$ -- 0
-substring$ -- 212
-swap$ -- 227
+substring$ -- 265
+swap$ -- 40
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 108
-warning$ -- 2
-while$ -- 70
+type$ -- 122
+warning$ -- 1
+while$ -- 42
 width$ -- 0
-write$ -- 214
-(There was 1 error message)
+write$ -- 239
+(There was 1 warning)
