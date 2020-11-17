@@ -1,20 +1,32 @@
 ---
-title: "R 101 -- 1. First Steps"
+title: "Data Science Course -- All Lecture Notes"
 author: "Stephan.Huber@hs-fresenius.de"
 date: "Hochschule Fresenius"
-# output:
-  # ioslides_presentation: default
-  # beamer_presentation: default
-  # slidy_presentation: default
+output:
+  html_document:
+    df_print: paged
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+# Table of Content
 
-# Preface
+- [1. First Steps](#ch1)
+- [2. R Syntax and Data Structures](#ch2)
+- [3. Functions in R](#ch3)
+- [4. Operators](#ch4)
+- [git and github](#git)
+- [R Markdown](#md)
+- [LaTeX](#latex)
+- [Project Description](#pd)
+- [List of Topics](#listtopics)
 
-## Learning Objectives
+
+<a name="ch1"></a>
+
+# R 101 -- 1. First Steps 
+
+## Preface
+
+### Learning Objectives
 
 * Describe what R and RStudio are.
 * Interact with R using RStudio.
@@ -24,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
 * Construct data structures to store data.
 
 
-## Installation Requirements
+### Installation Requirements
 
 Download the most recent versions of R and RStudio for the appropriate OS using the links below:
 
@@ -42,7 +54,7 @@ If you don't want to install R on your PC, do _CLOUD COMPUTING_:
 
  - [RStudio Cloud](https://rstudio.cloud/)
 
-## Sources
+### Sources
 
 There are millions of good and free sources to learn R:
 
@@ -307,15 +319,133 @@ Before we move on to more complex concepts and getting familiar with the languag
 
 ## Run your first R Script
 
-Download this [R-Script](https://raw.githubusercontent.com/hubchev/R-Intro/master/scripts/SH-R-01.R) and try to run and use it in RStudio. 
+Download this [R-Script](https://raw.githubusercontent.com/hubchev/R-Intro/master/scripts/SH-R-01.R) and try to run and use it in RStudio. This script shows some important features of R and in particular, it installs the most important packages for you. In order to avoid problems in some examples later on in this course, please run this script.
 
 _Hint: Make a right-click and do "save as"._
 
 
+```r
+## ---------------------------
+## Script name: SH-R-01
+## Purpose of script: First script students should run
+## ---------------------------
+## Author: Dr. Stephan Huber
+## Date Created: 2020-09-30
+## Copyright (c) Stephan Huber, 2020
+## Email: Stephan.Huber@hs-fresenius.de
+## ---------------------------
 
+
+# Let us start with using R within RStudio
+# with a # you can write a comment in your script
+
+# with "Ctrl+Enter" you can execute a line of command, try it out:
+print("Hello, world!")
+
+# we use the book: "R for Dummies" in the course
+# when reading the book, always try to execute the code snippets by your own
+# For example, p. 3:
+# Simulate 1 million throws of two six‐sided dices:
+set.seed(42)
+throws <- 1e6
+dice <- replicate(2,
+                  sample(1:6, throws, replace = TRUE)
+)
+table(rowSums(dice))
+ 
+# with a "?" you get some help/information about the functions and operators used 
+?set.seed
+?assignOps
+?sample
+?hist
+?table
+
+# there are other ways to get help and learn within R
+help.start()
+example(hist)
+apropos("hist")
+vignette()
+vignette("ggwordcloud")
+
+# Performing multiple calculations with vectors
+24 + 7 + 11
+1 + 2 + 3 + 4 + 5
+14 / 2
+# but
+14 : 2 # this operator is called sequence
+3*2
+3      *       2
+# but > 3 x 2 does not work!
+x <- 1:5  # see assignment operator ?assignOps
+x
+x + 2
+x + 6:10
+x
+# alternatively:
+x2 <- x + 6:10
+x3 <- 6:10
+x4 <- x + x3
+
+# To construct a vector, type into the console:
+c(1, 2, 3, 4, 5)
+?c()
+b <- c(1, 2, 3, 4, 5)
+b
+
+# Packages are sort of R's brain so let's 
+# SEE WHAT PACKAGES ARE AROUND
+# https://www.r-pkg.org/
+# https://cran.r-project.org/web/views/
+# For example tidyvers and ggplot2 are powerfull packages to create data-visualizations, see:
+# https://www.r-graph-gallery.com/
+
+# LOAD PACKAGES 
+# There are a lot of packages pre-installed but not loaded, see here: 
+installed.packages()
+
+# A package can be installed using install.packages("<package name>"). 
+install.packages("dplyr")
+# A package can be removed using remove.packages("<package name>").
+remove.packages("dplyr")
+
+# I recommend "pacman" for managing add-on packages. It will
+# install packages, if needed, and then load the packages.
+install.packages("pacman")
+
+# Then load the package by using either of the following:
+require(pacman)  # Gives a confirmation message.
+library(pacman)  # No message.
+
+# Or, by using "pacman::p_load" you can use the p_load
+# function from pacman without actually loading pacman.
+# These are packages I load every time.
+pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, 
+               ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, 
+               stringr, tidyr) 
+
+
+# the package "datasets" contains some datasets 
+library(datasets)  # Load/unload base packages manually
+?datasets
+library(help = "datasets")
+
+# CLEAN UP #################################################
+
+# Clear packages
+p_unload(dplyr, tidyr, stringr) # Clear specific packages
+p_unload(all)  # Easier: clears all add-ons
+
+detach("package:datasets", unload = TRUE)  # For base
+
+# Clear console
+cat("\014")  # shortut for doing that is ctrl+L
+```
 
 ---
-# "R 101 -- 2. R Syntax and Data Structures"
+
+<a name="ch2"></a>
+
+# R 101 -- 2. R Syntax and Data Structures
 
 
 ## Learning Objectives
@@ -667,8 +797,8 @@ Create a list called `list2` containing `species`, `glengths`, and `number`.
 
 
 
-
-# "R 101 -- 3. Functions in R"
+<a name="ch3"></a>
+# R 101 -- 3. Functions in R
 
 ## Learning Objectives
 
@@ -1041,8 +1171,11 @@ not related to a `data.frame`, you can save any other R data structure that you 
 * The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical but it is full of useful information.
 
 
+---
 
+<a name="ch4"></a>
 
+# R 101 -- 4. Operators
 
 
 
@@ -1051,7 +1184,7 @@ not related to a `data.frame`, you can save any other R data structure that you 
 - The `#` sign is used in R-scripts to add comments. That is usefull that you and others can understand what the R code is about. Comments are not run as R code, so they will not influence your result. 
 - `<-` is an assignment operator that assigns a value to a name/variable.  A variable allows you to store a value or an object in R and you can create that with the assignment operator. You can then later use it to access the value or the object that is stored within this variable.
 
-# Name and explain briefly ways to get help via the Console.
+# Explain briefly ways to get help via the Console.
 
 - ?: Search R documentation for a specific term.
 - ?? Search R help files for a word or phrase.
@@ -1064,9 +1197,9 @@ not related to a `data.frame`, you can save any other R data structure that you 
 
 # Explain what the webpage RSeek.org can do for you.
 
-It makes it easy to search for information about R while filtering out sitesthat match "R" but don't contain the information you're looking for. It's just like a Google search, but restricts the search just to those sites known to contain information about R.
+It makes it easy to search for information about R while filtering out sites hat match "R" but don't contain the information you're looking for. It's just like a Google search, but restricts the search just to those sites known to contain information about R.
 
-# Name the arithmetic operators (plus, minus, etc.) in R.  
+# State the arithmetic operators (plus, minus, etc.) in R.  
 
 | Operator | Description    |
 |----------|----------------|
@@ -1074,31 +1207,31 @@ It makes it easy to search for information about R while filtering out sitesthat
 | -        | subtraction    |
 | *        | multiplication |
 | /        | division       |
-|^ or **| exponentiation|
+|^ or **   | exponentiation |
 
 # Name the logical operators (greater than, equal to, etc.) that can be used in R.
 
-| Operator | 	Description |
-|----------|----------------|
-|>  | 	greater than |
+| Operator  | 	Description |
+|---------- |----------------|
+|>          | 	greater than |
 | >=  |	greater than or equal to  |
 | == | 	exactly equal to |
 | != |	not equal to | 
 
 
-
 # What does ! mean in R?
 
-It's the logical operator for negation and it also means the opposite of a command.
+It's the logical operator for negation and it also means the opposite of a function.
 
-```r
+```{r}
+(5>1)
 !(5>1)
-
+(1>5)
 !(1>5)
 
-!x.na
 
-```"" returns FALSE while "!(1>5)" returns TRUE.
+```
+
 
 # What is the pipe operator, %>% in R?
 
@@ -1106,7 +1239,7 @@ The pipe operator, %>%, comes from the magrittr package which is also a part of 
 As R is a functional language, code often contains a lot of parenthesis, ( and ). Nesting those parentheses together is complex and you easily get lost. This makes your R code hard to read and understand. Here's where %>% comes in to the rescue! Consider the following chunk of code to explain the usage of the pipe:
 
 
-```r
+```{r}
 # create some data `x`
 x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
 x
@@ -1127,15 +1260,16 @@ x5
 
 That is rather long and we actually don't need objects x2, x3, and x4. Well, then let us write that in a nested function: 
 
-```r
+```{r}
 x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+
 round(exp(diff(log(x))), 1)
  
 ```
 
 This is short but you easily loose overview. The solution is the _pipe_:
 
-```r
+```{r}
 # load one of these packages: `magrittr` or `tidyverse`
 library(tidyverse)
 
@@ -1152,7 +1286,8 @@ Another example can be found in this short clip: [Using the pipe operator in R](
 
 # Read out loud the following code:
 
-```r
+```{r}
+library("datasets")
 iris %>%
   subset(Sepal.Length > 5) %>%
   aggregate(. ~ Species, ., mean)
@@ -1173,7 +1308,7 @@ The first form, `[`, can be used to extract content from vector, lists, or data 
 
 The following code defines a vector and then extracts the last 3 elements from it using two techniques. The first technique directly references elements 13 through 15. The second approach uses the length of the vector to calculate the indexes of last three elements.
 
-```r
+```{r}
     x <- 16:30 # define a vector
     x[13:15] # extract last 3 elements
     x[(length(x)-2):length(x)] # extract last 3 elements
@@ -1190,7 +1325,7 @@ When used with a data frame, the extract operator can select rows, columns, or b
 The second and third forms of the extract operator, `[[` and `$` extract a single item from an object.  It is used to refer to an element in a list or a column in a data frame.
 The easiest way to see how the various features of the extract operator work is to get through some  examples.The following snippetsuse the `mtcars` data set from the `datasets` package.
 
-```r
+```{r}
     library(datasets)
     data(mtcars)
 
@@ -1222,7 +1357,7 @@ x$y is actually just a short form for x[[“y”]].
 
 The difference of `[ ]` and `[[ ]]`  is that `[[ ]]` is used to access a component in a list or matrix whereas `[ ]` is used to access a single element in a matrix or array.
 
-```r
+```{r}
 object <- list(a = 5, b = 6)
 
 object ['a']
@@ -1233,34 +1368,7 @@ object [['a']]
 
 # What is the _Console_ in RStudio  good for? 
 
-You can also execute R commands straight in the console. This is a good way to experiment with R code, as your submission is not checked for correctness.
-
-
-# Solve the following exercises in your own R-Script.
-
-1. RStudio offers a lot of helpful so-called Cheat Sheets (see: https://rstudio.com/resources/cheatsheets/) Download and make yourself familiar with the following [Base R Cheeat Sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
-
-1. Open RStudio, create a R-script, set your working directory, load the data package, calculate _3 + 4_ in R and add a comment to it.
-
-1. Further, calculate 
-- divide 697 by 41
-- take the square root of 12
-- take 3 to the power of 12
-
-2. Create a vector called vec1 that contain the numbers 2 5 8 12 16.
-
-3. Use `x:y` notation to make (select) a second vector called vec2 containing the numbers 5 to 9.
-
-4. Subtract vec2 from vec1 and look at the result.
-
-10. This is a little bit more advanced: Use seq() to make a vector of 100 values starting at 2 and increasing by 3 each time. Name the new vector nseries. (Hint: The example of the next exercise _creating sequences_ help.)
-
-11. Also more advanced: 
-  - Extract the values at positions 5,10,15 and 20 in the vector of values you just created.
-  - Extract the values at positions 10 to 30
-  - Hint: Both of these actions require making a selection in the vector using the [ ] notation. Inside the square brackets you put a vector of index positions, so the problem here is to create the vector of index positions.
-
-
+You can also execute R code straight in the console. This is a good way to experiment with R code, as your submission is not checked for correctness.
 
 
 # Creating sequences
@@ -1298,11 +1406,145 @@ x * y
 
 
 
-### 4. Cars data
+# Solve the following exercises in your own R-Script.
 
-We'll look at data frame and plotting in much more detail in later classes.  For a previous of what's to come, here's a very basic example.
+1. RStudio offers a lot of helpful so-called Cheat Sheets (see: https://rstudio.com/resources/cheatsheets/) Download and make yourself familiar with the following [Base R Cheeat Sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
 
-For this example we'll use a very simple dataset.  The `cars` data comes with the default installation of R.  To see the first few columns of the data, just type `head(cars)`.
+1. Open RStudio, create a R-script, set your working directory, load the data package, calculate _3 + 4_ in R and add a comment to it.
+
+1. Further, calculate 
+- divide 697 by 41
+- take the square root of 12
+- take 3 to the power of 12
+
+2. Create a vector called vec1 that contain the numbers 2 5 8 12 16.
+
+3. Use `x:y` notation to make (select) a second vector called vec2 containing the numbers 5 to 9.
+
+4. Subtract vec2 from vec1 and look at the result.
+
+10. Use seq() to make a vector of 100 values starting at 2 and increasing by 3 each time. Name the new vector nseries. (Hint: The example of the _creating sequences_ section may be helpful.)
+
+11. 
+  - Extract the values at positions 5,10,15 and 20 in the vector of values you just created.
+  - Extract the values at positions 10 to 30
+  - Hint: Both of these actions require making a selection in the vector using the [ ] notation. Inside the square brackets you put a vector of index positions, so the problem here is to create the vector of index positions.
+
+
+### Solution:
+
+```{r}
+697 / 41
+sqrt(12)
+3 ^ 12
+vec1 <- c(2,5,8,12,16) 
+vec2 <- 5:9 
+vec1 - vec2
+number.series <- seq(from=2,by=3,length.out=100) 
+number.series
+number.series[c(5,10,15,20)]
+number.series[seq(from=5,to=20,by=5)]
+number.series[10:30]
+
+```
+
+
+# Can you plot data?
+
+Please explain your classmates how to create the following plots with R:
+
+- [Pie Charts](https://www.tutorialspoint.com/r/r_pie_charts.htm)
+- [Bar Charts](https://www.tutorialspoint.com/r/r_bar_charts.htm)
+- [Boxplots](https://www.tutorialspoint.com/r/r_boxplots.htm)
+- [Histograms](https://www.tutorialspoint.com/r/r_histograms.htm)
+- [Line Graphs](https://www.tutorialspoint.com/r/r_line_graphs.htm)
+- [Scatterplots](https://www.tutorialspoint.com/r/r_scatterplots.htm)
+
+
+# Can you create data frames and merge them?
+
+Please try to understand the following lines of code:
+
+```{r}
+data1 <- data.frame(id = 1:6,                                  # Create first example data frame
+                    x1 = c(5, 1, 4, 9, 1, 2),
+                    x2 = c("A", "Y", "G", "F", "G", "Y"))
+data2 <- data.frame(id = 4:9,                                  # Create second example data frame
+                    y1 = c(3, 3, 4, 1, 2, 9),
+                    y2 = c("a", "x", "a", "x", "a", "x"))
+
+merge(data1, data2, by = "id")                                 # Merge data frames by columns names
+merge(data1, data2, by = "id", all.x = TRUE)                   # Keep all rows of x-data
+merge(data1, data2, by = "id", all.y = TRUE)                   # Keep all rows of y-data
+merge(data1, data2, by = "id", all.x = TRUE, all.y = TRUE)     # Keep all rows of both data frames
+
+data3 <- data.frame(id = 5:6,                                  # Create third example data frame
+                    z1 = c(3, 2),
+                    z2 = c("K", "b"))
+
+data12 <- merge(data1, data2, by = "id")                       # Merge data 1 & 2 and store
+merge(data12, data3, by = "id")                                # Merge multiple data frames
+
+```
+
+
+# Can you calculate growth rates and build up data frames?
+
+Do the following:
+
+- Load the `sunspot.year` data which is part of R's datasets package `datasets`, 
+- generate a vector that contains the years 1700 to 1988, 
+- combine the two vectors into a data frame using `data.frame()`,
+- calculate the growth rate of yearly sunspot using `growth.rate()` which is part of the `tis` package, 
+- add the growth variable to the data frame.
+
+```{r, results=FALSE}
+library("datasets")
+data("sunspot.year")
+year <- 1700:1988
+sunspot.frame <- data.frame(year, sunspot.year)
+
+install.packages("tis")
+library("tis")
+
+growth <- growth.rate(sunspot.frame$sunspot.year, lag=1, simple = T)
+year <- 1701:1988
+sunspot.frame2 <- data.frame(year, growth)
+merge(sunspot.frame, sunspot.frame2, by = "year", all.x = TRUE, all.y = TRUE)  
+
+
+```
+
+
+# Can you load R Built-in R Data set?
+
+Study this webpage [R Built-in R Data set](https://rstudio-pubs-static.s3.amazonaws.com/481654_883a4b47c9b244d4859dd1db235f0165.html)
+and show how can you load R's _Motor Trend Car Road Tests_ dataset?
+
+# Can you inspect data sets?
+
+Here is a non-exhaustive list of functions to get a sense of the content/structure of data.
+
+* All data structures - content display:
+	- **`str()`:** compact display of data contents (env.)
+	- **`class()`:** data type (e.g. character, numeric, etc.) of vectors and data structure of dataframes, matrices, and lists.
+	- **`summary()`:** detailed display, including descriptive statistics, frequencies
+	- **`head()`:** will print the beginning entries for the variable
+	- **`tail()`:** will print the end entries for the variable
+* Vector and factor variables: 
+	- **`length()`:** returns the number of elements in the vector or factor
+* Dataframe and matrix variables:
+	- **`dim()`:** returns dimensions of the dataset
+	- **`nrow()`:** returns the number of rows in the dataset
+	- **`ncol()`:** returns the number of columns in the dataset
+	- **`rownames()`:** returns the row names in the dataset  
+	- **`colnames()`:** returns the column names in the dataset
+
+Load the mtcars data set and play around with the functions above.
+
+# Do you know the cars data?
+
+The `cars` data comes with the default installation of R.  To see the first few columns of the data, just type `head(cars)`.
 
 ```{r}
 head(cars)
@@ -1319,6 +1561,7 @@ dist
 ```
 
 **(a)** Calculate the average and standard deviation of speed and distance.
+
 ```{r}
 mean(speed)
 sd(speed)
@@ -1326,36 +1569,235 @@ mean(dist)
 sd(dist)
 ```
 
-We can easily produce a histogram of stopping distance using the `hist` function.
+**(b)** Make a a histogram of stopping distance using the `hist` function.
+
 ```{r}
 hist(dist) # Histogram of stopping distance
 ```
 
 The `plot(x,y,...)` function plots a vector `y` against a vector `x`.  You can type `?plot` into the Console to learn more about the basic plot function. 
 
-**(b)** Use the `plot(x,y)` function to create a scatterplot of dist against speed.
+**(c)** Use the `plot(x,y)` function to create a scatterplot of dist against speed.
+
 ```{r}
 plot(speed, dist)
 ```
 
 
 
+---
+
+<a name="git"></a>
+
+# git and github 
+Please have a look at one of the following tutorials:
+
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+- [git/github guide - a minimal tutorial](http://kbroman.org/github_tutorial/)
+- [Learn Git with Bitbucket Cloud](https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud)
 
 
+These sources provide instructions on how to:
+
+- Install Git and get it working smoothly with GitHub, in the shell and in the RStudio IDE.
+- Develop a few key workflows that cover your most common tasks.
+- Integrate Git and GitHub into your daily work with R and R Markdown.
+
+Moreover, I recommend to watch my *_git and github tutorial** on ILIAS and to have the [*GIT Cheat Sheet*](https://education.github.com/git-cheat-sheet-education.pdf) at hand to remember the meaning of the git commands.
 
 
+<a name="md"></a>
 
+# R Markdown
 
+R Markdown provides an authoring framework for data science. You can use a single R Markdown file to both
 
+- save and execute code and
+- generate high quality reports that can be shared with an audience.
+
+Please have a look at the following tutorials:
+
+- [R Markdown from RStudio](https://rmarkdown.rstudio.com/lesson-1.html)
+- [R Markdown Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+## Exercise
+
+- Install Git on your local computer.
+- Register a GitHub account.
+- Make a repository on GitHub.
+- Clone the repository to your local computer.
+- Make a local change, save, commit, and push.
 
 
 ---
-<sub><sup><sub><sup>
-*This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
-</sup></sub></sup></sub>
 
-<sub><sup><sub><sup>
+
+#	LaTeX and Project Work (Course Description)
+
+<a name="latex"></a>
+
+## LaTeX
+* Countless tutorials about how to install LaTeX on your PC can be found online, 
+e.g. [TeX Resources on the Web](http://www.tug.org/interest.html#free) and 
+[Getting LaTeX](https://www.latex-project.org/get/). 
+
+* Basically, you can install LaTeX with a LaTeX editor locally or you can use it in a cloud, see [Overleaf](www.overleaf.com).
+
+* I can recommend the LaTeX-editor [TeXstudio](\url{www.texstudio.org}). 
+It is a cross-platform open-source editor which includes among others an interactive spelling checker, 
+code folding, and syntax highlighting. Please note that LaTeX itself needs to be 
+installed first as it is not shipped with this or any other editor.
+
+* The following tutorial are worth a look:
+    - [Learn LaTeX in 30 minutes](https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes)
+    - [Learn LaTeX in Y minutes](https://learnxinyminutes.com/docs/latex/)
+    - [Wikibooks: LaTeX](https://en.wikibooks.org/wiki/LaTeX)
+
+<a name="pd"></a>
+
+## Project Work
+
+- Students complete this module *Data Science for Business* with a project work. 
+The project work includes a written report and an oral presentation.
+
+* Your task is going to be giving a lecture on a topic about *Data Science and R*.
+
+* In particular, it consists of the following:
+  
+    1. Written course Description (about 2 pages)
+
+    2. Giving a lecture in class or via Zoom
+
+    3. Written material such as lecture notes, exercises, source code (R-script) and/or slides to support 
+	the learning process of students and to document the lecture and project, respectively 
+	(In the following, I refer to this written material by simply saying *lecture material*). 
+
+### 1. Course Description
+
+- The course description should be written using LaTeX.
+- On github, I offer a [LaTeX template](https://github.com/hubchev/R-Intro/tree/master/tex) to write a course description. 
+
+### 2. Lecture
+
+- The lecture should contain an application in R. This application should be written using RMarkdown.
+
+### 3. Lecture Material 
+
+- I recommend to write the slides and the lecture notes, respectively, using Rmarkdown or markdown.
+- The material should be uploaded to your github account so that everthing is online available.
+
+### Submission
+To submit your project work, you need to submit all your written work to ILIAS and the examination office, respectively.
+
+### Procedure
+
+- Today and in the following weeks, we will learn to use all necessary tools (github, LaTeX, markdown, R).
+- Then, I will give an overview on some recent topics in *data science*.
+- Then, you should suggest possible topics for a lecture to give. I will do the same. 
+- Then, we will dicuss the topics and **jointly** design a plan for a lecture. 
+- Then, we form and assign groups that work an a given topic. Moreover, we assign a date for the presentation.
+- Then, you work.
+- Then, you present your preliminary work to me. I will give you feedback.
+- Then, you work harder.
+- Then, you publish your course description, present your work, and publish your material.
+- Then, I'll give you some final and short comments. 
+- Then, you can work on the material again before you submit it to ILIAS and the examination office, respectively. 
+
+### Find a Topic
+
+Please prepare a suggestion for a topic, i.e., a potential
+title for the lecture. We'll discuss all
+suggestions next week and than we assign topics so that
+everybody is happy with his project. Maybe the following
+webpage inspires you to find an appealing project-title:
+[https://data-flair.training/blogs/data-science-tutorials-home/](https://data-flair.training/blogs/data-science-tutorials-home/)
+The webpage contains inspiring tutorials that may work as a
+blueprint and/or starting point for your lecture.
+Nevertheless, I'll also suggest some potential projects.
+
+<a name="listtopics"></a>
+
+### List of Potential Working Titles for a Project
+
+#### TOPIC 1: __Can you do Data Science with 37 Euros?__
+
+_Background:_ Single Board Computers (SBC) like the Raspberry Pi have become enormous powerfull while remaining rather cheap. These Mini-PCs can be used for data scientific purpose in multiple ways. The lecture should give a rough overview thereto.
+You find plenty of examples what a SBC can do with respect to collecting data, analyzing data, or to employ machine learning tools and artificial intelligence. Here are just some examples:
+ - [Face recognition](tps://github.com/Azure/AzureVision)
+ - [Social Media Data Mining With Raspberry Pi (Part 4: Installing R)](https://youtu.be/jZuiy8oBRew)
+ - etc. 
+ 
+Other links:
+  
+  - Here is a full fletched book about this topic: [Beginning Data Science, IoT, and AI on Single Board Computers
+Core Skills and Real-World Application with the BBC](https://www.springer.com/de/book/9781484257654)
+  - Here is a journal article about the topic [Commodity single board computer clusters and their applications](https://doi.org/10.1016/j.future.2018.06.048)
+  
+#### TOPIC 2: __What you see on Facebook is what Mrs. Algorithm shows you__
+
+_Background:_ Facebook aims to increase the user experience and maximize its profits by engage people. Therefore, Facebook shows posts and advertisement to its costumers. The _logic_ of the automated decision making process is ruled by a complex algorithm that takes advantage of several insights from data science. The lecture should give a brief overview on that.
+
+Links:
+
+  - [Facebooks Algorithm History](https://blog.hootsuite.com/facebook-algorithm/)
+  - [Brand Marketing on Facebook using Statistical Analysis and R](https://towardsdatascience.com/brand-marketing-on-facebook-using-statistical-analysis-7ec4210999b0)
+
+#### TOPIC 3: __It Is So Easy To Explain Elections (If You Know R)__
+
+_Background:_ To understand the voter will, elections need to be analyzed. R can help here. There are libraries available containing election results (cf. [USA](https://cran.r-project.org/web/packages/elections/elections.pdf), [Germany](https://cran.r-project.org/web/packages/GermaParl/index.html), [Brazil](https://cran.r-project.org/web/packages/electionsBR/electionsBR.pdf)) and some time ago the [_R Election Analysis Contest_](https://arilamstein.com/blog/2016/04/18/r-election-analysis-contest-results/) has shown that R is a powerful tool to analyze elections.  
+
+Links:
+
+  - [Online Course: Analyzing Election and Polling Data in R](https://learn.datacamp.com/courses/analyzing-election-and-polling-data-in-r)
+  
+
+
+#### TOPIC 4: __We Need It Now: How To Analyze COVID Data Quick__
+
+_Background:_ To fight COVID we should use the available data quick and efficient. R can help here. Not only that R allows to visualize data nicely with, for example, heatmaps. The _R Language and Environment for Statistical Computing_ offers an excellent tool and ecosystem for approaches focusing on open science and reproducible results. Hence it is not surprising that with the onset of the pandemic, a large number of R packages and resources were made available for researches working in the pandemic. In a recent paper of Ponce and Sandhel,  an R package is presented that allows users to access and analyze worldwide data from resources publicly available.
+
+Links: 
+
+  - The mentioned paper: [covid19.analytics: An R Package to Obtain, Analyze and Visualize Data from the Corona Virus Disease Pandemic](https://arxiv.org/pdf/2009.01091.pdf) 
+  - [CoronaDash app use case – Clustering countries’ COVID-19 active cases trajectories](https://www.r-bloggers.com/2020/05/coronadash-app-use-case-clustering-countries-covid-19-active-cases-trajectories/)
+
+#### TOPIC 5: __I Am So Lost, Can Somebody Explain What I Need To Know as a Data Scientist When Working With R?__
+
+_Background:_ R has a lot to offer when it comes to collect, manipulate, visualize, and analyze data. It allows to implement methods steming from research of machine learning, artificial inteligence and big data. In numbers, the CRAN package repository features currently 16599 available packages. As nobody can have a look at all the packages, we need orientation. Thus, the lecture should give a brief introduction to the possibilities of a selection of more useful packages in R. 
+
+Links:
+
+  - [Best R Libraries and Packages for Data Science](https://towardsdatascience.com/top-r-libraries-for-data-science-54f6eba4a78f)
+
+#### TOPIC 6: __Storytelling with R__
+
+![](http://rismyhammer.com/images/chartSelections.jpg)
+
+_Background:_ Albeit all the fancy and sophisticated methods, _simple_ explorative data analysis remains important and powerful to draw insights and tell stories,  respectively. Graphical viszualizations become more and more popular as the possibilities to create nice, meaningful and interactive graphs steadily increase. R is one of the main driver here. The lecture should introduce the power of R to visualize data.  
+
+Links:
+
+  - [Let Graphics Tell the Story - Datasets in R](https://journal.r-project.org/archive/2013/RJ-2013-012/RJ-2013-012.pdf)
+  - [Chapter 11 Tell Your Story with Data](https://moderndive.com/11-thinking-with-data.html)
+  - [R Graph Gallery](https://www.r-graph-gallery.com/all-graphs.html)
+
+#### TOPIC 7: __Who's Your Costumer? Data Scientists Can Tell__
+
+_Background:_ Customer segmentation allows to detect customer profiles. This analysis can be done by R. This lecture should discuss the importance of customer segmentation for business and should briefly show how R can help here.  
+
+Links:
+
+  - [Cuostomer Analytics with R](https://josepcurtodiaz.gitbooks.io/customer-analytics-with-r/content/chapter7.html)
+  
+
+
+---
+<sub><sup><sub>
+*This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
+</sup></sub></sup>
+
+<sub><sup><sub>
 * *The materials used in this lesson are adapted from work that is Copyright © Data Carpentry (http://datacarpentry.org/). 
 All Data Carpentry instructional material is made available under the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0).*
-</sup></sub></sup></sub>
+</sup></sub></sup>
 

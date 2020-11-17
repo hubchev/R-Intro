@@ -1,0 +1,2444 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={R 101 -- 1. First Steps},
+  pdfauthor={Stephan.Huber@hs-fresenius.de},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{R 101 -- 1. First Steps}
+\author{\href{mailto:Stephan.Huber@hs-fresenius.de}{\nolinkurl{Stephan.Huber@hs-fresenius.de}}}
+\date{Hochschule Fresenius}
+
+\begin{document}
+\maketitle
+
+\hypertarget{preface}{%
+\section{Preface}\label{preface}}
+
+\hypertarget{learning-objectives}{%
+\subsection{Learning Objectives}\label{learning-objectives}}
+
+\begin{itemize}
+\tightlist
+\item
+  Describe what R and RStudio are.
+\item
+  Interact with R using RStudio.
+\item
+  Use the various components of RStudio.
+\item
+  Employ variables in R.
+\item
+  Describe the various data types used in R.
+\item
+  Construct data structures to store data.
+\end{itemize}
+
+\hypertarget{installation-requirements}{%
+\subsection{Installation Requirements}\label{installation-requirements}}
+
+Download the most recent versions of R and RStudio for the appropriate
+OS using the links below:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://cran.r-project.org/}{R}
+\item
+  \href{https://www.rstudio.com/products/rstudio/download/\#download}{RStudio}
+\end{itemize}
+
+Also see: -
+\href{https://cran.r-project.org/doc/manuals/r-release/R-admin.html}{R
+Installation and Administration Manual} -
+\href{https://rc2e.com/gettingstarted\#recipe-id001}{R Cookbook:
+Downloading and Installing R}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+If you don't want to install R on your PC, do \emph{CLOUD COMPUTING}:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://rstudio.cloud/}{RStudio Cloud}
+\end{itemize}
+
+\hypertarget{sources}{%
+\subsection{Sources}\label{sources}}
+
+There are millions of good and free sources to learn R:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/}{books}
+\item
+  \href{https://rstudio.com/resources/books/}{more books}
+\item
+  \href{https://cran.r-project.org/manuals.html}{manuals}
+\item
+  \href{http://sgpwe.izt.uam.mx/files/users/uami/gma/R_for_dummies.pdf}{R
+  for Dummies (pdf)}
+\end{itemize}
+
+\hypertarget{why-use-r}{%
+\subsection{Why use R?}\label{why-use-r}}
+
+\hypertarget{section}{%
+\subsection{}\label{section}}
+
+R is a powerful, extensible environment. It has a wide range of
+statistics and general data analysis and visualization capabilities.
+
+\begin{itemize}
+\tightlist
+\item
+  Data handling, wrangling, and storage
+\item
+  Wide array of statistical methods and graphical techniques available
+\item
+  Easy to install on any platform and use (and it's free!)
+\item
+  Open source with a large and growing community of peers
+\end{itemize}
+
+\hypertarget{section-1}{%
+\subsection{}\label{section-1}}
+
+\hypertarget{section-2}{%
+\subsection{}\label{section-2}}
+
+\hypertarget{section-3}{%
+\subsection{}\label{section-3}}
+
+\hypertarget{rstudio}{%
+\section{RStudio}\label{rstudio}}
+
+\hypertarget{what-is-rstudio}{%
+\subsection{What is RStudio?}\label{what-is-rstudio}}
+
+RStudio is freely available open-source Integrated Development
+Environment (IDE). RStudio provides an environment with many features to
+make using R easier and is a great alternative to working on R in the
+terminal.
+
+\begin{itemize}
+\tightlist
+\item
+  Graphical user interface, not just a command prompt
+\item
+  Great learning tool
+\item
+  Free for academic use
+\item
+  Platform agnostic
+\item
+  Open source
+\end{itemize}
+
+\hypertarget{creating-a-new-project-directory-in-rstudio}{%
+\subsection{Creating a new project directory in
+RStudio}\label{creating-a-new-project-directory-in-rstudio}}
+
+Let's create a new project directory for our ``Introduction to R''
+lesson today.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open RStudio
+\item
+  Go to the \texttt{File} menu and select \texttt{New\ Project}.
+\item
+  In the \texttt{New\ Project} window, choose \texttt{New\ Directory}.
+  Then, choose \texttt{New\ Project}. Name your new directory
+  \texttt{Intro-to-R} and then ``Create the project as subdirectory
+  of:'' the Desktop (or location of your choice).
+\item
+  Click on \texttt{Create\ Project}.
+\end{enumerate}
+
+\hypertarget{section-4}{%
+\subsection{}\label{section-4}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\tightlist
+\item
+  After your project is completed, if the project does not automatically
+  open in RStudio, then go to the \texttt{File} menu, select
+  \texttt{Open\ Project}, and choose \texttt{Intro-to-R.Rproj}.
+\item
+  When RStudio opens, you will see three panels in the window.
+\item
+  Go to the \texttt{File} menu and select \texttt{New\ File}, and select
+  \texttt{R\ Script}. The RStudio interface should now look like the
+  screenshot below.
+\end{enumerate}
+
+\hypertarget{rstudio-interface}{%
+\subsection{RStudio Interface}\label{rstudio-interface}}
+
+\textbf{The RStudio interface has four main panels:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Console}: where you can type commands and see output.
+  \emph{The console is all you would see if you ran R in the command
+  line without RStudio.}
+\item
+  \textbf{Script editor}: where you can type out commands and save to
+  file. You can also submit the commands to run in the console.
+\item
+  \textbf{Environment/History}: environment shows all active objects and
+  history keeps track of all commands run in console
+\item
+  \textbf{Files/Plots/Packages/Help}
+\end{enumerate}
+
+\hypertarget{section-5}{%
+\subsection{}\label{section-5}}
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/Rstudio_interface.png}
+\caption{RStudio interface}
+\end{figure}
+
+\hypertarget{organizing-your-working-directory-setting-up}{%
+\subsection{Organizing your working directory \& setting
+up}\label{organizing-your-working-directory-setting-up}}
+
+\textbf{Viewing your working directory:} Before we organize our working
+directory, let's check to see where our current working directory is
+located by typing into the console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Your working directory should be the \texttt{Intro-to-R} folder
+constructed when you created the project. The working directory is where
+RStudio will automatically look for any files you bring in and where it
+will automatically save any files you create, unless otherwise
+specified.
+
+\hypertarget{viewing-your-working-directory}{%
+\subsection{Viewing your working
+directory}\label{viewing-your-working-directory}}
+
+You can visualize your working directory by selecting the \texttt{Files}
+tab from the \textbf{Files/Plots/Packages/Help} window.
+
+\hypertarget{setting-your-working-directory}{%
+\subsection{Setting your working
+directory}\label{setting-your-working-directory}}
+
+If you wanted to choose a different directory to be your working
+directory, you could navigate to a different folder in the
+\texttt{Files} tab, then, click on the \texttt{More} dropdown menu and
+select \texttt{Set\ As\ Working\ Directory}.
+
+\includegraphics{../../../notingit/img/setwd.png}
+
+\hypertarget{structuring-your-working-directory}{%
+\subsection{Structuring your working
+directory}\label{structuring-your-working-directory}}
+
+To organize your working directory for a particular analysis, you should
+separate the original data (raw data) from intermediate datasets. For
+instance, you may want to create a \texttt{data/} directory within your
+working directory that stores the raw data, and have a \texttt{results/}
+directory for intermediate datasets and a \texttt{figures/} directory
+for the plots you will generate.
+
+Let's create these three directories within your working directory by
+clicking on \texttt{New\ Folder} within the \texttt{Files} tab.
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/wd_setup.png}
+\caption{Structuring your working directory}
+\end{figure}
+
+\hypertarget{section-6}{%
+\subsection{}\label{section-6}}
+
+When finished, your working directory should look like:
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/complete_wd_setup.png}
+\caption{Your organized working directory}
+\end{figure}
+
+\hypertarget{interacting-with-r}{%
+\section{Interacting with R}\label{interacting-with-r}}
+
+\hypertarget{interacting-with-r-1}{%
+\subsection{Interacting with R}\label{interacting-with-r-1}}
+
+Now that we have our interface and directory structure set up, let's
+start playing with R! There are \textbf{two main ways} of interacting
+with R in RStudio: using the \textbf{console} or by using \textbf{script
+editor} (plain text files that contain your code).
+
+\hypertarget{console-window}{%
+\subsubsection{Console window}\label{console-window}}
+
+The \textbf{console window} (in RStudio, the bottom left panel) is the
+place where R is waiting for you to tell it what to do, and where it
+will show the results of a command. You can type commands directly into
+the console, but they will be forgotten when you close the session.
+
+\hypertarget{lets-test-it-out}{%
+\subsection{Let's test it out:}\label{lets-test-it-out}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{../../../notingit/img/console.png}
+
+\hypertarget{replicability-in-research}{%
+\subsection{Replicability in research}\label{replicability-in-research}}
+
+One of the most important features of a scientific research paper is
+that the research must be replicable, which means that the paper gives
+readers enough detailed information that the research can be repeated
+(or `replicated').
+
+\hypertarget{script-editor}{%
+\subsection{Script editor}\label{script-editor}}
+
+\begin{itemize}
+\item
+  Best practice is to enter the commands in the \textbf{script editor},
+  and save the script.
+\item
+  You are encouraged \textbf{to comment} liberally to describe the
+  commands you are running using \texttt{\#}. This way, you have a
+  complete record of what you did, you can easily show others how you
+  did it and you can do it again later on if needed.
+\item
+  The Rstudio script editor allows you to `send' the current line or the
+  currently highlighted text to the R console by clicking on the
+  \texttt{Run} button in the upper-right hand corner of the script
+  editor.
+\item
+  Alternatively, you can run by simply pressing the \texttt{Ctrl} and
+  \texttt{Enter} keys at the same time as a shortcut.
+\end{itemize}
+
+\hypertarget{section-7}{%
+\subsection{}\label{section-7}}
+
+Now let's try entering commands to the \textbf{script editor} and using
+the comments character \texttt{\#} to add descriptions and highlighting
+the text to run:
+
+\begin{verbatim}
+# Intro to R Lesson
+# Feb 16th, 2016
+
+# Interacting with R
+
+## I am adding 3 and 5. R is fun!
+3+5
+\end{verbatim}
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/script_editor.png}
+\caption{Running in the script editor}
+\end{figure}
+
+\hypertarget{section-8}{%
+\subsection{}\label{section-8}}
+
+You should see the command run in the console and output the result.
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/script_editor_output.png}
+\caption{Script editor output}
+\end{figure}
+
+\hypertarget{section-9}{%
+\subsection{}\label{section-9}}
+
+What happens if we do that same command without the comment symbol
+\texttt{\#}? Re-run the command after removing the \# sign in the front:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{I am adding }\DecValTok{3}\NormalTok{ and }\FloatTok{5.}\NormalTok{ R is fun}\OperatorTok{!}
+\DecValTok{3}\OperatorTok{+}\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+Now R is trying to run that sentence as a command, and it doesn't work.
+We get an error in the console:
+
+\emph{``Error: unexpected symbol in''I am" means that the R interpreter
+did not know what to do with that command."}
+
+\hypertarget{console-command-prompt}{%
+\subsection{Console command prompt}\label{console-command-prompt}}
+
+Interpreting the command prompt can help understand when R is ready to
+accept commands. Below lists the different states of the command prompt
+and how you can exit a command:
+
+\textbf{Console is ready to accept commands}: \texttt{\textgreater{}}.
+
+If R is ready to accept commands, the R console shows a
+\texttt{\textgreater{}} prompt.
+
+When the console receives a command (by directly typing into the console
+or running from the script editor (\texttt{Ctrl-Enter}), R will try to
+execute it.
+
+After running, the console will show the results and come back with a
+new \texttt{\textgreater{}} prompt to wait for new commands.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Console is waiting for you to enter more data}: \texttt{+}.
+
+If R is still waiting for you to enter more data because it isn't
+complete yet, the console will show a \texttt{+} prompt. It means that
+you haven't finished entering a complete command. Often this can be due
+to you having not `closed' a parenthesis or quotation.
+
+\textbf{Escaping a command and getting a new prompt}: \texttt{esc}
+
+If you're in Rstudio and you can't figure out why your command isn't
+running, you can click inside the console window and press \texttt{esc}
+to escape the command and bring back a new prompt
+\texttt{\textgreater{}}.
+
+\hypertarget{interacting-with-data-in-r}{%
+\section{Interacting with data in R}\label{interacting-with-data-in-r}}
+
+\hypertarget{interacting-with-data-in-r-1}{%
+\subsection{Interacting with data in
+R}\label{interacting-with-data-in-r-1}}
+
+R is commonly used for handling big data, and so it only makes sense
+that we learn about R in the context of some kind of relevant data.
+Let's take a few minutes to add files to the folders we created and
+familiarize ourselves with the data.
+
+\hypertarget{adding-files-to-your-working-directory}{%
+\subsection{Adding files to your working
+directory}\label{adding-files-to-your-working-directory}}
+
+You can access the files we need for this workshop using the links
+provided below. If you right click on the link, and ``Save link as..''.
+Choose \texttt{\textasciitilde{}/Desktop/Intro-to-R/data} as the
+destination of the file. You should now see the file appear in your
+working directory. \textbf{We will discuss these files a bit later in
+the lesson.}
+
+\begin{itemize}
+\tightlist
+\item
+  Download the \textbf{normalized counts file}
+  \href{https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionII/data/counts.rpkm.csv}{link
+  to data} (Hint: \emph{right click} -- \emph{save as})
+\item
+  Download \textbf{metadata file} using
+  \href{https://github.com/hbc/NGS_Data_Analysis_Course/raw/master/sessionII/data/mouse_exp_design.csv}{this
+  link}
+\end{itemize}
+
+\begin{quote}
+\emph{NOTE:} If the files download automatically to some other location
+on your PC, you can move them to the your working directory using your
+file explorer or finder (outside RStudio), or navigating to the files in
+the \texttt{Files} tab of the bottom right panel of RStudio
+\end{quote}
+
+\hypertarget{the-dataset}{%
+\subsection{The dataset}\label{the-dataset}}
+
+\begin{itemize}
+\tightlist
+\item
+  In this example dataset, we have collected whole brain samples from 12
+  mice and want to evaluate expression differences between them.
+\item
+  The expression data represents normalized count data obtained from
+  RNA-sequencing of the 12 brain samples.
+\item
+  This data is stored in a comma separated values (CSV) file as a
+  2-dimensional matrix, with \textbf{each row corresponding to a gene
+  and each column corresponding to a sample}.
+\end{itemize}
+
+\hypertarget{the-metadata}{%
+\subsection{The metadata}\label{the-metadata}}
+
+We have another file in which we identify \textbf{information about the
+data} or \textbf{metadata}. Our metadata is also stored in a CSV file.
+In this file, each row corresponds to a sample and each column contains
+some information about each sample.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  The first column contains the row names, and \textbf{note that these
+  are identical to the column names in our expression data file above}
+  (albeit, in a slightly different order).
+\item
+  The next few columns contain information about our samples that allow
+  us to categorize them. For example, the second column contains
+  genotype information for each sample.
+\item
+  Each sample is classified in one of two categories: Wt (wild type) or
+  KO (knockout).
+\item
+  \emph{What types of categories do you observe in the remaining
+  columns?}
+\end{itemize}
+
+R is particularly good at handling this type of \textbf{categorical
+data}. Rather than simply storing this information as text, the data is
+represented in a specific data structure which allows the user to sort
+and manipulate the data in a quick and efficient manner. We will discuss
+this in more detail as we go through the different lessons in R!
+
+\hypertarget{best-practices}{%
+\subsection{Best practices}\label{best-practices}}
+
+Before we move on to more complex concepts and getting familiar with the
+language, we want to point out a few things about best practices when
+working with R which will help you stay organized in the long run:
+
+\begin{itemize}
+\item
+  Code and workflow are more \textbf{reproducible} if we can document
+  everything that we do. Our end goal is not just to ``do stuff'', but
+  to do it in a way that anyone can easily and exactly replicate our
+  workflow and results.
+\item
+  All code should be written in the script editor and saved to file,
+  rather than working in the console.
+\item
+  The \textbf{R console} should be mainly used to inspect objects, test
+  a function or get help.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Use \texttt{\#} signs to comment. \textbf{Comment liberally} in your R
+  scripts. This will help future you and other collaborators know what
+  each line of code (or code block) was meant to do. Anything to the
+  right of a \texttt{\#} is ignored by R. \emph{A shortcut for this is
+  \texttt{Ctrl\ +\ Shift\ +\ C} if you want to comment an entire chunk
+  of text.}
+\end{itemize}
+
+\hypertarget{learn-how-to-get-help}{%
+\section{Learn how to get help}\label{learn-how-to-get-help}}
+
+\hypertarget{how-to-get-help-in-r-and-rstudio}{%
+\subsection{How to get help in R and
+RStudio}\label{how-to-get-help-in-r-and-rstudio}}
+
+\begin{itemize}
+\tightlist
+\item
+  Click on \texttt{Help} in RStudio and see whats there
+\item
+  Watch : \href{https://youtu.be/pc7rig_cxpk}{5 Ways to get help in R}
+\item
+  Watch : \href{https://youtu.be/bPivdfjdIlY}{Getting help in R by
+  R-Tutorials}
+\item
+  Watch : \href{https://youtu.be/ZFaWxxzouCY}{How to ask for help}
+\end{itemize}
+
+\hypertarget{run-your-first-r-script}{%
+\subsection{Run your first R Script}\label{run-your-first-r-script}}
+
+Download this
+\href{https://raw.githubusercontent.com/hubchev/R-Intro/master/scripts/SH-R-01.R}{R-Script}
+and try to run and use it in RStudio.
+
+\emph{Hint: Make a right-click and do ``save as''.}
+
+\textbf{Tips on variable names}
+
+Variables can be given almost any name, such as \texttt{x},
+\texttt{current\_temperature}, or \texttt{subject\_id}. However, there
+are some rules / suggestions you should keep in mind:
+
+\begin{itemize}
+\tightlist
+\item
+  Make your names explicit and not too long.
+\item
+  Avoid names starting with a number (\texttt{2x} is not valid but
+  \texttt{x2} is)
+\item
+  Avoid names of fundamental functions in R (e.g., \texttt{if},
+  \texttt{else}, \texttt{for}, see
+  \href{https://statisticsglobe.com/r-functions-list/}{here} for a
+  complete list). In general, even if it's allowed, it's best to not use
+  other function names (e.g., \texttt{c}, \texttt{T}, \texttt{mean},
+  \texttt{data}) as variable names. When in doubt check the help to see
+  if the name is already in use.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Avoid dots (\texttt{.}) within a variable name as in
+  \texttt{my.dataset}. There are many functions in R with dots in their
+  names for historical reasons, but because dots have a special meaning
+  in R (for methods) and other programming languages, it's best to avoid
+  them.
+\item
+  Use nouns for object names and verbs for function names
+\item
+  Keep in mind that \textbf{R is case sensitive} (e.g.,
+  \texttt{genome\_length} is different from \texttt{Genome\_length})
+\end{itemize}
+
+\hypertarget{data-types}{%
+\subsection{Data Types}\label{data-types}}
+
+Variables can contain values of specific types within R. The six
+\textbf{data types} that R uses include:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{"numeric"} for any numerical value
+\item
+  \texttt{"character"} for text values (strings), denoted by using
+  quotes ("") around value\\
+\item
+  \texttt{"integer"} for integer numbers (e.g., \texttt{2L}, the
+  \texttt{L} indicates to R that it's an integer)
+\item
+  \texttt{"logical"} for \texttt{TRUE} and \texttt{FALSE} (the Boolean
+  data type)
+\item
+  \texttt{"complex"} to represent complex numbers with real and
+  imaginary parts (e.g., \texttt{1+4i}) and that's all we're going to
+  say about them
+\item
+  \texttt{"raw"} that we won't discuss further
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+The table below provides examples of each of the commonly used data
+types:
+
+\begin{longtable}[]{@{}rc@{}}
+\toprule
+Data Type & Examples\tabularnewline
+\midrule
+\endhead
+Numeric: & 1, 1.5, 20, pi\tabularnewline
+Character: & ``anytext'', ``5'', ``TRUE''\tabularnewline
+Integer: & 2L, 500L, -17L\tabularnewline
+Logical: & TRUE, FALSE, T, F\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{data-structures}{%
+\subsection{Data Structures}\label{data-structures}}
+
+We know that variables are like buckets, and so far we have seen that
+bucket filled with a single value. Even when \texttt{number} was
+created, the result of the mathematical operation was a single value.
+\textbf{Variables can store more than just a single value, they can
+store a multitude of different data structures.} These include, but are
+not limited to, vectors (\texttt{c}), factors (\texttt{factor}),
+matrices (\texttt{matrix}), data frames (\texttt{data.frame}) and lists
+(\texttt{list}).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{vectors}{%
+\subsubsection{Vectors}\label{vectors}}
+
+A vector is the most common and basic data structure in R, and is pretty
+much the workhorse of R. It's basically just a collection of values,
+mainly either numbers,
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/vector2.png}
+\caption{numeric vector}
+\end{figure}
+
+or characters,
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/vector1.png}
+\caption{character vector}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+or logical values,
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/vector5-logical.png}
+\caption{logical vector}
+\end{figure}
+
+\textbf{Note that all values in a vector must be of the same data type.}
+If you try to create a vector with more than a single data type, R will
+try to coerce it into a single data type.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+For example, if you were to try to create the following vector:
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/vector3.png}
+\caption{mixed vector}
+\end{figure}
+
+R will coerce it into:
+
+The analogy for a vector is that your bucket now has different
+compartments; these compartments in a vector are called \emph{elements}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Each \textbf{element} contains a single value, and there is no limit to
+how many elements you can have. A vector is assigned to a single
+variable, because regardless of how many elements it contains, in the
+end it is still a single entity (bucket).
+
+Let's create a vector of genome lengths and assign it to a variable
+called \texttt{glengths}.
+
+Each element of this vector contains a single numeric value, and three
+values will be combined together into a vector using \texttt{c()} (the
+combine function). All of the values are put within the parentheses and
+separated with a comma.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glengths <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\FloatTok{4.6}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\DecValTok{50000}\NormalTok{)}
+\NormalTok{glengths}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Note your environment shows the \texttt{glengths} variable is
+numeric and tells you the \texttt{glengths} vector starts at element 1
+and ends at element 3 (i.e.~your vector contains 3 values).}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+A vector can also contain characters. Create another vector called
+\texttt{species} with three elements, where each element corresponds
+with the genome sizes vector (in Mb).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{species <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"ecoli"}\NormalTok{, }\StringTok{"human"}\NormalTok{, }\StringTok{"corn"}\NormalTok{)}
+\NormalTok{species}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercise}
+
+Try to create a vector of numeric and character values by
+\emph{combining} the two vectors that we just created (\texttt{glengths}
+and \texttt{species}). Assign this combined vector to a new variable
+called \texttt{combined}.
+
+\emph{Hint: you will need to use the combine \texttt{c()} function to do
+this}.
+
+Print the \texttt{combined} vector in the console, what looks different
+compared to the original vectors?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{factors}{%
+\subsubsection{Factors}\label{factors}}
+
+A \textbf{factor} is a special type of vector that is used to
+\textbf{store categorical data}. Each unique category is referred to as
+a \textbf{factor level} (i.e.~category = level). Factors are built on
+top of integer vectors such that each \textbf{factor level} is assigned
+an \textbf{integer value}, creating value-label pairs.
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/factors_sm.png}
+\caption{factors}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Let's create a factor vector and explore a bit more. We'll start by
+creating a character vector describing three different levels of
+expression:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{expression <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"low"}\NormalTok{, }\StringTok{"high"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{, }\StringTok{"low"}\NormalTok{, }\StringTok{"medium"}\NormalTok{, }\StringTok{"high"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can convert this character vector into a \emph{factor} using the
+\texttt{factor()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{expression <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(expression)}
+\end{Highlighting}
+\end{Shaded}
+
+So, what exactly happened when we applied the \texttt{factor()}
+function?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/factors_new.png}
+\caption{factor\_new}
+\end{figure}
+
+The expression vector is categorical, in that all the values in the
+vector belong to a set of categories; in this case, the categories are
+\texttt{low}, \texttt{medium}, and \texttt{high}. By turning the
+expression vector into a factor, the \textbf{categories are assigned
+integers alphabetically}, with high=1, low=2, medium=3. This in effect
+assigns the different factor levels.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+You can view the newly created factor variable and the levels in the
+\textbf{Environment} window.
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/factors.png}
+\caption{Factor variables in environment}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercises}
+
+Let's say that in our experimental analyses, we are working with three
+different sets of cells: normal, cells knocked out for geneA (a very
+exciting gene), and cells overexpressing geneA. We have three replicates
+for each celltype.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Create a vector named \texttt{samplegroup} using the code below. This
+  vector will contain nine elements: 3 control (``CTL'') samples, 3
+  knock-out (``KO'') samples, and 3 over-expressing (``OE'') samples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{samplegroup <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"CTL"}\NormalTok{, }\StringTok{"CTL"}\NormalTok{, }\StringTok{"CTL"}\NormalTok{, }\StringTok{"KO"}\NormalTok{, }\StringTok{"KO"}\NormalTok{, }\StringTok{"KO"}\NormalTok{, }\StringTok{"OE"}\NormalTok{, }\StringTok{"OE"}\NormalTok{, }\StringTok{"OE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Turn \texttt{samplegroup} into a factor data structure.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{matrix}{%
+\subsubsection{Matrix}\label{matrix}}
+
+A \texttt{matrix} in R is a collection of vectors of \textbf{same length
+and identical datatype}. Vectors can be combined as columns in the
+matrix or by row, to create a 2-dimensional structure.
+
+\begin{figure}
+\centering
+\includegraphics{../../../notingit/img/matrix.png}
+\caption{matrix}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Matrices are used commonly as part of the mathematical machinery of
+statistics. They are usually of numeric datatype and used in
+computational algorithms to serve as a checkpoint. For example, if input
+data is not of identical data type (numeric, character, etc.), the
+\texttt{matrix()} function will throw an error and stop any downstream
+code execution.
+
+\hypertarget{data-frame}{%
+\subsection{Data Frame}\label{data-frame}}
+
+A \texttt{data.frame} is the \emph{de facto} data structure for most
+tabular data and what we use for statistics and plotting. A
+\texttt{data.frame} is similar to a matrix in that it's a collection of
+vectors of the \textbf{same length} and each vector represents a column.
+However, in a dataframe \textbf{each vector can be of a different data
+type} (e.g., characters, integers, factors).
+
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth,height=\textheight]{../../../notingit/img/dataframe.png}
+\caption{dataframe}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+A data frame is the most common way of storing data in R, and if used
+systematically makes data analysis easier.
+
+We can create a dataframe by bringing \textbf{vectors} together to
+\textbf{form the columns}. We do this using the \texttt{data.frame()}
+function, and giving the function the different vectors we would like to
+bind together. \emph{This function will only work for vectors of the
+same length.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(species, glengths)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{Note that you can view your data.frame object by clicking on its
+name in the \texttt{Environment} window.}
+
+\hypertarget{lists}{%
+\subsection{Lists}\label{lists}}
+
+Lists are a data structure in R that can be perhaps a bit daunting at
+first, but soon become amazingly useful. A list is a data structure that
+can hold any number of any types of other data structures.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.3\textwidth,height=\textheight]{../../../notingit/img/list.png}
+\caption{list}
+\end{figure}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+If you have variables of different data structures you wish to combine,
+you can put all of those into one list object by using the
+\texttt{list()} function and placing all the items you wish to combine
+within parentheses:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list1 <-}\StringTok{ }\KeywordTok{list}\NormalTok{(species, df, number)}
+\end{Highlighting}
+\end{Shaded}
+
+Print out the list to screen to take a look at the components:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{list1}
+    
+\NormalTok{[[}\DecValTok{1}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\StringTok{"ecoli"} \StringTok{"human"} \StringTok{"corn"} 
+
+\NormalTok{[[}\DecValTok{2}\NormalTok{]]}
+\NormalTok{  species glengths}
+\DecValTok{1}\NormalTok{   ecoli      }\FloatTok{4.6}
+\DecValTok{2}\NormalTok{   human   }\FloatTok{3000.0}
+\DecValTok{3}\NormalTok{    corn  }\FloatTok{50000.0}
+
+\NormalTok{[[}\DecValTok{3}\NormalTok{]]}
+\NormalTok{[}\DecValTok{1}\NormalTok{] }\DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+There are three components corresponding to the three different
+variables we passed in, and what you see is that structure of each is
+retained. Each component of a list is referenced based on the number
+position. We will talk more about how to inspect and manipulate
+components of lists in later lessons.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercise}
+
+Create a list called \texttt{list2} containing \texttt{species},
+\texttt{glengths}, and \texttt{number}.
+
+\hypertarget{r-101-3.-functions-in-r}{%
+\section{``R 101 -- 3. Functions in R''}\label{r-101-3.-functions-in-r}}
+
+\hypertarget{learning-objectives-1}{%
+\subsection{Learning Objectives}\label{learning-objectives-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Describe and utilize functions in R.
+\item
+  Modify default behavior of functions using arguments in R.
+\item
+  Identify R-specific sources of help to get more information about
+  functions.
+\item
+  Demonstrate how to create user-defined functions in R
+\item
+  Demonstrate how to install packages to extend R's functionality.
+\item
+  Identify different R-specific and external sources of help to (1)
+  troubleshoot errors and (2) get more information about functions and
+  packages.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{Source: \url{http://anoved.net/tag/lego/page/3/}}
+
+\hypertarget{functions-and-their-arguments}{%
+\subsection{Functions and their
+arguments}\label{functions-and-their-arguments}}
+
+\hypertarget{what-are-functions}{%
+\subsubsection{What are functions?}\label{what-are-functions}}
+
+A key feature of R is functions. Functions are \textbf{``self
+contained'' modules of code that accomplish a specific task}. Functions
+usually take in some sort of data structure (value, vector, dataframe
+etc.), process it, and return a result.
+
+The general usage for a function is the name of the function followed by
+parentheses:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{function_name}\NormalTok{(input)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+The input(s) are called \textbf{arguments}, which can include:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  the physical object (any data structure) on which the function carries
+  out a task
+\item
+  specifications that alter the way the function operates (e.g.~options)
+\end{enumerate}
+
+Not all functions take arguments, for example:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+However, most functions can take several arguments. If you don't specify
+a required argument when calling the function, you will either receive
+an error or the function will fall back on using a \emph{default}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+The \textbf{defaults} represent standard values that the author of the
+function specified as being ``good enough in standard cases''. An
+example would be what symbol to use in a plot. However, if you want
+something specific, simply change the argument yourself with a value of
+your choice.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{basic-functions}{%
+\subsubsection{Basic functions}\label{basic-functions}}
+
+We have already used a few examples of basic functions in the previous
+lessons i.e \texttt{getwd()}, \texttt{c()}, and \texttt{factor()}. These
+functions are available as part of R's built in capabilities, and we
+will explore a few more of these base functions below.
+
+You can also get functions from external \emph{packages or libraries},
+or \emph{even write your own}. We will take a closer look at both of
+these soon!
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Let's revisit a function that we have used previously to combine data
+\texttt{c()} into vectors. The \emph{arguments} it takes is a collection
+of numbers, characters or strings (separated by a comma). The
+\texttt{c()} function performs the task of combining the numbers or
+characters into a single vector. You can also use the function to add
+elements to an existing vector:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{glengths <-}\StringTok{ }\KeywordTok{c}\NormalTok{(glengths, }\DecValTok{90}\NormalTok{) }\CommentTok{# adding at the end }
+\NormalTok{glengths <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{30}\NormalTok{, glengths) }\CommentTok{# adding at the beginning}
+\end{Highlighting}
+\end{Shaded}
+
+What happens here is that we take the original vector \texttt{glengths}
+(containing three elements), and we are adding another item to either
+end. We can do this over and over again to build a vector or a dataset.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Since R is used for statistical computing, many of the base functions
+involve mathematical operations. One example would be the function
+\texttt{sqrt()}. The input/argument must be a number, and the output is
+the square root of that number. Let's try finding the square root of 81:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(}\DecValTok{81}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Now what would happen if we \textbf{called the function} (e.g.~ran the
+function), on a \emph{vector of values} instead of a single value?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sqrt}\NormalTok{(glengths)}
+\end{Highlighting}
+\end{Shaded}
+
+In this case the task was performed on each individual value of the
+vector \texttt{glengths} and the respective results were displayed.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Let's try another function, this time using one that we can change some
+of the \emph{options} (arguments that change the behavior of the
+function), for example \texttt{round}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(}\FloatTok{3.14159}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We can see that we get \texttt{3}. That's because the default is to
+round to the nearest whole number.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercise:}
+
+Try to round the number with two digits.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Solution: Seeking help on arguments for functions}
+
+The best way of finding out this information is to use the \texttt{?}
+followed by the name of the function. Doing this will open up the help
+manual in the bottom right panel of RStudio that will provide a
+description of the function, usage, arguments, details, and examples:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?round}
+\end{Highlighting}
+\end{Shaded}
+
+Alternatively, if you are familiar with the function but just need to
+remind yourself of the names of the arguments, you can use:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{args}\NormalTok{(round)}
+\end{Highlighting}
+\end{Shaded}
+
+In our example, we can change the number of digits returned by
+\textbf{adding an argument}. We can type \texttt{digits=2} or however
+many we may want:
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(}\FloatTok{3.14159}\NormalTok{, }\DataTypeTok{digits=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\emph{NOTE: If you provide the arguments in the exact same order as they
+are defined (in the help manual) you don't have to name them:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{round}\NormalTok{(}\FloatTok{3.14159}\NormalTok{, }\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+However, it's usually not recommended practice because it involves a lot
+of memorization. In addition, it makes your code difficult to read for
+your future self and others, especially if your code includes functions
+that are not commonly used. (It's however OK to not include the names of
+the arguments for basic functions like \texttt{mean}, \texttt{min},
+etc\ldots). Another advantage of naming arguments, is that the order
+doesn't matter. This is useful when a function has many arguments.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercise}
+
+Another commonly used base function is \texttt{mean()}. Use this
+function to calculate an average for the \texttt{glengths} vector.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Missing values}
+
+By default, all \textbf{R functions operating on vectors that contains
+missing data will return NA}. It's a way to make sure that users know
+they have missing data, and make a conscious decision on how to deal
+with it. When dealing with simple statistics like the mean, the easiest
+way to ignore \texttt{NA} (the missing data) is to use
+\texttt{na.rm=TRUE} (\texttt{rm} stands for remove).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{user-defined-functions}{%
+\subsubsection{User-defined Functions}\label{user-defined-functions}}
+
+One of the great strengths of R is the user's ability to add functions.
+Sometimes there is a small task (or series of tasks) you need done and
+you find yourself having to repeat it multiple times. In these types of
+situations it can be helpful to create your own custom function. The
+\textbf{structure of a function is given below}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{name_of_function <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(argument1, argument2) \{}
+\NormalTok{    statements or code that does something}
+    \KeywordTok{return}\NormalTok{(something)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  First you give your function a name.
+\item
+  Then you assign value to it, where the value is the function.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+When \textbf{defining the function} you will want to provide the
+\textbf{list of arguments required} (inputs and/or options to modify
+behaviour of the function), and wrapped between curly brackets place the
+\textbf{tasks that are being executed on/using those arguments}. The
+argument(s) can be any type of object (like a scalar, a matrix, a
+dataframe, a vector, a logical, etc), and it's not necessary to define
+what it is in any way.
+
+Finally, you can \textbf{``return'' the value of the object from the
+function}, meaning pass the value of it into the global environment. The
+important idea behind functions is that objects that are created within
+the function are local to the environment of the function -- they don't
+exist outside of the function.
+
+\begin{quote}
+\textbf{NOTE:} You can also have a function that doesn't require any
+arguments, nor will it return anything.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+Let's try creating a simple example function. This function will take in
+a numeric value as input, and return the squared value.
+
+Now, we can use the function as we would any other function. We type out
+the name of the function, and inside the parentheses we provide a
+numeric value \texttt{x}:
+
+\begin{verbatim}
+## [1] 25
+\end{verbatim}
+
+Pretty simple, right?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+In this case, we only had one line of code that was run, but in theory
+you could have many lines of code to get obtain the final results that
+you want to ``return'' to the user. We have only scratched the surface
+here when it comes to creating functions! If you are interested please
+find more detailed information on this
+\href{https://www.r-bloggers.com/how-to-write-and-debug-an-r-function/}{R-bloggers
+site}.
+
+\hypertarget{packages-and-libraries}{%
+\subsection{Packages and Libraries}\label{packages-and-libraries}}
+
+R packages are collections of functions and data sets developed by the
+community. They increase the power of R by improving existing base R
+functionalities, or by adding new ones. For example, if you are usually
+working with data frames, probably you will have heard about dplyr or
+data.table, two of the most popular R packages. More than 10,000
+packages are available at the official repository (CRAN) and many more
+are publicly available through the internet.
+
+For a good and rather more comprehensive overview on the topic, I
+recommend a reading of
+\href{https://www.datacamp.com/community/tutorials/r-packages-guide}{R
+Packages: A Beginner's Guide}.
+
+Also worth a look is
+\href{https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/}{Writing
+an R Package from Scratch}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{base-packages}{%
+\subsubsection{Base Packages}\label{base-packages}}
+
+There are a set of \textbf{standard (or base) packages} which are
+considered part of the R source code and automatically available as part
+of your R installation. Base packages contain the \textbf{basic
+functions} that allow R to work, and enable standard statistical and
+graphical functions on datasets.
+
+The directories in R where the packages are stored are called the
+\textbf{libraries}. The terms \emph{package} and \emph{library} are
+sometimes used synonymously and there has been
+\href{http://www.r-bloggers.com/packages-v-libraries-in-r/}{discussion}
+amongst the community to resolve this.
+
+You can check what libraries are loaded in your current R session by
+typing into the console:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sessionInfo}\NormalTok{() }\CommentTok{#Print version information about R, the OS and attached or loaded packages}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{package-installation-from-cran}{%
+\subsubsection{Package installation from
+CRAN}\label{package-installation-from-cran}}
+
+Many packages can be installed from the
+\href{http://cran.r-project.org/}{Comprehensive R Archive Network
+(CRAN)}. CRAN is a repository where the latest downloads of R (and
+legacy versions) are found in addition to source code for thousands of
+different user contributed R packages.
+
+Packages for R can be installed from the
+\href{http://cran.r-project.org/}{CRAN} package repository using the
+\texttt{install.packages} function. This function will download the
+source code from on the CRAN mirrors and install the package (and any
+dependencies) locally on your computer.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+An example is given below for the \texttt{ggplot2} package that will be
+required for some plots we will create later on. Run this code to
+install \texttt{ggplot2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{NOTE:} Depending on your PC and internet-speed, installing
+packages can be time consuming. Thus, lay back and don't be afraid of
+the {red text} in the console.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{loading-libraries}{%
+\subsubsection{Loading libraries}\label{loading-libraries}}
+
+Once you have the package installed, you can \textbf{load the library}
+into your R session for use. Any of the functions that are specific to
+that package will be available for you to use by simply calling the
+function as you would for any of the base functions. \emph{Note that
+quotations are not required here.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+We only need to install a package once on our computer. However, to use
+the package, we need to load the library every time we start a new
+R/RStudio environment. You can think of this as \textbf{installing a
+bulb} versus \textbf{turning on the light}.
+
+\emph{Analogy and image credit to
+\href{https://twitter.com/visnut/status/1248087845589274624}{Dianne
+Cook} of \href{https://www.monash.edu/}{Monash University}.}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{finding-functions-specific-to-a-package}{%
+\subsubsection{Finding functions specific to a
+package}\label{finding-functions-specific-to-a-package}}
+
+This is your first time using \texttt{ggplot2}, how do you know where to
+start and what functions are available to you? One way to do this, is by
+using the \texttt{Package} tab in RStudio. If you click on the tab, you
+will see listed all packages that you have installed. For those
+\emph{libraries that you have loaded}, you will see a blue checkmark in
+the box next to it. Scroll down to \texttt{ggplot2} in your list:
+
+If your library is successfully loaded you will see the box checked, as
+in the screenshot above. Now, if you click on \texttt{ggplot2} RStudio
+will open up the help pages and you can scroll through.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+An alternative is to find the help manual online, which can be less
+technical and sometimes easier to follow.
+
+For more instructions on how to use ggplot2, see:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://uc-r.github.io/ggplot_intro}{An Introduction to ggplot2}
+\item
+  \href{https://ggplot2.tidyverse.org/reference/index.html}{ggplot2
+  Reference}
+\item
+  \href{https://r-graphics.org/\#}{R Graphics Cookbook}
+\end{itemize}
+
+\textbf{Exercise}
+
+Search in the \href{https://www.rdocumentation.org/}{rdocumention.org}
+for ggplot2.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Exercise}
+
+The \texttt{ggplot2} package is part of the
+\href{https://www.tidyverse.org/packages/}{\texttt{tidyverse} suite of
+integrated packages} which was designed to work together to make common
+data science operations more user-friendly. Maybe we use the
+\texttt{tidyverse} suite in later lessons, so let's install it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{asking-for-help}{%
+\subsection{Asking for help}\label{asking-for-help}}
+
+The key to getting help from someone is for them to grasp your problem
+rapidly. You should make it as easy as possible to pinpoint where the
+issue might be.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Try to \textbf{use the correct words} to describe your problem. For
+  instance, a package is not the same thing as a library. Most people
+  will understand what you meant, but others have really strong feelings
+  about the difference in meaning. The key point is that it can make
+  things confusing for people trying to help you. \textbf{Be as precise
+  as possible when describing your problem.}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Always include the output of \texttt{sessionInfo()}} as it
+  provides critical information about your platform, the versions of R
+  and the packages that you are using, and other information that can be
+  very helpful to understand your problem.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sessionInfo}\NormalTok{()  }\CommentTok{#This time it is not interchangeable with search()}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  If possible, \textbf{reproduce the problem using a very small
+  \texttt{data.frame}} instead of your 50,000 rows and 10,000 columns
+  one, provide the small one with the description of your problem. When
+  appropriate, try to generalize what you are doing so even people who
+  are not in your field can understand the question.
+
+  \begin{itemize}
+  \item
+    To share an object with someone else, you can provide either the raw
+    file (i.e., your CSV file) with your script up to the point of the
+    error (and after removing everything that is not relevant to your
+    issue). Alternatively, in particular if your questions is not
+    related to a \texttt{data.frame}, you can save any other R data
+    structure that you have in your environment to a file:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# DO NOT RUN THIS HERE! It's just an example.}
+
+\KeywordTok{save}\NormalTok{(iris, }\DataTypeTok{file=}\StringTok{"/tmp/iris.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    The content of this \texttt{.RData} file is not human readable and
+    cannot be posted directly on stackoverflow. It can, however, be
+    emailed to someone who can read it with this command:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# DO NOT RUN THIS HERE! It's just an example.}
+
+\NormalTok{some_data <-}\StringTok{ }\KeywordTok{load}\NormalTok{(}\DataTypeTok{file=}\StringTok{"~/Downloads/iris.RData"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{where-to-ask-for-help}{%
+\subsubsection{Where to ask for help?}\label{where-to-ask-for-help}}
+
+\begin{itemize}
+\item
+  \textbf{Google} is often your best friend for finding answers to
+  specific questions regarding R.
+\item
+  \textbf{Stackoverflow}: Search using the \texttt{{[}r{]}} tag. Most
+  questions have already been answered, but the challenge is to use the
+  right words in the search to find the answers:
+  \url{http://stackoverflow.com/questions/tagged/r}. If your question
+  hasn't been answered before and is well crafted, chances are you will
+  get an answer in less than 5 min.
+\item
+  \textbf{Your friendly colleagues}: if you know someone with more
+  experience than you, they might be able and willing to help you.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{The
+  \href{https://stat.ethz.ch/mailman/listinfo/r-help}{R-help}}: it is
+  read by a lot of people (including most of the R core team), a lot of
+  people post to it, but the tone can be pretty dry, and it is not
+  always very welcoming to new users. If your question is valid, you are
+  likely to get an answer very fast but don't expect that it will come
+  with smiley faces. Also, here more than everywhere else, be sure to
+  use correct vocabulary (otherwise you might get an answer pointing to
+  the misuse of your words rather than answering your question). You
+  will also have more success if your question is about a base function
+  rather than a specific package.
+\item
+  If your question is about a specific package, see if there is a
+  mailing list for it. Usually it's included in the DESCRIPTION file of
+  the package that can be accessed using
+  \texttt{packageDescription("name-of-package")}. You may also want to
+  try to \textbf{email the author} of the package directly.
+\item
+  There are also some \textbf{topic-specific mailing lists} (GIS,
+  phylogenetics, etc\ldots), the complete list is
+  \href{http://www.r-project.org/mail.html}{here}.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{more-resources}{%
+\subsubsection{More resources}\label{more-resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \href{http://www.r-project.org/posting-guide.html}{Posting Guide}
+  for the R mailing lists.
+\item
+  \href{http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html}{How
+  to ask for R help} useful guidelines
+\item
+  The
+  \href{http://cran.r-project.org/doc/manuals/R-intro.pdf}{Introduction
+  to R} can also be dense for people with little programming experience
+  but it is a good place to understand the underpinnings of the R
+  language.
+\item
+  The \href{http://cran.r-project.org/doc/FAQ/R-FAQ.html}{R FAQ} is
+  dense and technical but it is full of useful information.
+\end{itemize}
+
+\hypertarget{describe-the-meaning-of-the-sign-and-the---operator.}{%
+\section{\texorpdfstring{Describe the meaning of the \texttt{\#} sign
+and the \texttt{\textless{}-}
+operator.}{Describe the meaning of the \# sign and the \textless- operator.}}\label{describe-the-meaning-of-the-sign-and-the---operator.}}
+
+\begin{itemize}
+\tightlist
+\item
+  The \texttt{\#} sign is used in R-scripts to add comments. That is
+  usefull that you and others can understand what the R code is about.
+  Comments are not run as R code, so they will not influence your
+  result.
+\item
+  \texttt{\textless{}-} is an assignment operator that assigns a value
+  to a name/variable. A variable allows you to store a value or an
+  object in R and you can create that with the assignment operator. You
+  can then later use it to access the value or the object that is stored
+  within this variable.
+\end{itemize}
+
+\hypertarget{explain-briefly-ways-to-get-help-via-the-console.}{%
+\section{Explain briefly ways to get help via the
+Console.}\label{explain-briefly-ways-to-get-help-via-the-console.}}
+
+\begin{itemize}
+\tightlist
+\item
+  ?: Search R documentation for a specific term.
+\item
+  ?? Search R help files for a word or phrase.
+\item
+  RSiteSearch(): Search search.r-project.org
+\item
+  findFn(): Search search.r-project.org for functions (Hint: requires
+  the ``sos'' library loaded!)
+\item
+  help.start(): Access to html manuals and documentations implemented in
+  R
+\item
+  apropos(): Returns a character vector giving the names of objects in
+  the search list matching (as a regular expression) what.
+\item
+  find(): Returns where objects of a given name can be found.
+\item
+  vignette(): View a specified package vignette, i.e., supporting
+  material such as introductions.
+\end{itemize}
+
+\hypertarget{explain-what-the-webpage-rseek.org-can-do-for-you.}{%
+\section{Explain what the webpage RSeek.org can do for
+you.}\label{explain-what-the-webpage-rseek.org-can-do-for-you.}}
+
+It makes it easy to search for information about R while filtering out
+sites hat match ``R'' but don't contain the information you're looking
+for. It's just like a Google search, but restricts the search just to
+those sites known to contain information about R.
+
+\hypertarget{state-the-arithmetic-operators-plus-minus-etc.-in-r.}{%
+\section{State the arithmetic operators (plus, minus, etc.) in
+R.}\label{state-the-arithmetic-operators-plus-minus-etc.-in-r.}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Operator & Description\tabularnewline
+\midrule
+\endhead
++ & addition\tabularnewline
+- & subtraction\tabularnewline
+* & multiplication\tabularnewline
+/ & division\tabularnewline
+\^{} or ** & exponentiation\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{name-the-logical-operators-greater-than-equal-to-etc.-that-can-be-used-in-r.}{%
+\section{Name the logical operators (greater than, equal to, etc.) that
+can be used in
+R.}\label{name-the-logical-operators-greater-than-equal-to-etc.-that-can-be-used-in-r.}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule
+Operator & Description\tabularnewline
+\midrule
+\endhead
+\textgreater{} & greater than\tabularnewline
+\textgreater= & greater than or equal to\tabularnewline
+== & exactly equal to\tabularnewline
+!= & not equal to\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{what-does-mean-in-r}{%
+\section{What does ! mean in R?}\label{what-does-mean-in-r}}
+
+It's the logical operator for negation and it also means the opposite of
+a function.
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\hypertarget{what-is-the-pipe-operator-in-r}{%
+\section{What is the pipe operator, \%\textgreater\% in
+R?}\label{what-is-the-pipe-operator-in-r}}
+
+The pipe operator, \%\textgreater\%, comes from the magrittr package
+which is also a part of the tidyverse package. The pipe is to help you
+write code in a way that is easier to read and understand. As R is a
+functional language, code often contains a lot of parenthesis, ( and ).
+Nesting those parentheses together is complex and you easily get lost.
+This makes your R code hard to read and understand. Here's where
+\%\textgreater\% comes in to the rescue! Consider the following chunk of
+code to explain the usage of the pipe:
+
+\begin{verbatim}
+## [1] 0.109 0.359 0.630 0.996 0.515 0.142 0.017 0.829 0.907
+\end{verbatim}
+
+\begin{verbatim}
+## [1] -2.216407397 -1.024432890 -0.462035460 -0.004008021 -0.663588378
+## [6] -1.951928221 -4.074541935 -0.187535124 -0.097612829
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  1.19197451  0.56239743  0.45802744 -0.65958036 -1.28833984 -2.12261371
+## [7]  3.88700681  0.08992229
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  3.2935780  1.7548747  1.5809524  0.5170683  0.2757282  0.1197183 48.7647059
+## [8]  1.0940893
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  3.3  1.8  1.6  0.5  0.3  0.1 48.8  1.1
+\end{verbatim}
+
+That is rather long and we actually don't need objects x2, x3, and x4.
+Well, then let us write that in a nested function:
+
+\begin{verbatim}
+## [1]  3.3  1.8  1.6  0.5  0.3  0.1 48.8  1.1
+\end{verbatim}
+
+This is short but you easily loose overview. The solution is the
+\emph{pipe}:
+
+\begin{verbatim}
+## -- Attaching packages ------------------------------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.4     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ---------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  3.3  1.8  1.6  0.5  0.3  0.1 48.8  1.1
+\end{verbatim}
+
+You can read the \%\textgreater\% with ``and then'' because it takes the
+results of some function ``and then'' does something with that in the
+next. Another example can be found in this short clip:
+\href{https://youtu.be/PX5NuteZ3Vg}{Using the pipe operator in R}
+
+\hypertarget{read-out-loud-the-following-code}{%
+\section{Read out loud the following
+code:}\label{read-out-loud-the-following-code}}
+
+\begin{verbatim}
+##      Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+## 1     setosa     5.313636    3.713636     1.509091   0.2772727
+## 2 versicolor     5.997872    2.804255     4.317021   1.3468085
+## 3  virginica     6.622449    2.983673     5.573469   2.0326531
+\end{verbatim}
+
+A solution may be the following: ``you take the Iris data \emph{and
+then} you subset the data \emph{and then} you aggregate the data and
+show the mean''.
+
+\hypertarget{what-sort-of-extract-operators-exist-in-r-and-how-can-they-be-used}{%
+\section{\texorpdfstring{What sort of \emph{extract operators} exist in
+R and how can they be
+used?}{What sort of extract operators exist in R and how can they be used?}}\label{what-sort-of-extract-operators-exist-in-r-and-how-can-they-be-used}}
+
+The
+\href{https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html}{extract
+operator} is used to retrieve data from objects in R. The operator may
+take four forms, including \texttt{{[},\ {[}{[},\ \$,} and \texttt{@}.
+The fourth form, \texttt{@}, is called the
+\href{https://stat.ethz.ch/R-manual/R-devel/library/methods/html/slot.html}{slot
+operator}, and is a more advanced topic so we won't discuss it here.
+
+The first form, \texttt{{[}}, can be used to extract content from
+vector, lists, or data frames. Since vectors are one dimensional, i.e.,
+they contain between 1 and N elements, we apply the extract operator to
+the vector as a single number or a list of numbers as follows.
+
+\begin{verbatim}
+ x[ selection criteria here ]
+\end{verbatim}
+
+The following code defines a vector and then extracts the last 3
+elements from it using two techniques. The first technique directly
+references elements 13 through 15. The second approach uses the length
+of the vector to calculate the indexes of last three elements.
+
+\begin{verbatim}
+## [1] 28 29 30
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 28 29 30
+\end{verbatim}
+
+When used with a list, \texttt{{[}} extracts one or more elements from
+the list. When used with a data frame, the extract operator can select
+rows, columns, or both rows and columns. Therefore, the extract opertor
+takes the following form: rows then a comma, then columns.
+
+\begin{verbatim}
+ x[select criteria for rows , select criteria for columns]
+\end{verbatim}
+
+The second and third forms of the extract operator, \texttt{{[}{[}} and
+\texttt{\$} extract a single item from an object. It is used to refer to
+an element in a list or a column in a data frame. The easiest way to see
+how the various features of the extract operator work is to get through
+some examples.The following snippetsuse the \texttt{mtcars} data set
+from the \texttt{datasets} package.
+
+\begin{verbatim}
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] 6 6 4 6 8 6 8 4 4 6 6 8 8 8 8 8 8 4 4 4 4 8 8 8 8 4 4 4 8 6 8 4
+\end{verbatim}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+x\$y is actually just a short form for x{[}{[}``y''{]}{]}.
+
+The difference of \texttt{{[}\ {]}} and \texttt{{[}{[}\ {]}{]}} is that
+\texttt{{[}{[}\ {]}{]}} is used to access a component in a list or
+matrix whereas \texttt{{[}\ {]}} is used to access a single element in a
+matrix or array.
+
+\begin{verbatim}
+## $a
+## [1] 5
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\hypertarget{what-is-the-console-in-rstudio-good-for}{%
+\section{\texorpdfstring{What is the \emph{Console} in RStudio good
+for?}{What is the Console in RStudio good for?}}\label{what-is-the-console-in-rstudio-good-for}}
+
+You can also execute R code straight in the console. This is a good way
+to experiment with R code, as your submission is not checked for
+correctness.
+
+\hypertarget{creating-sequences}{%
+\section{Creating sequences}\label{creating-sequences}}
+
+We just learned about the \texttt{c()} operator, which forms a vector
+from its arguments. If we're trying to build a vector containing a
+sequence of numbers, there are several useful functions at our disposal.
+These are the colon operator \texttt{:} and the sequence function
+\texttt{seq()}.
+
+\textbf{\texttt{:} Colon operator:}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 127 128 129 130 131 132
+\end{verbatim}
+
+\textbf{\texttt{seq} function: \texttt{seq(from,\ to,\ by)}}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{verbatim}
+## [1]  2  4  6  8 10
+\end{verbatim}
+
+\textbf{(a)} Use \texttt{:} to output the sequence of numbers from 3 to
+12
+
+\begin{verbatim}
+##  [1]  3  4  5  6  7  8  9 10 11 12
+\end{verbatim}
+
+\textbf{(b)} Use \texttt{seq()} to output the sequence of numbers from 3
+to 30 in increments of 3
+
+\begin{verbatim}
+##  [1]  3  6  9 12 15 18 21 24 27 30
+\end{verbatim}
+
+\textbf{(c)} Save the sequence from (a) as a variable \texttt{x}, and
+the sequence from (b) as a variable \texttt{y}. Output their product
+\texttt{x*y}
+
+\begin{verbatim}
+##  [1]   9  24  45  72 105 144 189 240 297 360
+\end{verbatim}
+
+\hypertarget{solve-the-following-exercises-in-your-own-r-script.}{%
+\section{Solve the following exercises in your own
+R-Script.}\label{solve-the-following-exercises-in-your-own-r-script.}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  RStudio offers a lot of helpful so-called Cheat Sheets (see:
+  \url{https://rstudio.com/resources/cheatsheets/}) Download and make
+  yourself familiar with the following
+  \href{https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf}{Base
+  R Cheeat Sheet}
+\item
+  Open RStudio, create a R-script, set your working directory, load the
+  data package, calculate \emph{3 + 4} in R and add a comment to it.
+\item
+  Further, calculate
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  divide 697 by 41
+\item
+  take the square root of 12
+\item
+  take 3 to the power of 12
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  Create a vector called vec1 that contain the numbers 2 5 8 12 16.
+\item
+  Use \texttt{x:y} notation to make (select) a second vector called vec2
+  containing the numbers 5 to 9.
+\item
+  Subtract vec2 from vec1 and look at the result.
+\item
+  Use seq() to make a vector of 100 values starting at 2 and increasing
+  by 3 each time. Name the new vector nseries. (Hint: The example of the
+  \emph{creating sequences} section may be helpful.)
+\item
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Extract the values at positions 5,10,15 and 20 in the vector of values
+  you just created.
+\item
+  Extract the values at positions 10 to 30
+\item
+  Hint: Both of these actions require making a selection in the vector
+  using the {[} {]} notation. Inside the square brackets you put a
+  vector of index positions, so the problem here is to create the vector
+  of index positions.
+\end{itemize}
+
+\hypertarget{solution}{%
+\subsubsection{Solution:}\label{solution}}
+
+\begin{verbatim}
+## [1] 17
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 3.464102
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 531441
+\end{verbatim}
+
+\begin{verbatim}
+## [1] -3 -1  1  4  7
+\end{verbatim}
+
+\begin{verbatim}
+##   [1]   2   5   8  11  14  17  20  23  26  29  32  35  38  41  44  47  50  53
+##  [19]  56  59  62  65  68  71  74  77  80  83  86  89  92  95  98 101 104 107
+##  [37] 110 113 116 119 122 125 128 131 134 137 140 143 146 149 152 155 158 161
+##  [55] 164 167 170 173 176 179 182 185 188 191 194 197 200 203 206 209 212 215
+##  [73] 218 221 224 227 230 233 236 239 242 245 248 251 254 257 260 263 266 269
+##  [91] 272 275 278 281 284 287 290 293 296 299
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 14 29 44 59
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 14 29 44 59
+\end{verbatim}
+
+\begin{verbatim}
+##  [1] 29 32 35 38 41 44 47 50 53 56 59 62 65 68 71 74 77 80 83 86 89
+\end{verbatim}
+
+\hypertarget{can-you-plot-data}{%
+\section{Can you plot data?}\label{can-you-plot-data}}
+
+Please explain your classmates how to create the following plots with R:
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.tutorialspoint.com/r/r_pie_charts.htm}{Pie Charts}
+\item
+  \href{https://www.tutorialspoint.com/r/r_bar_charts.htm}{Bar Charts}
+\item
+  \href{https://www.tutorialspoint.com/r/r_boxplots.htm}{Boxplots}
+\item
+  \href{https://www.tutorialspoint.com/r/r_histograms.htm}{Histograms}
+\item
+  \href{https://www.tutorialspoint.com/r/r_line_graphs.htm}{Line Graphs}
+\item
+  \href{https://www.tutorialspoint.com/r/r_scatterplots.htm}{Scatterplots}
+\end{itemize}
+
+\hypertarget{can-you-create-data-frames-and-merge-them}{%
+\section{Can you create data frames and merge
+them?}\label{can-you-create-data-frames-and-merge-them}}
+
+Please try to understand the following lines of code:
+
+\begin{verbatim}
+##   id x1 x2 y1 y2
+## 1  4  9  F  3  a
+## 2  5  1  G  3  x
+## 3  6  2  Y  4  a
+\end{verbatim}
+
+\begin{verbatim}
+##   id x1 x2 y1   y2
+## 1  1  5  A NA <NA>
+## 2  2  1  Y NA <NA>
+## 3  3  4  G NA <NA>
+## 4  4  9  F  3    a
+## 5  5  1  G  3    x
+## 6  6  2  Y  4    a
+\end{verbatim}
+
+\begin{verbatim}
+##   id x1   x2 y1 y2
+## 1  4  9    F  3  a
+## 2  5  1    G  3  x
+## 3  6  2    Y  4  a
+## 4  7 NA <NA>  1  x
+## 5  8 NA <NA>  2  a
+## 6  9 NA <NA>  9  x
+\end{verbatim}
+
+\begin{verbatim}
+##   id x1   x2 y1   y2
+## 1  1  5    A NA <NA>
+## 2  2  1    Y NA <NA>
+## 3  3  4    G NA <NA>
+## 4  4  9    F  3    a
+## 5  5  1    G  3    x
+## 6  6  2    Y  4    a
+## 7  7 NA <NA>  1    x
+## 8  8 NA <NA>  2    a
+## 9  9 NA <NA>  9    x
+\end{verbatim}
+
+\begin{verbatim}
+##   id x1 x2 y1 y2 z1 z2
+## 1  5  1  G  3  x  3  K
+## 2  6  2  Y  4  a  2  b
+\end{verbatim}
+
+\hypertarget{can-you-calculate-growth-rates-and-build-up-data-frames}{%
+\section{Can you calculate growth rates and build up data
+frames?}\label{can-you-calculate-growth-rates-and-build-up-data-frames}}
+
+Do the following:
+
+\begin{itemize}
+\tightlist
+\item
+  Load the \texttt{sunspot.year} data which is part of R's datasets
+  package \texttt{datasets},
+\item
+  generate a vector that contains the years 1700 to 1988,
+\item
+  combine the two vectors into a data frame using \texttt{data.frame()},
+\item
+  calculate the growth rate of yearly sunspot using
+  \texttt{growth.rate()} which is part of the \texttt{tis} package,
+\item
+  add the growth variable to the data frame.
+\end{itemize}
+
+\begin{verbatim}
+## Installing package into '/home/sthu/R/x86_64-pc-linux-gnu-library/4.0'
+## (as 'lib' is unspecified)
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'tis'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     between
+\end{verbatim}
+
+\hypertarget{can-you-load-r-built-in-r-data-set}{%
+\section{Can you load R Built-in R Data
+set?}\label{can-you-load-r-built-in-r-data-set}}
+
+Study this webpage
+\href{https://rstudio-pubs-static.s3.amazonaws.com/481654_883a4b47c9b244d4859dd1db235f0165.html}{R
+Built-in R Data set} and show how can you load R's \emph{Motor Trend Car
+Road Tests} dataset?
+
+\hypertarget{can-you-inspect-data-sets}{%
+\section{Can you inspect data sets?}\label{can-you-inspect-data-sets}}
+
+Here is a non-exhaustive list of functions to get a sense of the
+content/structure of data.
+
+\begin{itemize}
+\tightlist
+\item
+  All data structures - content display:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{str()}:} compact display of data contents (env.)
+  \item
+    \textbf{\texttt{class()}:} data type (e.g.~character, numeric, etc.)
+    of vectors and data structure of dataframes, matrices, and lists.
+  \item
+    \textbf{\texttt{summary()}:} detailed display, including descriptive
+    statistics, frequencies
+  \item
+    \textbf{\texttt{head()}:} will print the beginning entries for the
+    variable
+  \item
+    \textbf{\texttt{tail()}:} will print the end entries for the
+    variable
+  \end{itemize}
+\item
+  Vector and factor variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{length()}:} returns the number of elements in the
+    vector or factor
+  \end{itemize}
+\item
+  Dataframe and matrix variables:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{dim()}:} returns dimensions of the dataset
+  \item
+    \textbf{\texttt{nrow()}:} returns the number of rows in the dataset
+  \item
+    \textbf{\texttt{ncol()}:} returns the number of columns in the
+    dataset
+  \item
+    \textbf{\texttt{rownames()}:} returns the row names in the dataset\\
+  \item
+    \textbf{\texttt{colnames()}:} returns the column names in the
+    dataset
+  \end{itemize}
+\end{itemize}
+
+Load the mtcars data set and play around with the functions above.
+
+\hypertarget{do-you-know-the-cars-data}{%
+\section{Do you know the cars data?}\label{do-you-know-the-cars-data}}
+
+The \texttt{cars} data comes with the default installation of R. To see
+the first few columns of the data, just type \texttt{head(cars)}.
+
+\begin{verbatim}
+##   speed dist
+## 1     4    2
+## 2     4   10
+## 3     7    4
+## 4     7   22
+## 5     8   16
+## 6     9   10
+\end{verbatim}
+
+We'll do a bad thing here and use the \texttt{attach()} command, which
+will allow us to access the \texttt{speed} and \texttt{dist} columns of
+\texttt{cars} as though they were vectors in our workspace. The
+\texttt{attach()} function has the side effect of altering the search
+path and this can easily lead to the wrong object of a particular name
+being found. People do often forget to detach databases. Thus, it is
+better to use \texttt{\$}.
+
+\begin{verbatim}
+##  [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+## [26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25
+\end{verbatim}
+
+\begin{verbatim}
+##  [1]   2  10   4  22  16  10  18  26  34  17  28  14  20  24  28  26  34  34  46
+## [20]  26  36  60  80  20  26  54  32  40  32  40  50  42  56  76  84  36  46  68
+## [39]  32  48  52  56  64  66  54  70  92  93 120  85
+\end{verbatim}
+
+\textbf{(a)} Calculate the average and standard deviation of speed and
+distance.
+
+\begin{verbatim}
+## [1] 15.4
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 5.287644
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 42.98
+\end{verbatim}
+
+\begin{verbatim}
+## [1] 25.76938
+\end{verbatim}
+
+\textbf{(b)} Make a a histogram of stopping distance using the
+\texttt{hist} function.
+
+\includegraphics{all_r_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+The \texttt{plot(x,y,...)} function plots a vector \texttt{y} against a
+vector \texttt{x}. You can type \texttt{?plot} into the Console to learn
+more about the basic plot function.
+
+\textbf{(c)} Use the \texttt{plot(x,y)} function to create a scatterplot
+of dist against speed.
+
+\includegraphics{all_r_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\emph{This lesson has been developed by members of the teaching team at
+the \href{http://bioinformatics.sph.harvard.edu/}{Harvard Chan
+Bioinformatics Core (HBC)}. These are open access materials distributed
+under the terms of the
+\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons
+Attribution license} (CC BY 4.0), which permits unrestricted use,
+distribution, and reproduction in any medium, provided the original
+author and source are credited.}
+
+* \emph{The materials used in this lesson are adapted from work that is
+Copyright © Data Carpentry (\url{http://datacarpentry.org/}). All Data
+Carpentry instructional material is made available under the
+\href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons
+Attribution license} (CC BY 4.0).}
+
+\end{document}

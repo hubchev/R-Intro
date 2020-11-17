@@ -3,8 +3,8 @@ title: "R 101 -- 4. Operators"
 author: "Stephan.Huber@hs-fresenius.de"
 date: "Hochschule Fresenius"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 # Describe the meaning of the `#` sign and the `<-` operator.
