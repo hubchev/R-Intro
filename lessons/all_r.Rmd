@@ -9,15 +9,17 @@ output:
 
 # Table of Content
 
-- [1. First Steps](#ch1)
-- [2. R Syntax and Data Structures](#ch2)
-- [3. Functions in R](#ch3)
-- [4. Operators](#ch4)
+- [R 101 - 1. First Steps](#ch1)
+- [R 101 - 2. R Syntax and Data Structures](#ch2)
+- [R 101 - 3. Functions in R](#ch3)
+- [R 101 - 4. Operators](#ch4)
 - [git and github](#git)
 - [R Markdown](#md)
 - [LaTeX](#latex)
 - [Project Description](#pd)
 - [List of Topics](#listtopics)
+- [Regression Analysis](#regression)
+
 
 
 <a name="ch1"></a>
@@ -65,6 +67,7 @@ There are millions of good and free sources to learn R:
 
 
 ## Why use R?
+
 
 <img src="../../../notingit/img/why-r.jpg" width="800">
 
@@ -1733,7 +1736,7 @@ Other links:
 Core Skills and Real-World Application with the BBC](https://www.springer.com/de/book/9781484257654)
   - Here is a journal article about the topic [Commodity single board computer clusters and their applications](https://doi.org/10.1016/j.future.2018.06.048)
   
-#### TOPIC 2: __What you see on Facebook is what Mrs. Algorithm shows you__
+#### TOPIC 2: __What you see on Facebook is what Mrs. Algorithm shows you__ (Linh Vu and Tai Chi Wu)
 
 _Background:_ Facebook aims to increase the user experience and maximize its profits by engage people. Therefore, Facebook shows posts and advertisement to its costumers. The _logic_ of the automated decision making process is ruled by a complex algorithm that takes advantage of several insights from data science. The lecture should give a brief overview on that.
 
@@ -1769,7 +1772,7 @@ Links:
 
   - [Best R Libraries and Packages for Data Science](https://towardsdatascience.com/top-r-libraries-for-data-science-54f6eba4a78f)
 
-#### TOPIC 6: __Storytelling with R__
+#### TOPIC 6: **Storytelling with R**
 
 ![](http://rismyhammer.com/images/chartSelections.jpg)
 
@@ -1781,7 +1784,7 @@ Links:
   - [Chapter 11 Tell Your Story with Data](https://moderndive.com/11-thinking-with-data.html)
   - [R Graph Gallery](https://www.r-graph-gallery.com/all-graphs.html)
 
-#### TOPIC 7: __Who's Your Costumer? Data Scientists Can Tell__
+#### TOPIC 7: __Who's Your Costumer? Data Scientists Can Tell__ (Aida Daghistani)
 
 _Background:_ Customer segmentation allows to detect customer profiles. This analysis can be done by R. This lecture should discuss the importance of customer segmentation for business and should briefly show how R can help here.  
 
@@ -1789,7 +1792,21 @@ Links:
 
   - [Cuostomer Analytics with R](https://josepcurtodiaz.gitbooks.io/customer-analytics-with-r/content/chapter7.html)
   
+#### TOPIC 8: __Artificial intelligence vs. COVID-19__
 
+_Background:_  Methods of AI can help to fight COVID. The lecture should give an overview on the possibilities to fight the disease. 
+
+
+Links: 
+  
+  - [Intelligente Eindämmungsstrategien gegen COVID-19:  Die Rolle von KI und großen Daten](https://doi.org/10.1515/pwp-2020-0021 )
+  - [Artificial intelligence vs COVID-19: limitations, constraints and pitfalls](https://link.springer.com/article/10.1007/s00146-020-00978-0)
+
+<a name="regression"></a>
+
+# Regression Analysis
+
+dsrgtsdrg
 
 ---
 <sub><sup><sub>
