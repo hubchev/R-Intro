@@ -1755,7 +1755,7 @@ Links:
   
 
 
-#### TOPIC 4: __We Need It Now: How To Analyze COVID Data Quick__
+#### TOPIC 4: __We Need It Now: How To Analyze COVID Data Quick__ (Alisa Pirneeta Bhambhani and Ahmed Hifaz)
 
 _Background:_ To fight COVID we should use the available data quick and efficient. R can help here. Not only that R allows to visualize data nicely with, for example, heatmaps. The _R Language and Environment for Statistical Computing_ offers an excellent tool and ecosystem for approaches focusing on open science and reproducible results. Hence it is not surprising that with the onset of the pandemic, a large number of R packages and resources were made available for researches working in the pandemic. In a recent paper of Ponce and Sandhel,  an R package is presented that allows users to access and analyze worldwide data from resources publicly available.
 
@@ -1792,7 +1792,7 @@ Links:
 
   - [Cuostomer Analytics with R](https://josepcurtodiaz.gitbooks.io/customer-analytics-with-r/content/chapter7.html)
   
-#### TOPIC 8: __Artificial intelligence vs. COVID-19__
+#### TOPIC 8: __Artificial intelligence vs. COVID-19__ (Ranjodh Singh)
 
 _Background:_  Methods of AI can help to fight COVID. The lecture should give an overview on the possibilities to fight the disease. 
 

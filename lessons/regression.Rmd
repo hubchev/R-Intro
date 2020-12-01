@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **Table of Content**
 
-[1. Motivation](#Motivation)
+[1. Motivation](#motivation)
 
 [2. Regression Model](#regression)
 
@@ -55,15 +55,11 @@ Students will ...
 
 
 
-<a name="motivation"></a>
-
-# Motivation 
+# Motivation {#motivation}
 
 ---
 
-<a name="regression"></a>
-
-# Regression model 
+# Regression model {#regression}
 
 ### Simple linear regression
 
@@ -89,9 +85,8 @@ Students will ...
 
 ---
 
-<a name="regression-in-R"></a>
 
-# Regression Analysis in R
+# Regression Analysis in R {#regression-in-R}
 
 ## How to *run* a regression in R
 
@@ -100,6 +95,7 @@ Students will ...
 [Omitted Variable Bias](https://www.econometrics-with-r.org/6-1-omitted-variable-bias.html)
 
 
+# Excercise
   
 
 

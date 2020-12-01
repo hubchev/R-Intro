@@ -1,0 +1,1646 @@
+---
+title: "Data Science Course -- All Lecture Notes"
+author: "Stephan.Huber@hs-fresenius.de"
+date: "Hochschule Fresenius"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Table of Content
+
+- [R 101 - 1. First Steps](#ch1)
+- [R 101 - 2. R Syntax and Data Structures](#ch2)
+- [R 101 - 3. Functions in R](#ch3)
+- [R 101 - 4. Operators](#ch4)
+- [git and github](#git)
+- [R Markdown](#md)
+- [LaTeX](#latex)
+- [Project Description](#pd)
+- [List of Topics](#listtopics)
+- [Regression Analysis](#regression)
+
+
+
+<a name="ch1"></a>
+
+# R 101 -- 1. First Steps 
+
+## Preface
+
+### Learning Objectives
+
+* Describe what R and RStudio are.
+* Interact with R using RStudio.
+* Use the various components of RStudio.
+* Employ variables in R.
+* Describe the various data types used in R. 
+* Construct data structures to store data.
+
+
+### Installation Requirements
+
+Download the most recent versions of R and RStudio for the appropriate OS using the links below:
+
+ - [R](https://cran.r-project.org/) 
+ - [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+
+Also see:
+- [R Installation and Administration Manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html)
+- [R Cookbook: Downloading and Installing R](https://rc2e.com/gettingstarted#recipe-id001)
+
+
+---
+
+If you don't want to install R on your PC, do _CLOUD COMPUTING_:
+
+ - [RStudio Cloud](https://rstudio.cloud/)
+
+### Sources
+
+There are millions of good and free sources to learn R:
+
+ - [books](http://ucanalytics.com/blogs/learn-r-12-books-and-online-resources/)
+ - [more books](https://rstudio.com/resources/books/)
+ - [manuals](https://cran.r-project.org/manuals.html)
+ - [R for Dummies (pdf)](http://sgpwe.izt.uam.mx/files/users/uami/gma/R_for_dummies.pdf)
+
+
+## Why use R?
+
+
+<img src="../../../notingit/img/why-r.jpg" width="800">
+
+##
+R is a powerful, extensible environment. It has a wide range of statistics and general data analysis and visualization capabilities.
+
+* Data handling, wrangling, and storage
+* Wide array of statistical methods and graphical techniques available
+* Easy to install on any platform and use (and it’s free!)
+* Open source with a large and growing community of peers
+
+##
+<img src="../../../notingit/img/bigdata-knows-everything.jpg" width="800">
+
+##
+<img src="../../../notingit/img/got-data.jpeg" width="800">
+
+##
+<img src="../../../notingit/img/no-idea.png" width="800">
+
+# RStudio
+
+## What is RStudio?
+
+RStudio is freely available open-source Integrated Development Environment (IDE). RStudio provides an environment with many features to make using R easier and is a great alternative to working on R in the terminal. 
+
+<img src="../../../notingit/img/rstudio_logo.png" width="300">
+
+* Graphical user interface, not just a command prompt
+* Great learning tool 
+* Free for academic use
+* Platform agnostic
+* Open source
+
+## Creating a new project directory in RStudio
+
+Let's create a new project directory for our "Introduction to R" lesson today. 
+
+1. Open RStudio
+2. Go to the `File` menu and select `New Project`.
+3. In the `New Project` window, choose `New Directory`. Then, choose `New Project`. Name your new directory `Intro-to-R` and then "Create the project as subdirectory of:" the Desktop (or location of your choice).
+4. Click on `Create Project`.
+
+##
+
+5. After your project is completed, if the project does not automatically open in RStudio, then go to the `File` menu, select `Open Project`, and choose `Intro-to-R.Rproj`.
+6. When RStudio opens, you will see three panels in the window.
+7. Go to the `File` menu and select `New File`, and select `R Script`. The RStudio interface should now look like the screenshot below.
+
+
+## RStudio Interface
+
+**The RStudio interface has four main panels:**
+
+1. **Console**: where you can type commands and see output. *The console is all you would see if you ran R in the command line without RStudio.*
+2. **Script editor**: where you can type out commands and save to file. You can also submit the commands to run in the console.
+3. **Environment/History**: environment shows all active objects and history keeps track of all commands run in console
+4. **Files/Plots/Packages/Help**
+
+##
+![RStudio interface](../../../notingit/img/Rstudio_interface.png)
+
+
+## Organizing your working directory & setting up
+
+**Viewing your working directory:**
+Before we organize our working directory, let's check to see where our current working directory is located by typing into the console:
+
+```r
+getwd()
+```
+
+Your working directory should be the `Intro-to-R` folder constructed when you created the project. The working directory is where RStudio will automatically look for any files you bring in and where it will automatically save any files you create, unless otherwise specified. 
+
+## Viewing your working directory
+
+You can visualize your working directory by selecting the `Files` tab from the **Files/Plots/Packages/Help** window. 
+
+<img src="../../../notingit/img/getwd.png" width="600">
+
+## Setting your working directory
+If you wanted to choose a different directory to be your working directory, you could navigate to a different folder in the `Files` tab, then, click on the `More` dropdown menu and select `Set As Working Directory`.
+ 
+![](../../../notingit/img/setwd.png)
+
+
+## Structuring your working directory
+To organize your working directory for a particular analysis, you should separate the original data (raw data) from intermediate datasets. For instance, you may want to create a `data/` directory within your working directory that stores the raw data, and have a `results/` directory for intermediate datasets and a `figures/` directory for the plots you will generate.
+
+Let's create these three directories within your working directory by clicking on `New Folder` within the `Files` tab. 
+
+![Structuring your working directory](../../../notingit/img/wd_setup.png)
+
+## 
+
+When finished, your working directory should look like:
+
+![Your organized working directory](../../../notingit/img/complete_wd_setup.png)
+
+
+# Interacting with R
+
+## Interacting with R
+
+Now that we have our interface and directory structure set up, let's start playing with R! There are **two main ways** of interacting with R in RStudio: using the **console** or by using **script editor** (plain text files that contain your code).
+
+### Console window
+The **console window** (in RStudio, the bottom left panel) is the place where R is waiting for you to tell it what to do, and where it will show the results of a command.  You can type commands directly into the console, but they will be forgotten when you close the session. 
+
+## Let's test it out:
+
+```r
+3 + 5
+```
+
+![](../../../notingit/img/console.png)
+
+## Replicability in research
+
+One of the most important features of a scientific research paper is that the research must be replicable, which means that the paper gives readers enough detailed information that the research can be repeated (or 'replicated').
+
+## Script editor
+
+- Best practice is to enter the commands in the **script editor**, and save the script. 
+
+- You are encouraged **to comment** liberally to describe the commands you are running using `#`. This way, you have a complete record of what you did, you can easily show others how you did it and you can do it again later on if needed. 
+
+- The Rstudio script editor allows you to 'send' the current line or the currently highlighted text to the R console by clicking on the `Run` button in the upper-right hand corner of the script editor. 
+
+- Alternatively, you can run by simply pressing the `Ctrl` and `Enter` keys at the same time as a shortcut.
+
+## 
+
+Now let's try entering commands to the **script editor** and using the comments character `#` to add descriptions and highlighting the text to run:
+	
+	# Intro to R Lesson
+	# Feb 16th, 2016
+
+	# Interacting with R
+	
+	## I am adding 3 and 5. R is fun!
+	3+5
+
+![Running in the script editor](../../../notingit/img/script_editor.png)
+
+##
+
+You should see the command run in the console and output the result.
+
+![Script editor output](../../../notingit/img/script_editor_output.png)
+	
+## 
+
+What happens if we do that same command without the comment symbol `#`? Re-run the command after removing the # sign in the front:
+
+```r
+I am adding 3 and 5. R is fun!
+3+5
+```
+
+Now R is trying to run that sentence as a command, and it 
+doesn't work. We get an error in the console:
+
+*"Error: unexpected symbol in "I am" means that the R interpreter did not know what to do with that command."*
+
+
+## Console command prompt
+
+Interpreting the command prompt can help understand when R is ready to accept commands. Below lists the different states of the command prompt and how you can exit a command:
+
+**Console is ready to accept commands**: `>`.
+
+If R is ready to accept commands, the R console shows a `>` prompt. 
+
+When the console receives a command (by directly typing into the console or running from the script editor (`Ctrl-Enter`), R will try to execute it.
+
+After running, the console will show the results and come back with a new `>` prompt to wait for new commands.
+
+---
+
+**Console is waiting for you to enter more data**: `+`.
+
+If R is still waiting for you to enter more data because it isn't complete yet,
+the console will show a `+` prompt. It means that you haven't finished entering
+a complete command. Often this can be due to you having not 'closed' a parenthesis or quotation. 
+
+**Escaping a command and getting a new prompt**: `esc`
+
+If you're in Rstudio and you can't figure out why your command isn't running, you can click inside the console window and press `esc` to escape the command and bring back a new prompt `>`.
+
+
+# Interacting with data in R
+
+## Interacting with data in R
+
+R is commonly used for handling big data, and so it only makes sense that we learn about R in the context of some kind of relevant data. Let's take a few minutes to add files to the folders we created and familiarize ourselves with the data.
+
+## Adding files to your working directory
+
+You can access the files we need for this workshop using the links provided below. If you right click on the link, and "Save link as..". Choose `~/Desktop/Intro-to-R/data` as the destination of the file. You should now see the file appear in your working directory. **We will discuss these files a bit later in the lesson.**
+
+* Download the **normalized counts file** [link to data](https://raw.githubusercontent.com/hbc/NGS_Data_Analysis_Course/master/sessionII/data/counts.rpkm.csv) (Hint:  *right click* -- *save as*)
+* Download **metadata file** using [this link](https://github.com/hbc/NGS_Data_Analysis_Course/raw/master/sessionII/data/mouse_exp_design.csv)
+
+> *NOTE:* If the files download automatically to some other location on your PC, you can move them to the your working directory using your file explorer or finder (outside RStudio), or navigating to the files in the `Files` tab of the bottom right panel of RStudio
+
+## The dataset
+
+- In this example dataset, we have collected whole brain samples from 12 mice and want to evaluate expression differences between them. 
+- The expression data represents normalized count data obtained from RNA-sequencing of the 12 brain samples. 
+- This data is stored in a comma separated values (CSV) file as a 2-dimensional matrix, with **each row corresponding to a gene and each column corresponding to a sample**.
+
+<img src="../../../notingit/img/counts_view.png" width="600"> 
+
+## The metadata
+We have another file in which we identify **information about the data** or **metadata**. Our metadata is also stored in a CSV file. In this file, each row corresponds to a sample and each column contains some information about each sample. 
+
+<img src="../../../notingit/img/metadata_view.png" width="400"> 
+
+---
+
+- The first column contains the row names, and **note that these are identical to the column names in our expression data file above** (albeit, in a slightly different order). 
+- The next few columns contain information about our samples that allow us to categorize them. For example, the second column contains genotype information for each sample.
+- Each sample is classified in one of two categories: Wt (wild type) or KO (knockout). 
+- *What types of categories do you observe in the remaining columns?*
+
+R is particularly good at handling this type of **categorical data**. Rather than simply storing this information as text, the data is represented in a specific data structure which allows the user to sort and manipulate the data in a quick and efficient manner. We will discuss this in more detail as we go through the different lessons in R!  
+
+## Best practices
+
+Before we move on to more complex concepts and getting familiar with the language, we want to point out a few things about best practices when working with R which will help you stay organized in the long run:
+
+* Code and workflow are more **reproducible** if we can document everything that we do. Our end goal is not just to "do stuff", but to do it in a way that anyone can easily and exactly replicate our workflow and results. 
+
++ All code should be written in the script editor and saved to file, rather than working in the console.
+
+* The **R console** should be mainly used to inspect objects, test a function or get help. 
+
+---
+
+* Use `#` signs to comment. **Comment liberally** in your R scripts. This will help future you and other collaborators know what each line of code (or code block) was meant to do. Anything to the right of a `#` is ignored by R. *A shortcut for this is `Ctrl + Shift + C` if you want to comment an entire chunk of text.*
+
+
+# Learn how to get help
+
+## How to get help in R and RStudio
+
+- Click on `Help` in RStudio and see whats there
+- Watch : [5 Ways to get help in R](https://youtu.be/pc7rig_cxpk) 
+- Watch : [Getting help in R by R-Tutorials](https://youtu.be/bPivdfjdIlY)
+- Watch : [How to ask for help](https://youtu.be/ZFaWxxzouCY)
+
+## Run your first R Script
+
+Download this [R-Script](https://raw.githubusercontent.com/hubchev/R-Intro/master/scripts/SH-R-01.R) and try to run and use it in RStudio. This script shows some important features of R and in particular, it installs the most important packages for you. In order to avoid problems in some examples later on in this course, please run this script.
+
+_Hint: Make a right-click and do "save as"._
+
+
+```r
+## ---------------------------
+## Script name: SH-R-01
+## Purpose of script: First script students should run
+## ---------------------------
+## Author: Dr. Stephan Huber
+## Date Created: 2020-09-30
+## Copyright (c) Stephan Huber, 2020
+## Email: Stephan.Huber@hs-fresenius.de
+## ---------------------------
+
+
+# Let us start with using R within RStudio
+# with a # you can write a comment in your script
+
+# with "Ctrl+Enter" you can execute a line of command, try it out:
+print("Hello, world!")
+
+# we use the book: "R for Dummies" in the course
+# when reading the book, always try to execute the code snippets by your own
+# For example, p. 3:
+# Simulate 1 million throws of two six‐sided dices:
+set.seed(42)
+throws <- 1e6
+dice <- replicate(2,
+                  sample(1:6, throws, replace = TRUE)
+)
+table(rowSums(dice))
+ 
+# with a "?" you get some help/information about the functions and operators used 
+?set.seed
+?assignOps
+?sample
+?hist
+?table
+
+# there are other ways to get help and learn within R
+help.start()
+example(hist)
+apropos("hist")
+vignette()
+vignette("ggwordcloud")
+
+# Performing multiple calculations with vectors
+24 + 7 + 11
+1 + 2 + 3 + 4 + 5
+14 / 2
+# but
+14 : 2 # this operator is called sequence
+3*2
+3      *       2
+# but > 3 x 2 does not work!
+x <- 1:5  # see assignment operator ?assignOps
+x
+x + 2
+x + 6:10
+x
+# alternatively:
+x2 <- x + 6:10
+x3 <- 6:10
+x4 <- x + x3
+
+# To construct a vector, type into the console:
+c(1, 2, 3, 4, 5)
+?c()
+b <- c(1, 2, 3, 4, 5)
+b
+
+# Packages are sort of R's brain so let's 
+# SEE WHAT PACKAGES ARE AROUND
+# https://www.r-pkg.org/
+# https://cran.r-project.org/web/views/
+# For example tidyvers and ggplot2 are powerfull packages to create data-visualizations, see:
+# https://www.r-graph-gallery.com/
+
+# LOAD PACKAGES 
+# There are a lot of packages pre-installed but not loaded, see here: 
+installed.packages()
+
+# A package can be installed using install.packages("<package name>"). 
+install.packages("dplyr")
+# A package can be removed using remove.packages("<package name>").
+remove.packages("dplyr")
+
+# I recommend "pacman" for managing add-on packages. It will
+# install packages, if needed, and then load the packages.
+install.packages("pacman")
+
+# Then load the package by using either of the following:
+require(pacman)  # Gives a confirmation message.
+library(pacman)  # No message.
+
+# Or, by using "pacman::p_load" you can use the p_load
+# function from pacman without actually loading pacman.
+# These are packages I load every time.
+pacman::p_load(pacman, dplyr, GGally, ggplot2, ggthemes, 
+               ggvis, httr, lubridate, plotly, rio, rmarkdown, shiny, 
+               stringr, tidyr) 
+
+
+# the package "datasets" contains some datasets 
+library(datasets)  # Load/unload base packages manually
+?datasets
+library(help = "datasets")
+
+# CLEAN UP #################################################
+
+# Clear packages
+p_unload(dplyr, tidyr, stringr) # Clear specific packages
+p_unload(all)  # Easier: clears all add-ons
+
+detach("package:datasets", unload = TRUE)  # For base
+
+# Clear console
+cat("\014")  # shortut for doing that is ctrl+L
+```
+
+---
+
+<a name="ch2"></a>
+
+# R 101 -- 2. R Syntax and Data Structures
+
+
+## Learning Objectives
+
+* Employ variables in R.
+* Describe the various data types used in R. 
+* Construct data structures to store data.
+
+## The R syntax
+Now that we know how to talk with R via the script editor or the console, we want to use R for something more than adding numbers. To do this, we need to know more about the R syntax. 
+
+
+Below is an example script highlighting the many different "parts of speech" for R (syntax):
+
+  - the **comments** `#` and how they are used to document function and its content
+  - **variables** and **functions**
+  - the **assignment operator** `<-`
+  - the `=` for **arguments** in functions
+
+_NOTE: indentation and consistency in spacing is used to improve clarity and legibility_
+
+
+## Example script
+
+```r 
+setwd("/home/sthu/Dropbox/hsf/courses_202/R/github/R-Intro/test/")
+
+# LOAD DATASETS PACKAGES ###################################
+library(datasets)  # Load built-in datasets
+
+# SUMMARIZE DATA
+data("iris")
+head(iris)         # Show the first six lines of iris data
+summary(iris)      # Summary statistics for iris data
+plot(iris)         # Scatterplot matrix for iris data
+View(iris)
+ls(iris)
+
+# for using the data viewer in rstudio, see:
+# https://support.rstudio.com/hc/en-us/articles/205175388-Using-the-Data-Viewer
+
+# how to filter data into objects, see:
+# https://youtu.be/pU10ghMvAuM
+
+```
+
+## Assignment operator
+
+To do useful and interesting things in R, we need to assign _values_ to
+_variables_ using the assignment operator, `<-`.  For example, we can use the assignment operator to assign the value of `3` to `x` by executing:
+
+```r
+x <- 3
+```
+
+## Variables
+
+A variable is a symbolic name for (or reference to) information. Variables in computer programming are analogous to "buckets", where information can be maintained and referenced. On the outside of the bucket is a name. When referring to the bucket, we use the name of the bucket, not the data stored in the bucket.
+
+In the example above, we created a variable or a 'bucket' called `x`. Inside we put a value, `3`. 
+
+Let's create another variable called `y` and give it a value of 5. 
+
+```r
+y <- 5
+```
+
+***
+
+When assigning a value to an variable, R does not print anything to the console. You can force to print the value by using parentheses or by typing the variable name.
+
+```
+y
+```
+
+You can also view information on the variable by looking in your `Environment` window in the upper right-hand corner of the RStudio interface.
+
+![Viewing your environment](../../../notingit/img/environment.png)
+
+***
+
+Now we can reference these buckets by name to perform mathematical operations on the values contained within. What do you get in the console for the following operation: 
+
+```r
+x + y
+```
+
+Try assigning the results of this operation to another variable called `number`. 
+
+```r
+number <- x + y
+```
+
+***
+**Exercises**
+
+1. Try changing the value of the variable `x` to 5. What happens to `number`?
+2. Now try changing the value of variable `y` to contain the value 10. What do you need to do, to update the variable `number`?
+
+***
+
+## Coding Style Guide
+
+![](../../../notingit/img/dontdo.png)
+
+Be consistent with the styling of your code (where you put spaces, how you name variable, etc.). In R, two popular style guides are [Hadley Wickham's style guide](http://adv-r.had.co.nz/Style.html) and [Google's](http://web.stanford.edu/class/cs109l/unrestricted/resources/google-style.html).
+
+---
+
+**Tips on variable names**
+
+Variables can be given almost any name, such as `x`, `current_temperature`, or
+`subject_id`. However, there are some rules / suggestions you should keep in mind:
+
+- Make your names explicit and not too long.
+- Avoid names starting with a number (`2x` is not valid but `x2` is)
+- Avoid names of fundamental functions in R (e.g., `if`, `else`, `for`, see [here](https://statisticsglobe.com/r-functions-list/) for a complete list). In general, even if it's allowed, it's best to not use other function names (e.g., `c`, `T`, `mean`, `data`) as variable names. When in doubt
+check the help to see if the name is already in use. 
+
+
+***
+
+- Avoid dots (`.`) within a variable name as in `my.dataset`. There are many functions
+in R with dots in their names for historical reasons, but because dots have a
+special meaning in R (for methods) and other programming languages, it's best to
+avoid them. 
+- Use nouns for object names and verbs for function names
+- Keep in mind that **R is case sensitive** (e.g., `genome_length` is different from `Genome_length`)
+
+
+## Data Types
+
+Variables can contain values of specific types within R. The six **data types** that R uses include: 
+
+* `"numeric"` for any numerical value 
+* `"character"` for text values (strings), denoted by using quotes ("") around value   
+* `"integer"` for integer numbers (e.g., `2L`, the `L` indicates to R that it's an integer)
+* `"logical"` for `TRUE` and `FALSE` (the Boolean data type)
+* `"complex"` to represent complex numbers with real and imaginary parts (e.g.,
+  `1+4i`) and that's all we're going to say about them
+* `"raw"` that we won't discuss further
+
+***
+
+The table below provides examples of each of the commonly used data types:
+
+| Data Type  | Examples|
+| -----------:|:-------------------------------:|
+| Numeric:  | 1, 1.5, 20, pi|
+| Character:  | “anytext”, “5”, “TRUE”|
+| Integer:  | 2L, 500L, -17L|
+| Logical:  | TRUE, FALSE, T, F|
+
+## Data Structures
+
+We know that variables are like buckets, and so far we have seen that bucket filled with a single value. Even when `number` was created, the result of the mathematical operation was a single value. **Variables can store more than just a single value, they can store a multitude of different data structures.** These include, but are not limited to, vectors (`c`), factors (`factor`), matrices (`matrix`), data frames (`data.frame`) and lists (`list`).
+
+***
+
+### Vectors
+
+A vector is the most common and basic data structure in R, and is pretty much the workhorse of R. It's basically just a collection of values, mainly either numbers,
+
+![numeric vector](../../../notingit/img/vector2.png)
+
+or characters,
+
+![character vector](../../../notingit/img/vector1.png)
+
+---
+
+or logical values,
+
+![logical vector](../../../notingit/img/vector5-logical.png)
+
+**Note that all values in a vector must be of the same data type.** If you try to create a vector with more than a single data type, R will try to coerce it into a single data type. 
+
+***
+
+For example, if you were to try to create the following vector:
+
+![mixed vector](../../../notingit/img/vector3.png)
+
+R will coerce it into:
+
+<img src="../../../notingit/img/vector4.png" width="400">
+
+The analogy for a vector is that your bucket now has different compartments; these compartments in a vector are called *elements*. 
+
+***
+
+Each **element** contains a single value, and there is no limit to how many elements you can have. A vector is assigned to a single variable, because regardless of how many elements it contains, in the end it is still a single entity (bucket). 
+
+Let's create a vector of genome lengths and assign it to a variable called `glengths`. 
+
+Each element of this vector contains a single numeric value, and three values will be combined together into a vector using `c()` (the combine function). All of the values are put within the parentheses and separated with a comma.
+
+
+```r
+glengths <- c(4.6, 3000, 50000)
+glengths
+```
+*Note your environment shows the `glengths` variable is numeric and tells you the `glengths` vector starts at element 1 and ends at element 3 (i.e. your vector contains 3 values).*
+
+***
+
+A vector can also contain characters. Create another vector called `species` with three elements, where each element corresponds with the genome sizes vector (in Mb).
+
+```r
+species <- c("ecoli", "human", "corn")
+species
+```
+
+***
+**Exercise**
+
+Try to create a vector of numeric and character values by _combining_ the two vectors that we just created (`glengths` and `species`). Assign this combined vector to a new variable called `combined`. 
+
+*Hint: you will need to use the combine `c()` function to do this*. 
+
+Print the `combined` vector in the console, what looks different compared to the original vectors?
+
+***
+
+### Factors
+
+A **factor** is a special type of vector that is used to **store categorical data**. Each unique category is referred to as a **factor level** (i.e. category = level). Factors are built on top of integer vectors such that each **factor level** is assigned an **integer value**, creating value-label pairs. 
+
+![factors](../../../notingit/img/factors_sm.png)
+
+***
+
+Let's create a factor vector and explore a bit more.  We'll start by creating a character vector describing three different levels of expression:
+
+```r
+expression <- c("low", "high", "medium", "high", "low", "medium", "high")
+```
+
+Now we can convert this character vector into a *factor* using the `factor()` function:
+
+```r
+expression <- factor(expression)
+```
+
+So, what exactly happened when we applied the `factor()` function? 
+
+***
+
+![factor_new](../../../notingit/img/factors_new.png)
+
+The expression vector is categorical, in that all the values in the vector belong to a set of categories; in this case, the categories are `low`, `medium`, and `high`. By turning the expression vector into a factor, the **categories are assigned integers alphabetically**, with high=1, low=2, medium=3. This in effect assigns the different factor levels. 
+
+---
+
+You can view the newly created factor variable and the levels in the **Environment** window.
+
+![Factor variables in environment](../../../notingit/img/factors.png)
+
+
+***
+**Exercises**
+
+Let's say that in our experimental analyses, we are working with three different sets of cells: normal, cells knocked out for geneA (a very exciting gene), and cells overexpressing geneA. We have three replicates for each celltype.
+
+1. Create a vector named `samplegroup` using the code below. This vector will contain nine elements: 3 control ("CTL") samples, 3 knock-out ("KO") samples, and 3 over-expressing ("OE") samples:
+
+	```r
+	samplegroup <- c("CTL", "CTL", "CTL", "KO", "KO", "KO", "OE", "OE", "OE")
+	```
+
+2. Turn `samplegroup` into a factor data structure.
+
+***
+
+### Matrix
+
+A `matrix` in R is a collection of vectors of **same length and identical datatype**. Vectors can be combined as columns in the matrix or by row, to create a 2-dimensional structure.
+
+![matrix](../../../notingit/img/matrix.png)
+
+***
+
+Matrices are used commonly as part of the mathematical machinery of statistics. They are usually of numeric datatype and used in computational algorithms to serve as a checkpoint. For example, if input data is not of identical data type (numeric, character, etc.), the `matrix()` function will throw an error and stop any downstream code execution.
+
+
+## Data Frame
+
+A `data.frame` is the _de facto_ data structure for most tabular data and what we use for statistics and plotting. A `data.frame` is similar to a matrix in that it's a collection of vectors of the **same length** and each vector represents a column. However, in a dataframe **each vector can be of a different data type** (e.g., characters, integers, factors). 
+
+![dataframe](../../../notingit/img/dataframe.png){width=30%}
+
+---
+
+A data frame is the most common way of storing data in R, and if used systematically makes data analysis easier. 
+
+We can create a dataframe by bringing **vectors** together to **form the columns**. We do this using the `data.frame()` function, and giving the function the different vectors we would like to bind together. *This function will only work for vectors of the same length.*
+
+```r
+df <- data.frame(species, glengths)
+```
+
+*Note that you can view your data.frame object by clicking on its name in the `Environment` window.*
+
+
+## Lists
+
+Lists are a data structure in R that can be perhaps a bit daunting at first, but soon become amazingly useful. A list is a data structure that can hold any number of any types of other data structures.
+
+![list](../../../notingit/img/list.png){width=30%}
+
+---
+
+If you have variables of different data structures you wish to combine, you can put all of those into one list object by using the `list()` function and placing all the items you wish to combine within parentheses:
+
+```r
+list1 <- list(species, df, number)
+```
+
+Print out the list to screen to take a look at the components:
+
+---
+
+
+```r
+list1
+	
+[[1]]
+[1] "ecoli" "human" "corn" 
+
+[[2]]
+  species glengths
+1   ecoli      4.6
+2   human   3000.0
+3    corn  50000.0
+
+[[3]]
+[1] 5
+
+```
+
+There are three components corresponding to the three different variables we passed in, and what you see is that structure of each is retained. Each component of a list is referenced based on the number position. We will talk more about how to inspect and manipulate components of lists in later lessons.
+
+***
+**Exercise**
+
+Create a list called `list2` containing `species`, `glengths`, and `number`.
+
+
+
+
+
+<a name="ch3"></a>
+# R 101 -- 3. Functions in R
+
+## Learning Objectives
+
+* Describe and utilize functions in R. 
+* Modify default behavior of functions using arguments in R.
+* Identify R-specific sources of help to get more information about functions.
+* Demonstrate how to create user-defined functions in R
+* Demonstrate how to install packages to extend R’s functionality. 
+* Identify different R-specific and external sources of help to (1) troubleshoot errors and (2) get more information about functions and packages.
+
+***
+
+<img src="/home/sthu/Dropbox/hsf/courses_202/R/notingit/img/buildahouse.png" width="800">
+
+<sup><sub><sup><sub>
+*Source: http://anoved.net/tag/lego/page/3/* 
+</sup></sub></sup></sub>
+
+## Functions and their arguments
+
+### What are functions?
+
+A key feature of R is functions. Functions are **"self contained" modules of code that accomplish a specific task**. Functions usually take in some sort of data structure (value, vector, dataframe etc.), process it, and return a result.
+
+The general usage for a function is the name of the function followed by parentheses:
+
+```r
+function_name(input)
+```
+
+***
+
+The input(s) are called **arguments**, which can include:
+
+1. the physical object (any data structure) on which the function carries out a task 
+2. specifications that alter the way the function operates (e.g. options)
+
+Not all functions take arguments, for example:
+
+```r
+getwd()
+```
+
+However, most functions can take several arguments. If you don't specify a required argument when calling the function, you will either receive an error or the function will fall back on using a *default*. 
+
+***
+
+The **defaults** represent standard values that the author of the function specified as being "good enough in standard cases". An example would be what symbol to use in a plot. However, if you want something specific, simply change the argument yourself with a value of your choice.
+
+***
+
+### Basic functions
+
+We have already used a few examples of basic functions in the previous lessons i.e `getwd()`, `c()`, and  `factor()`. These functions are available as part of R's built in capabilities, and we will explore a few more of these base functions below. 
+
+You can also get functions from external *packages or libraries*, or *even write your own*. We will take a closer look at both of these soon!
+
+***
+
+Let's revisit a function that we have used previously to combine data `c()` into vectors. The *arguments* it takes is a collection of numbers, characters or strings (separated by a comma). The `c()` function performs the task of combining the numbers or characters into a single vector. You can also use the function to add elements to an existing vector:
+
+```r
+glengths <- c(glengths, 90) # adding at the end	
+glengths <- c(30, glengths) # adding at the beginning
+```
+
+What happens here is that we take the original vector `glengths` (containing three elements), and we are adding another item to either end. We can do this over and over again to build a vector or a dataset.
+
+***
+
+Since R is used for statistical computing, many of the base functions involve mathematical operations. One example would be the function `sqrt()`. The input/argument must be a number, and the output is the square root of that number. Let's try finding the square root of 81:
+
+```r
+sqrt(81)
+```
+
+Now what would happen if we **called the function** (e.g. ran the function), on a *vector of values* instead of a single value? 
+
+```r
+sqrt(glengths)
+```
+
+In this case the task was performed on each individual value of the vector `glengths` and the respective results were displayed.
+
+***
+
+Let's try another function, this time using one that we can change some of the *options* (arguments that change the behavior of the function), for example `round`:
+
+```r
+round(3.14159)
+```
+
+We can see that we get `3`. That's because the default is to round to the nearest whole number. 
+
+***
+
+**Exercise:** 
+
+Try to round the number with two digits.
+
+***
+
+**Solution: Seeking help on arguments for functions**
+
+The best way of finding out this information is to use the `?` followed by the name of the function. Doing this will open up the help manual in the bottom right panel of RStudio that will provide a description of the function, usage, arguments, details, and examples: 
+
+```r
+?round
+```	
+
+Alternatively, if you are familiar with the function but just need to remind yourself of the names of the arguments, you can use:
+
+```r
+args(round)
+```
+In our example, we can change the number of digits returned by **adding an argument**. We can type `digits=2` or however many we may want:
+
+***
+
+```r
+round(3.14159, digits=2)
+```
+
+*NOTE: If you provide the arguments in the exact same order as they are defined (in the help manual) you don't have to name them:*
+```r
+round(3.14159, 2)
+```
+However, it's usually not recommended practice because it involves a lot of memorization. In addition, it makes your code difficult to read for your future self and others, especially if your code includes functions that are not commonly used. (It's however OK to not include the names of the arguments for basic functions like `mean`, `min`, etc...). Another advantage of naming arguments, is that the order doesn't matter. This is useful when a function has many arguments. 
+
+***
+
+**Exercise** 
+
+Another commonly used base function is `mean()`. Use this function to calculate an average for the `glengths` vector.
+
+
+***
+
+**Missing values** 
+
+By default, all **R functions operating on vectors that contains missing data will return NA**. It's a way to make sure that users know they have missing data, and make a conscious decision on how to deal with it. When dealing with simple statistics like the mean, the easiest way to ignore `NA` (the missing data) is to use `na.rm=TRUE` (`rm` stands for remove).
+
+***
+
+### User-defined Functions
+
+One of the great strengths of R is the user's ability to add functions. Sometimes there is a small task (or series of tasks) you need done and you find yourself having to repeat it multiple times. In these types of situations it can be helpful to create your own custom function. The **structure of a function is given below**:
+
+```r
+name_of_function <- function(argument1, argument2) {
+    statements or code that does something
+    return(something)
+}
+```
+
+* First you give your function a name. 
+* Then you assign value to it, where the value is the function. 
+
+***
+
+When **defining the function** you will want to provide the **list of arguments required** (inputs and/or options to modify behaviour of the function), and wrapped between curly brackets place the **tasks that are being executed on/using those arguments**.  The argument(s) can be any type of object (like a scalar, a matrix, a dataframe, a vector, a logical, etc), and it’s not necessary to define what it is in any way. 
+
+Finally, you can **“return” the value of the object from the function**, meaning pass the value of it into the global environment. The important idea behind functions is that objects that are created within the function are local to the environment of the function – they don’t exist outside of the function. 
+
+> **NOTE:** You can also have a function that doesn't require any arguments, nor will it return anything.
+
+***
+
+Let's try creating a simple example function. This function will take in a numeric value as input, and return the squared value.
+
+```{r eval=TRUE}
+square_it <- function(x) {
+    square <- x * x
+    return(square)
+}
+```
+
+Now, we can use the function as we would any other function. We type out the name of the function, and inside the parentheses  we provide a numeric value `x`:
+
+```{r eval=TRUE}
+square_it(5)
+```
+
+Pretty simple, right? 
+
+***
+
+In this case, we only had one line of code that was run, but in theory you could have many lines of code to get obtain the final results that you want to "return" to the user. We have only scratched the surface here when it comes to creating functions! If you are interested please find more detailed information on this [R-bloggers site](https://www.r-bloggers.com/how-to-write-and-debug-an-r-function/).
+
+## Packages and Libraries
+
+R packages are collections of functions and data sets developed by the community. They increase the power of R by improving existing base R functionalities, or by adding new ones. For example, if you are usually working with data frames, probably you will have heard about dplyr or data.table, two of the most popular R packages. More than 10,000 packages are available at the official repository (CRAN) and many more are publicly available through the internet.
+
+For a good and rather more comprehensive overview on the topic, I recommend a reading of [R Packages: A Beginner's Guide](https://www.datacamp.com/community/tutorials/r-packages-guide).
+
+Also worth a look is [Writing an R Package from Scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
+
+***
+
+### Base Packages
+
+There are a set of **standard (or base) packages** which are considered part of the R source code and automatically available as part of your R installation. Base packages contain the **basic functions** that allow R to work, and enable standard statistical and graphical functions on datasets.
+
+The directories in R where the packages are stored are called the **libraries**. The terms *package* and *library* are sometimes used synonymously and there has been [discussion](http://www.r-bloggers.com/packages-v-libraries-in-r/) amongst the community to resolve this. 
+
+You can check what libraries are loaded in your current R session by typing into the console:
+
+```r
+sessionInfo() #Print version information about R, the OS and attached or loaded packages
+```
+
+***
+
+### Package installation from CRAN 
+
+Many packages can be installed from the [Comprehensive R Archive Network (CRAN)](http://cran.r-project.org/).
+CRAN is a repository where the latest downloads of R (and legacy versions) are found in addition to source code for thousands of different user contributed R packages.
+
+<img src="/home/sthu/Dropbox/hsf/courses_202/R/notingit/img/cran_packages.png" width="600">
+
+Packages for R can be installed from the [CRAN](http://cran.r-project.org/) package repository using the `install.packages` function. This function will download the source code from on the CRAN mirrors and install the package (and any dependencies) locally on your computer. 
+
+***
+
+An example is given below for the `ggplot2` package that will be required for some plots we will create later on. Run this code to install `ggplot2`.
+
+```r
+install.packages("ggplot2")
+```
+
+**NOTE:** Depending on your PC and internet-speed, installing packages can be time consuming. Thus, lay back and don't be afraid of the <span style="color:red">red text</span> in the console.
+
+***
+
+### Loading libraries
+Once you have the package installed, you can **load the library** into your R session for use. Any of the functions that are specific to that package will be available for you to use by simply calling the function as you would for any of the base functions. *Note that quotations are not required here.*
+
+
+```r
+library(ggplot2)
+```
+
+***
+
+We only need to install a package once on our computer. However, to use the package, we need to load the library every time we start a new R/RStudio environment. You can think of this as **installing a bulb** versus **turning on the light**. 
+
+<img src="/home/sthu/Dropbox/hsf/courses_202/R/notingit/img/install_vs_library.jpeg" width="600">
+
+<sup><sub><sup><sub>
+*Analogy and image credit to [Dianne Cook](https://twitter.com/visnut/status/1248087845589274624) of [Monash University](https://www.monash.edu/).* 
+</sup></sub></sup></sub>
+
+***
+
+### Finding functions specific to a package
+
+This is your first time using `ggplot2`, how do you know where to start and what functions are available to you? One way to do this, is by using the `Package` tab in RStudio. If you click on the tab, you will see listed all packages that you have installed. For those *libraries that you have loaded*, you will see a blue checkmark in the box next to it. Scroll down to `ggplot2` in your list:
+
+<img src="/home/sthu/Dropbox/hsf/courses_202/R/notingit/img/ggplot_help.png" width="300">  
+
+
+If your library is successfully loaded you will see the box checked, as in the screenshot above. Now, if you click on `ggplot2` RStudio will open up the help pages and you can scroll through.
+
+***
+
+An alternative is to find the help manual online, which can be less technical and sometimes easier to follow. 
+
+For more instructions on how to use ggplot2, see:
+
+- [An Introduction to ggplot2](https://uc-r.github.io/ggplot_intro)
+- [ggplot2 Reference](https://ggplot2.tidyverse.org/reference/index.html) 
+- [R Graphics Cookbook](https://r-graphics.org/#)
+
+**Exercise**
+
+Search in the [rdocumention.org](https://www.rdocumentation.org/) for ggplot2.
+
+***
+
+**Exercise**
+
+The `ggplot2` package is part of the [`tidyverse` suite of integrated packages](https://www.tidyverse.org/packages/) which was designed to work together to make common data science operations more user-friendly. 
+Maybe we use the `tidyverse` suite in later lessons,  so let's install it. 
+
+```r
+install.packages("tidyverse")
+```
+
+
+## Asking for help
+
+The key to getting help from someone is for them to grasp your problem rapidly. You
+should make it as easy as possible to pinpoint where the issue might be.
+
+1. Try to **use the correct words** to describe your problem. For instance, a package
+is not the same thing as a library. Most people will understand what you meant,
+but others have really strong feelings about the difference in meaning. The key
+point is that it can make things confusing for people trying to help you. **Be as
+precise as possible when describing your problem.**
+
+***
+
+2. **Always include the output of `sessionInfo()`** as it provides critical information about your platform, the versions of R and the packages that you are using, and other information that can be very helpful to understand your problem.
+
+	```r
+	sessionInfo()  #This time it is not interchangeable with search()
+	```
+	
+***
+
+3. If possible, **reproduce the problem using a very small `data.frame`**
+instead of your 50,000 rows and 10,000 columns one, provide the small one with
+the description of your problem. When appropriate, try to generalize what you
+are doing so even people who are not in your field can understand the question. 
+	- To share an object with someone else, you can provide either the raw file (i.e., your CSV file) with
+your script up to the point of the error (and after removing everything that is
+not relevant to your issue). Alternatively, in particular if your questions is
+not related to a `data.frame`, you can save any other R data structure that you have in your environment to a file:
+
+		```r
+		# DO NOT RUN THIS HERE! It's just an example.
+
+		save(iris, file="/tmp/iris.RData")
+		```
+***
+
+		The content of this `.RData` file is not human readable and cannot be posted directly on stackoverflow. It can, however, be emailed to someone who can read it with this command:
+
+		```r
+		# DO NOT RUN THIS HERE! It's just an example.
+
+		some_data <- load(file="~/Downloads/iris.RData")
+		```
+***
+
+### Where to ask for help?
+
+* **Google** is often your best friend for finding answers to specific questions regarding R. 
+	
+* **Stackoverflow**: Search using the `[r]` tag. Most questions have already been answered, but the challenge is to use the right words in the search to find the answers: [http://stackoverflow.com/questions/tagged/r](http://stackoverflow.com/questions/tagged/r). If your question hasn't been answered before and is well crafted, chances are you will get an answer in less than 5 min.
+* **Your friendly colleagues**: if you know someone with more experience than you,
+  they might be able and willing to help you.
+  
+***
+
+* **The [R-help](https://stat.ethz.ch/mailman/listinfo/r-help)**: it is read by a
+  lot of people (including most of the R core team), a lot of people post to it,
+  but the tone can be pretty dry, and it is not always very welcoming to new
+  users. If your question is valid, you are likely to get an answer very fast
+  but don't expect that it will come with smiley faces. Also, here more than
+  everywhere else, be sure to use correct vocabulary (otherwise you might get an
+  answer pointing to the misuse of your words rather than answering your
+  question). You will also have more success if your question is about a base
+  function rather than a specific package.
+* If your question is about a specific package, see if there is a mailing list
+  for it. Usually it's included in the DESCRIPTION file of the package that can
+  be accessed using `packageDescription("name-of-package")`. You may also want
+  to try to **email the author** of the package directly.
+* There are also some **topic-specific mailing lists** (GIS, phylogenetics, etc...),
+  the complete list is [here](http://www.r-project.org/mail.html).
+  
+***
+  
+### More resources
+* The [Posting Guide](http://www.r-project.org/posting-guide.html) for the R
+  mailing lists.
+* [How to ask for R help](http://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+  useful guidelines
+* The [Introduction to R](http://cran.r-project.org/doc/manuals/R-intro.pdf) can also be dense for people with little programming experience but it is a good place to understand the underpinnings of the R language.
+* The [R FAQ](http://cran.r-project.org/doc/FAQ/R-FAQ.html) is dense and technical but it is full of useful information.
+
+
+---
+
+<a name="ch4"></a>
+
+# R 101 -- 4. Operators
+
+
+
+# Describe the meaning of the `#` sign and the `<-` operator.
+
+- The `#` sign is used in R-scripts to add comments. That is usefull that you and others can understand what the R code is about. Comments are not run as R code, so they will not influence your result. 
+- `<-` is an assignment operator that assigns a value to a name/variable.  A variable allows you to store a value or an object in R and you can create that with the assignment operator. You can then later use it to access the value or the object that is stored within this variable.
+
+# Explain briefly ways to get help via the Console.
+
+- ?: Search R documentation for a specific term.
+- ?? Search R help files for a word or phrase.
+- RSiteSearch(): Search search.r-project.org
+- findFn(): Search search.r-project.org for functions (Hint: requires the "sos" library loaded!)
+- help.start(): Access to html manuals and documentations implemented in R 
+- apropos(): Returns a character vector giving the names of objects in the search list matching (as a regular expression) what.
+- find(): Returns where objects of a given name can be found.
+- vignette(): View a specified package vignette, i.e., supporting material such as introductions. 
+
+# Explain what the webpage RSeek.org can do for you.
+
+It makes it easy to search for information about R while filtering out sites hat match "R" but don't contain the information you're looking for. It's just like a Google search, but restricts the search just to those sites known to contain information about R.
+
+# State the arithmetic operators (plus, minus, etc.) in R.  
+
+| Operator | Description    |
+|----------|----------------|
+| +        | addition       |
+| -        | subtraction    |
+| *        | multiplication |
+| /        | division       |
+|^ or **   | exponentiation |
+
+# Name the logical operators (greater than, equal to, etc.) that can be used in R.
+
+| Operator  | 	Description |
+|---------- |----------------|
+|>          | 	greater than |
+| >=  |	greater than or equal to  |
+| == | 	exactly equal to |
+| != |	not equal to | 
+
+
+# What does ! mean in R?
+
+It's the logical operator for negation and it also means the opposite of a function.
+
+```{r}
+(5>1)
+!(5>1)
+(1>5)
+!(1>5)
+
+
+```
+
+
+# What is the pipe operator, %>% in R?
+
+The pipe operator, %>%, comes from the magrittr package which is also a part of the tidyverse package. The pipe is to help you write code in a way that is easier to read and understand. 
+As R is a functional language, code often contains a lot of parenthesis, ( and ). Nesting those parentheses together is complex and you easily get lost. This makes your R code hard to read and understand. Here's where %>% comes in to the rescue! Consider the following chunk of code to explain the usage of the pipe:
+
+
+```{r}
+# create some data `x`
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+x
+# take the logarithm of `x`, 
+x2 <- log(x)
+x2
+# compute the lagged and iterated differences (see `diff()`)
+x3 <- diff(x2)
+x3
+# compute the exponential function
+x4 <- exp(x3)
+x4
+#  Make yourself familiar with the functions round() and round the result (1 digit)
+x5 <- round(x4, 1)
+x5
+
+```
+
+That is rather long and we actually don't need objects x2, x3, and x4. Well, then let us write that in a nested function: 
+
+```{r}
+x <- c(0.109, 0.359, 0.63, 0.996, 0.515, 0.142, 0.017, 0.829, 0.907)
+
+round(exp(diff(log(x))), 1)
+ 
+```
+
+This is short but you easily loose overview. The solution is the _pipe_:
+
+```{r}
+# load one of these packages: `magrittr` or `tidyverse`
+library(tidyverse)
+
+# Perform the same computations on `x` as above
+x %>% log() %>%
+    diff() %>%
+    exp() %>%
+    round(1)
+
+```
+
+You can read the %>% with "and then" because it takes the results of some function "and then" does something with that in the next. 
+Another example can be found in this short clip: [Using the pipe operator in R](https://youtu.be/PX5NuteZ3Vg)
+
+# Read out loud the following code:
+
+```{r}
+library("datasets")
+iris %>%
+  subset(Sepal.Length > 5) %>%
+  aggregate(. ~ Species, ., mean)
+
+```
+
+A solution may be the following: "you take the Iris data _and then_ you subset the data _and then_ you aggregate the data and show the mean".
+
+
+# What sort of _extract operators_ exist in R and how can they be used? 
+
+The [extract operator](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Extract.html) is used to retrieve data from objects in R. The operator may take four forms, including `[, [[, $,` and `@`. The fourth form, `@`, is called the [slot operator](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/slot.html), and is a more advanced topic so we won't discuss it here.
+
+The first form, `[`, can be used to extract content from vector, lists, or data frames. Since vectors are one dimensional, i.e., they contain between 1 and N elements, we apply the extract operator to the vector as a single number or a list of numbers as follows.
+
+     x[ selection criteria here ]
+
+
+The following code defines a vector and then extracts the last 3 elements from it using two techniques. The first technique directly references elements 13 through 15. The second approach uses the length of the vector to calculate the indexes of last three elements.
+
+```{r}
+    x <- 16:30 # define a vector
+    x[13:15] # extract last 3 elements
+    x[(length(x)-2):length(x)] # extract last 3 elements
+
+```
+
+
+
+When used with a list, `[` extracts one or more elements from the list.
+When used with a data frame, the extract operator can select rows, columns, or both rows and columns. Therefore, the extract opertor takes the following form: rows then a comma, then columns.
+
+     x[select criteria for rows , select criteria for columns]
+
+The second and third forms of the extract operator, `[[` and `$` extract a single item from an object.  It is used to refer to an element in a list or a column in a data frame.
+The easiest way to see how the various features of the extract operator work is to get through some  examples.The following snippetsuse the `mtcars` data set from the `datasets` package.
+
+```{r}
+    library(datasets)
+    data(mtcars)
+
+    # Here, we set up a column name in a variable to illustrate use
+    # of various forms of the extract operator with a column name stored in
+    # another R object
+    theCol <- "cyl"
+
+    # approach 1: use [[ form of extract operator to extract a column
+    #             from the data frame as a vector
+    #             this works because a data frame is also a list
+    mtcars[[theCol]]
+
+    # approach 2: use variable name in column dimension of data frame
+    mtcars[,theCol]
+
+    # approach 3: use the $ form of extract operator. Note that since this
+    #             form accesses named elements from the list, you can't use
+    #             variable substitution (e.g. theCol) with this version of
+    #             extract
+    mtcars$cyl
+
+    # this version fails because the `$` version of extract does not
+    # work with variable substitution (i.e. a computed index)
+    mtcars$theCol
+```
+
+x$y is actually just a short form for x[[“y”]].
+
+The difference of `[ ]` and `[[ ]]`  is that `[[ ]]` is used to access a component in a list or matrix whereas `[ ]` is used to access a single element in a matrix or array.
+
+```{r}
+object <- list(a = 5, b = 6)
+
+object ['a']
+
+object [['a']]
+
+```
+
+# What is the _Console_ in RStudio  good for? 
+
+You can also execute R code straight in the console. This is a good way to experiment with R code, as your submission is not checked for correctness.
+
+
+# Creating sequences
+We just learned about the `c()` operator, which forms a vector from its arguments.  If we're trying to build a vector containing a sequence of numbers, there are several useful functions at our disposal.  These are the colon operator `:` and the sequence function `seq()`.
+
+**`:` Colon operator:**
+```{r}
+1:10 # Numbers 1 to 10
+127:132 # Numbers 127 to 132
+```
+
+**`seq` function: `seq(from, to, by)`**
+```{r}
+seq(1,10,1) # Numbers 1 to 10
+seq(1,10,2) # Odd numbers from 1 to 10
+seq(2,10,2) # Even numbers from 2 to 10
+```
+
+**(a)** Use `:` to output the sequence of numbers from 3 to 12
+```{r}
+3:12
+```
+
+**(b)** Use `seq()` to output the sequence of numbers from 3 to 30 in increments of 3
+```{r}
+seq(3, 30, 3)
+```
+
+**(c)** Save the sequence from (a) as a variable `x`, and the sequence from (b) as a variable `y`.  Output their product `x*y`
+```{r}
+x <- 3:12
+y <- seq(3, 30, 3)
+x * y
+```
+
+
+
+# Solve the following exercises in your own R-Script.
+
+1. RStudio offers a lot of helpful so-called Cheat Sheets (see: https://rstudio.com/resources/cheatsheets/) Download and make yourself familiar with the following [Base R Cheeat Sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf)
+
+1. Open RStudio, create a R-script, set your working directory, load the data package, calculate _3 + 4_ in R and add a comment to it.
+
+1. Further, calculate 
+- divide 697 by 41
+- take the square root of 12
+- take 3 to the power of 12
+
+2. Create a vector called vec1 that contain the numbers 2 5 8 12 16.
+
+3. Use `x:y` notation to make (select) a second vector called vec2 containing the numbers 5 to 9.
+
+4. Subtract vec2 from vec1 and look at the result.
+
+10. Use seq() to make a vector of 100 values starting at 2 and increasing by 3 each time. Name the new vector nseries. (Hint: The example of the _creating sequences_ section may be helpful.)
+
+11. 
+  - Extract the values at positions 5,10,15 and 20 in the vector of values you just created.
+  - Extract the values at positions 10 to 30
+  - Hint: Both of these actions require making a selection in the vector using the [ ] notation. Inside the square brackets you put a vector of index positions, so the problem here is to create the vector of index positions.
+
+
+### Solution:
+
+```{r}
+697 / 41
+sqrt(12)
+3 ^ 12
+vec1 <- c(2,5,8,12,16) 
+vec2 <- 5:9 
+vec1 - vec2
+number.series <- seq(from=2,by=3,length.out=100) 
+number.series
+number.series[c(5,10,15,20)]
+number.series[seq(from=5,to=20,by=5)]
+number.series[10:30]
+
+```
+
+
+# Can you plot data?
+
+Please explain your classmates how to create the following plots with R:
+
+- [Pie Charts](https://www.tutorialspoint.com/r/r_pie_charts.htm)
+- [Bar Charts](https://www.tutorialspoint.com/r/r_bar_charts.htm)
+- [Boxplots](https://www.tutorialspoint.com/r/r_boxplots.htm)
+- [Histograms](https://www.tutorialspoint.com/r/r_histograms.htm)
+- [Line Graphs](https://www.tutorialspoint.com/r/r_line_graphs.htm)
+- [Scatterplots](https://www.tutorialspoint.com/r/r_scatterplots.htm)
+
+
+# Can you create data frames and merge them?
+
+Please try to understand the following lines of code:
+
+```{r}
+data1 <- data.frame(id = 1:6,                                  # Create first example data frame
+                    x1 = c(5, 1, 4, 9, 1, 2),
+                    x2 = c("A", "Y", "G", "F", "G", "Y"))
+data2 <- data.frame(id = 4:9,                                  # Create second example data frame
+                    y1 = c(3, 3, 4, 1, 2, 9),
+                    y2 = c("a", "x", "a", "x", "a", "x"))
+
+merge(data1, data2, by = "id")                                 # Merge data frames by columns names
+merge(data1, data2, by = "id", all.x = TRUE)                   # Keep all rows of x-data
+merge(data1, data2, by = "id", all.y = TRUE)                   # Keep all rows of y-data
+merge(data1, data2, by = "id", all.x = TRUE, all.y = TRUE)     # Keep all rows of both data frames
+
+data3 <- data.frame(id = 5:6,                                  # Create third example data frame
+                    z1 = c(3, 2),
+                    z2 = c("K", "b"))
+
+data12 <- merge(data1, data2, by = "id")                       # Merge data 1 & 2 and store
+merge(data12, data3, by = "id")                                # Merge multiple data frames
+
+```
+
+
+# Can you calculate growth rates and build up data frames?
+
+Do the following:
+
+- Load the `sunspot.year` data which is part of R's datasets package `datasets`, 
+- generate a vector that contains the years 1700 to 1988, 
+- combine the two vectors into a data frame using `data.frame()`,
+- calculate the growth rate of yearly sunspot using `growth.rate()` which is part of the `tis` package, 
+- add the growth variable to the data frame.
+
+```{r, results=FALSE}
+library("datasets")
+data("sunspot.year")
+year <- 1700:1988
+sunspot.frame <- data.frame(year, sunspot.year)
+
+install.packages("tis")
+library("tis")
+
+growth <- growth.rate(sunspot.frame$sunspot.year, lag=1, simple = T)
+year <- 1701:1988
+sunspot.frame2 <- data.frame(year, growth)
+merge(sunspot.frame, sunspot.frame2, by = "year", all.x = TRUE, all.y = TRUE)  
+
+
+```
+
+
+# Can you load R Built-in R Data set?
+
+Study this webpage [R Built-in R Data set](https://rstudio-pubs-static.s3.amazonaws.com/481654_883a4b47c9b244d4859dd1db235f0165.html)
+and show how can you load R's _Motor Trend Car Road Tests_ dataset?
+
+# Can you inspect data sets?
+
+Here is a non-exhaustive list of functions to get a sense of the content/structure of data.
+
+* All data structures - content display:
+	- **`str()`:** compact display of data contents (env.)
+	- **`class()`:** data type (e.g. character, numeric, etc.) of vectors and data structure of dataframes, matrices, and lists.
+	- **`summary()`:** detailed display, including descriptive statistics, frequencies
+	- **`head()`:** will print the beginning entries for the variable
+	- **`tail()`:** will print the end entries for the variable
+* Vector and factor variables: 
+	- **`length()`:** returns the number of elements in the vector or factor
+* Dataframe and matrix variables:
+	- **`dim()`:** returns dimensions of the dataset
+	- **`nrow()`:** returns the number of rows in the dataset
+	- **`ncol()`:** returns the number of columns in the dataset
+	- **`rownames()`:** returns the row names in the dataset  
+	- **`colnames()`:** returns the column names in the dataset
+
+Load the mtcars data set and play around with the functions above.
+
+# Do you know the cars data?
+
+The `cars` data comes with the default installation of R.  To see the first few columns of the data, just type `head(cars)`.
+
+```{r}
+head(cars)
+```
+
+We'll do a bad thing here and use the `attach()` command, which will allow us to access the `speed` and `dist` columns of `cars` as though they were vectors in our workspace. 
+The `attach()` function has the side effect of altering the search path and this can easily lead to the wrong object of a particular name being found. People do often forget to detach databases.
+Thus, it is better to use `$`.
+
+```{r}
+attach(cars) # Using this command is poor style.  We will avoid it in the future. 
+speed
+dist
+```
+
+**(a)** Calculate the average and standard deviation of speed and distance.
+
+```{r}
+mean(speed)
+sd(speed)
+mean(dist)
+sd(dist)
+```
+
+**(b)** Make a a histogram of stopping distance using the `hist` function.
+
+```{r}
+hist(dist) # Histogram of stopping distance
+```
+
+The `plot(x,y,...)` function plots a vector `y` against a vector `x`.  You can type `?plot` into the Console to learn more about the basic plot function. 
+
+**(c)** Use the `plot(x,y)` function to create a scatterplot of dist against speed.
+
+```{r}
+plot(speed, dist)
+```
+
+
+
+---
+
+<a name="git"></a>
+
+# git and github 
+Please have a look at one of the following tutorials:
+
+- [Happy Git and GitHub for the useR](https://happygitwithr.com/)
+- [git/github guide - a minimal tutorial](http://kbroman.org/github_tutorial/)
+- [Learn Git with Bitbucket Cloud](https://www.atlassian.com/git/tutorials/learn-git-with-bitbucket-cloud)
+
+
+These sources provide instructions on how to:
+
+- Install Git and get it working smoothly with GitHub, in the shell and in the RStudio IDE.
+- Develop a few key workflows that cover your most common tasks.
+- Integrate Git and GitHub into your daily work with R and R Markdown.
+
+Moreover, I recommend to watch my *_git and github tutorial** on ILIAS and to have the [*GIT Cheat Sheet*](https://education.github.com/git-cheat-sheet-education.pdf) at hand to remember the meaning of the git commands.
+
+
+<a name="md"></a>
+
+# R Markdown
+
+R Markdown provides an authoring framework for data science. You can use a single R Markdown file to both
+
+- save and execute code and
+- generate high quality reports that can be shared with an audience.
+
+Please have a look at the following tutorials:
+
+- [R Markdown from RStudio](https://rmarkdown.rstudio.com/lesson-1.html)
+- [R Markdown Cheat Sheet](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+## Exercise
+
+- Install Git on your local computer.
+- Register a GitHub account.
+- Make a repository on GitHub.
+- Clone the repository to your local computer.
+- Make a local change, save, commit, and push.
+
+
+---
+
+---
+<sub><sup><sub>
+*This lesson has been developed by members of the teaching team at the [Harvard Chan Bioinformatics Core (HBC)](http://bioinformatics.sph.harvard.edu/). These are open access materials distributed under the terms of the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), which permits unrestricted use, distribution, and reproduction in any medium, provided the original author and source are credited.*
+</sup></sub></sup>
+
+<sub><sup><sub>
+* *The materials used in this lesson are adapted from work that is Copyright © Data Carpentry (http://datacarpentry.org/). 
+All Data Carpentry instructional material is made available under the [Creative Commons Attribution license](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0).*
+</sup></sub></sup>
+
