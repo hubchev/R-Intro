@@ -18,7 +18,9 @@ Regression analysis is covered by almost all econometric and statistical textboo
 - [Book: Applied Statistics with R](https://daviddalpiaz.github.io/appliedstats/)
 - [Book: Introduction to Econometrics with R](https://www.econometrics-with-r.org/)
 - [A more intuitive approach by Jim](https://statisticsbyjim.com)
-- A more formal approach from my alma mater: [slides](https://www.uni-regensburg.de/wirtschaftswissenschaften/vwl-tschernig/medien/zeitreihenoekonometrie/eoe_eng_2020_08_chapter_all.pdf) [handout](https://www.uni-regensburg.de/wirtschaftswissenschaften/vwl-tschernig/medien/methoden-der-oekonometrie/methoden_oekonometrie_handout_2018_11_29.pdf)
+- A more formal approach from my Alma Mater: [slides](https://www.uni-regensburg.de/wirtschaftswissenschaften/vwl-tschernig/medien/zeitreihenoekonometrie/eoe_eng_2020_08_chapter_all.pdf) and [handout](https://www.uni-regensburg.de/wirtschaftswissenschaften/vwl-tschernig/medien/methoden-der-oekonometrie/methoden_oekonometrie_handout_2018_11_29.pdf)
+
+- This presentation is available online: [html slides](https://github.com/hubchev/R-Intro/blob/master/lessons/regress_lecture.html) and [R Markdown file](https://raw.githubusercontent.com/hubchev/R-Intro/master/lessons/regress_lecture.Rmd)
 
 ## Learning Objectives
 
@@ -31,6 +33,13 @@ Regression analysis is covered by almost all econometric and statistical textboo
 - Regressions allow us to **draw insights** from data, 
 - to analyze and **interpret** the strength of relationships and 
 - to reduce the likeliness of **causal fallacy**.
+
+## Correlation 
+
+- Correlation reflects the \textit{strength} and \textit{direction} of a linear relationship (top row), it tells us nothing about the slope of that relationship (middle). Thus, we cannot interpret them economically.
+- Moreover, many aspects of nonlinear relationships (bottom) remain unexplained. The figure in the center has a slope of 0 but in that case the correlation coefficient is undefined because the variance of $Y$ is zero.
+
+![](~/Dropbox/hsf/pic/destat/corelate_overview.png){ width=65% }
 
 ---
 
