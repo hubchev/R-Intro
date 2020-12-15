@@ -13,6 +13,25 @@ classdata <- read_dta("~/Dropbox/hsf/courses_202/destat/classdata/classdata.dta"
 # or from csv data
 classdata <- read.csv("~/Dropbox/hsf/courses_202/destat/classdata/classdata.csv")
 
+head(classdata)
+
+# first look at data
+ggplot(classdata, aes(x=height, y=weight, shape = sex)) +
+  geom_point( aes(size = siblings)) 
+
+## baseline model
+model  <- lm(weight ~ height + sex , data = classdata )
+interw <- model$coefficients[1]+model$coefficients[3] 
+interm <- model$coefficients[1] 
+slope  <- model$coefficients[2]
+
+ggplot(classdata, aes(x=height, y=weight, shape = sex)) +
+  geom_point( aes(size = 2)) +
+  stat_smooth(formula = y ~ x,  method = "lm", se = FALSE, colour = "red", linetype = 1) +
+  geom_abline(slope = slope, intercept = interw, linetype = 2, size=1.5)+
+  geom_abline(slope = slope, intercept = interm, linetype = 2, size=1.5) +
+  geom_abline(slope = coef(model)[[2]], intercept = coef(model)[[1]]) 
+
 m1 <- lm(weight ~ height , data = classdata )
 m2 <- lm(weight ~ height + sex , data = classdata )
 m3 <- lm(weight ~ height + sex + height * sex , data = classdata )
@@ -61,21 +80,7 @@ mtable123
  # identify outliers
 classdata$resid <-  abs(residuals(m6)) / fitted(m6)
 
-##Intercept
-interw=model$coefficients[1]+model$coefficients[3] 
-interm=model$coefficients[1] 
-slope=model$coefficients[2]
 
-my.formula <- weight ~ height + sex 
-
-  ggplot(classdata, aes(x=height, y=weight, shape = sex)) +
-#  geom_text(aes(label = sex)) +
-#  geom_density_2d() +
-  geom_point( aes(size = 2)) +
-  geom_abline(slope = slope, intercept = interw, linetype = 2, size=1.5) +
-  geom_abline(slope = slope, intercept = interm, linetype = 2, size=1.5) +
-  stat_smooth(formula = y ~ x,  method = "lm", se = FALSE, colour = "red", linetype = 1)
-  
   
   #geom_label_repel(data=subset(classdata, resid>.09), aes(label = sex), box.padding = 0.35, point.padding = 0.5, segment.color = 'grey50') +
     
@@ -83,7 +88,7 @@ my.formula <- weight ~ height + sex
   
   
 
-geom_abline(slope = coef(model)[[2]], intercept = coef(model)[[1]]) 
+
 
 
 

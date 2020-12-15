@@ -1,5 +1,0 @@
-\beamer@sectionintoc {1}{Preface}{2}{0}{1}
-\beamer@sectionintoc {2}{RStudio}{12}{0}{2}
-\beamer@sectionintoc {3}{Interacting with R}{23}{0}{3}
-\beamer@sectionintoc {4}{Interacting with data in R}{33}{0}{4}
-\beamer@sectionintoc {5}{Learn how to get help}{41}{0}{5}
