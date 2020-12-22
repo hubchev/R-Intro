@@ -4,8 +4,6 @@
 
 ### Description
 
-Hi Steve.
-
 This repository has teaching materials for a hands-on **Introduction to R** workshop. The workshop will introduce participants to the basics of R and RStudio. R is a simple programming environment that enables the effective handling of data, while providing excellent graphical support. RStudio is a tool that provides a user-friendly environment for working with R. 
 
 These materials are intended to provide both basic R programming knowledge and its application for increasing efficiency for data analysis. 
