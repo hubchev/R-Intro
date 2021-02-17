@@ -31,8 +31,7 @@ output:
 
 ### Learning Objectives
 
-* Describe what R and RStudio are.
-* Interact with R using RStudio.
+* Describe what R and R* Interact with R using RStudio.
 * Use the various components of RStudio.
 * Employ variables in R.
 * Describe the various data types used in R. 
@@ -1784,7 +1783,7 @@ Links:
   - [Chapter 11 Tell Your Story with Data](https://moderndive.com/11-thinking-with-data.html)
   - [R Graph Gallery](https://www.r-graph-gallery.com/all-graphs.html)
 
-#### TOPIC 7: __Who's Your Costumer? Data Scientists Can Tell__ (Aida Daghistani)
+#### TOPIC 7: __Who's Your Costumer? Data Scientists Can Tell__ (       )
 
 _Background:_ Customer segmentation allows to detect customer profiles. This analysis can be done by R. This lecture should discuss the importance of customer segmentation for business and should briefly show how R can help here.  
 
@@ -1792,7 +1791,7 @@ Links:
 
   - [Cuostomer Analytics with R](https://josepcurtodiaz.gitbooks.io/customer-analytics-with-r/content/chapter7.html)
   
-#### TOPIC 8: __Artificial intelligence vs. COVID-19__ (Ranjodh Singh)
+#### TOPIC 8: __Artificial intelligence vs. COVID-19__ (Ranjodh Singh and Dhruvin Bhanushali)
 
 _Background:_  Methods of AI can help to fight COVID. The lecture should give an overview on the possibilities to fight the disease. 
 
